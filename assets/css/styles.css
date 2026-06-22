@@ -7735,3 +7735,21 @@ html[data-theme="light"] .lang-option.is-active {
 html[data-theme="light"] .applications .section-heading h2 {
   color: oklch(10% 0.012 76) !important;
 }
+
+/* v17.2: do not fade the Markets section heading */
+.applications .section-heading {
+  opacity: 1 !important;
+  filter: none !important;
+  mix-blend-mode: normal !important;
+  transform: none !important;
+}
+
+.applications .section-heading h2 {
+  color: oklch(96% 0.01 82) !important;
+  opacity: 1 !important;
+}
+
+html[data-theme="light"] .applications .section-heading h2 {
+  color: oklch(10% 0.012 76) !important;
+  opacity: 1 !important;
+}
