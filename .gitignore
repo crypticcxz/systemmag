@@ -1,4 +1,23 @@
 tmp/
 systemmag/
+backup/
 .DS_Store
 Thumbs.db
+
+# dependencies
+/node_modules
+
+# next.js
+/.next/
+/out/
+/build
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+
+# local env files
+.env*.local
+
+# typescript
+*.tsbuildinfo

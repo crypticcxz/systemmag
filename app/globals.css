@@ -1,4 +1,6 @@
-﻿:root {
+﻿@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&display=swap');
+
+:root {
   color-scheme: dark;
   --ink: oklch(94% 0.007 25);
   --muted: oklch(72% 0.012 25);
@@ -537,7 +539,7 @@ h3 {
 .section-heading {
   display: grid;
   grid-template-columns: minmax(0, 0.9fr) minmax(280px, 0.75fr);
-  align-items: end;
+  align-items: flex-end;
   gap: clamp(24px, 6vw, 84px);
   margin-bottom: clamp(34px, 6vw, 76px);
 }
@@ -560,15 +562,26 @@ h3 {
 .sequence-step {
   min-height: 360px;
   padding: clamp(18px, 2.2vw, 30px);
-  border-right: 1px solid var(--line);
-  background: linear-gradient(180deg, oklch(16% 0.018 25 / 0.82), oklch(10% 0.015 25 / 0.64));
+  border-right: 1px solid oklch(100% 0 0 / 0.06);
+  background: oklch(8% 0.012 25 / 0.55);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 }
 
 .sequence-step:last-child {
   border-right: 0;
 }
 
-.step-number,
+.step-number {
+  color: var(--red-hot);
+  font-size: clamp(36px, 4vw, 56px);
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  display: block;
+  margin-bottom: 4px;
+}
+
 .product-code,
 .application-bands span,
 .process-track span {
@@ -771,7 +784,7 @@ h3 {
 address {
   display: flex;
   flex-direction: column;
-  justify-content: end;
+  justify-content: flex-end;
   gap: 10px;
   padding: 24px;
   border: 1px solid var(--line);
@@ -1289,7 +1302,7 @@ h2 {
 }
 
 .hero-strip {
-  align-self: end;
+  align-self: flex-end;
   background: oklch(6% 0.01 78 / 0.72);
 }
 
@@ -2231,7 +2244,7 @@ h1 {
 }
 
 .section-heading p {
-  align-self: end;
+  align-self: flex-end;
 }
 
 .sequence {
@@ -2541,7 +2554,7 @@ address {
 }
 
 .principle .sequence-step h3 {
-  align-self: end;
+  align-self: flex-end;
   margin-bottom: 12px;
 }
 
@@ -2626,7 +2639,7 @@ address {
   display: grid;
   grid-template-columns: minmax(0, 0.68fr) minmax(280px, 0.46fr);
   gap: clamp(24px, 5vw, 72px);
-  align-items: end;
+  align-items: flex-end;
   margin-bottom: clamp(36px, 5.5vw, 74px);
   padding: clamp(26px, 3.5vw, 52px);
   overflow: hidden;
@@ -4084,15 +4097,14 @@ html[data-theme="light"] .market-card-copy {
 }
 
 .applications .section-heading {
-  position: sticky;
-  top: 96px;
-  z-index: 8;
-  width: min(calc(100% - 54px), 1380px);
-  margin: 0 auto;
+  position: static;
+  z-index: auto;
+  width: auto;
+  margin: 0 0 clamp(24px, 3vw, 40px);
   padding: 0;
   border: 0;
   background: transparent;
-  pointer-events: none;
+  pointer-events: auto;
 }
 
 .applications .section-heading::before {
@@ -4427,17 +4439,16 @@ html[data-theme="light"] .market-card-copy p {
 }
 
 .applications .section-heading {
-  position: sticky !important;
-  top: 108px !important;
-  z-index: 8 !important;
-  width: min(1120px, calc(100vw - 48px)) !important;
-  margin: 0 auto !important;
-  padding: 0 !important;
+  position: static !important;
+  z-index: auto !important;
+  width: auto !important;
+  margin: 0 0 12px !important;
+  padding: 0 max(24px, calc((100vw - var(--max)) / 2)) !important;
   border: 0 !important;
   background: transparent !important;
   box-shadow: none !important;
-  pointer-events: none;
-  opacity: calc(0.94 - var(--scene-progress, 0) * 0.52);
+  pointer-events: auto !important;
+  opacity: 1 !important;
 }
 
 .applications .section-heading::before,
@@ -5113,7 +5124,7 @@ html[data-theme="light"] .applications .section-heading h2 {
   z-index: 1 !important;
   display: flex !important;
   flex-direction: column !important;
-  justify-content: end !important;
+  justify-content: flex-end !important;
   min-height: clamp(520px, 58vw, 720px) !important;
   padding: clamp(34px, 4vw, 56px) !important;
   border: 1px solid oklch(96% 0.01 82 / 0.16) !important;
@@ -5165,6 +5176,51 @@ html[data-theme="light"] .contact {
     radial-gradient(circle at 18% 32%, oklch(70% 0.12 31 / 0.18), transparent 26rem),
     radial-gradient(circle at 83% 18%, oklch(18% 0.01 76 / 0.052), transparent 24rem),
     linear-gradient(180deg, oklch(92% 0.012 80), oklch(87% 0.012 80)) !important;
+}
+
+/* Mobile: contact section */
+@media (max-width: 680px) {
+  .contact-panel {
+    grid-template-columns: 1fr !important;
+    min-height: auto !important;
+  }
+
+  .contact-copy {
+    padding: clamp(36px, 8vw, 52px) clamp(24px, 6vw, 36px) !important;
+  }
+
+  .contact-panel h2 {
+    font-size: clamp(42px, 12vw, 64px) !important;
+  }
+
+  .contact-visual {
+    border-left: none !important;
+    border-top: 1px solid oklch(96% 0.01 82 / 0.13) !important;
+    min-height: 420px !important;
+    padding: 32px 24px 40px !important;
+  }
+
+  .contact-orbit {
+    width: min(72vw, 280px) !important;
+    min-width: 0 !important;
+  }
+
+  .brief-card {
+    position: static !important;
+    margin-top: 24px !important;
+    border-radius: 20px !important;
+  }
+
+  .contact address {
+    min-height: auto !important;
+    padding: clamp(28px, 6vw, 40px) clamp(24px, 6vw, 36px) !important;
+    border-top: 1px solid oklch(96% 0.01 82 / 0.13) !important;
+    border-left: none !important;
+  }
+
+  .contact address .address-label {
+    margin-bottom: 20px !important;
+  }
 }
 
 html[data-theme="light"] .contact-panel,
@@ -5737,7 +5793,7 @@ html[data-theme="light"] .market-card:nth-child(even) .market-card-copy {
 
   .header-actions {
     grid-column: 2 !important;
-    justify-self: end !important;
+    justify-self: flex-end !important;
     justify-content: flex-end !important;
     flex-wrap: nowrap !important;
     gap: 8px !important;
@@ -6205,10 +6261,19 @@ html[data-theme="light"] .process-track .step-frame {
     opacity 500ms var(--ease-out);
 }
 
-.hiw-step.is-visible .hiw-media img,
-.hiw-step:hover .hiw-media img {
+.hiw-step.is-visible .hiw-media img {
   filter: grayscale(0) brightness(0.92) contrast(1.04);
   transform: scale(1.015);
+}
+
+.hiw-step:hover .hiw-media img {
+  filter: grayscale(0) brightness(0.92) contrast(1.04);
+  animation: hiwZoom 1.8s ease-in-out infinite;
+}
+
+@keyframes hiwZoom {
+  0%, 100% { transform: scale(1.015); }
+  50%       { transform: scale(1.09); }
 }
 
 .hiw-media::after {
@@ -6291,6 +6356,89 @@ html[data-theme="light"] .process-track .step-frame {
   font-size: clamp(15px, 1.12vw, 18px);
   font-weight: 560;
   line-height: 1.45;
+}
+
+/* HIW animations */
+@keyframes hiwGlowPulse {
+  0%, 100% { opacity: 0.15; transform: scale(1); }
+  50%       { opacity: 0.28; transform: scale(1.12); }
+}
+
+@keyframes hiwBeam {
+  0%   { transform: translateX(-100%) scaleY(1); opacity: 0; }
+  8%   { opacity: 1; }
+  92%  { opacity: 1; }
+  100% { transform: translateX(100%) scaleY(1); opacity: 0; }
+}
+
+@keyframes hiwFloat {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-6px); }
+}
+
+@keyframes hiwScan {
+  0%   { transform: translateX(-110%); }
+  100% { transform: translateX(110%); }
+}
+
+/* Pulsing background glow */
+.howitworks::before {
+  animation: hiwGlowPulse 6s ease-in-out infinite;
+}
+
+/* Staggered entrance delays */
+.hiw-step:nth-child(1) { transition-delay: 0ms; }
+.hiw-step:nth-child(2) { transition-delay: 120ms; }
+.hiw-step:nth-child(3) { transition-delay: 240ms; }
+
+/* Floating animation once visible */
+.hiw-step.is-visible {
+  animation: hiwFloat 5s ease-in-out infinite;
+  animation-delay: calc(var(--hiw-i, 0) * 0.8s);
+}
+.hiw-step:nth-child(1) { --hiw-i: 0; }
+.hiw-step:nth-child(2) { --hiw-i: 1; }
+.hiw-step:nth-child(3) { --hiw-i: 2; }
+
+/* Scanning beam on the connector line */
+.hiw-track::before {
+  overflow: hidden;
+}
+.hiw-track::after {
+  content: "";
+  position: absolute;
+  left: 8%;
+  right: 8%;
+  top: clamp(210px, 22vw, 300px);
+  z-index: 0;
+  height: 1px;
+  overflow: hidden;
+  pointer-events: none;
+}
+.hiw-track::after {
+  background: linear-gradient(90deg, transparent, oklch(72% 0.22 34 / 0.9) 40%, oklch(96% 0.01 82 / 0.6) 50%, oklch(72% 0.22 34 / 0.9) 60%, transparent);
+  width: 30%;
+  right: auto;
+  animation: hiwBeam 3.4s ease-in-out infinite;
+  animation-delay: 0.8s;
+}
+
+/* Image scan shimmer on hover/visible */
+.hiw-media::after {
+  background:
+    linear-gradient(180deg, transparent 34%, oklch(2% 0.01 76 / 0.3) 74%, oklch(2% 0.01 76 / 0.72)),
+    linear-gradient(115deg, transparent 0 28%, oklch(100% 0.01 82 / 0.11) 38%, transparent 52%);
+}
+
+.hiw-step.is-visible .hiw-media::before {
+  animation: hiwScan 2.2s ease-in-out;
+  animation-delay: 0.3s;
+  background: linear-gradient(90deg, transparent 0 40%, oklch(100% 0.01 82 / 0.14) 50%, transparent 60%);
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
 }
 
 html[data-theme="light"] .howitworks {
@@ -6419,7 +6567,7 @@ html[data-theme="light"] .howitworks {
   grid-template-columns: minmax(220px, 0.42fr) minmax(0, 0.58fr) !important;
   grid-template-rows: auto 1fr !important;
   gap: clamp(24px, 3.6vw, 58px) clamp(30px, 5vw, 86px) !important;
-  align-items: end !important;
+  align-items: flex-end !important;
   width: min(1180px, 100%) !important;
   max-width: none !important;
   min-height: clamp(300px, 32vw, 430px) !important;
@@ -6467,7 +6615,7 @@ html[data-theme="light"] .howitworks {
   z-index: 1 !important;
   grid-column: 1 !important;
   grid-row: 1 !important;
-  align-self: end !important;
+  align-self: flex-end !important;
   margin: 0 !important;
   color: var(--red-hot) !important;
   text-align: left !important;
@@ -6571,7 +6719,7 @@ html[data-theme="light"] .howitworks .section-heading::after {
   grid-template-rows: auto auto !important;
   column-gap: clamp(34px, 7vw, 112px) !important;
   row-gap: 18px !important;
-  align-items: end !important;
+  align-items: flex-end !important;
   width: min(1180px, 100%) !important;
   max-width: none !important;
   min-height: 0 !important;
@@ -6616,7 +6764,7 @@ html[data-theme="light"] .howitworks .section-heading::after {
   grid-row: 2 !important;
   max-width: 11ch !important;
   margin: clamp(18px, 2.2vw, 28px) 0 0 !important;
-  align-self: end !important;
+  align-self: flex-end !important;
   color: oklch(95% 0.01 82) !important;
   font-size: clamp(50px, 7vw, 108px) !important;
   line-height: 0.86 !important;
@@ -6629,7 +6777,7 @@ html[data-theme="light"] .howitworks .section-heading::after {
   grid-row: 2 !important;
   max-width: 35ch !important;
   margin: 0 0 0 auto !important;
-  align-self: end !important;
+  align-self: flex-end !important;
   color: oklch(82% 0.01 82) !important;
   font-size: clamp(16px, 1.24vw, 20px) !important;
   font-weight: 560 !important;
@@ -7144,236 +7292,6 @@ html[data-theme="light"] .product-media img {
   }
 }
 
-/* v15: refined rounded navbar and clearer section navigation */
-.site-header {
-  width: min(calc(100% - 28px), 1380px) !important;
-  min-height: 68px !important;
-  padding: 10px 12px !important;
-  border-radius: 22px !important;
-  border-color: oklch(92% 0.01 82 / 0.18) !important;
-  background:
-    linear-gradient(135deg, oklch(12% 0.012 76 / 0.9), oklch(7% 0.01 76 / 0.74)) !important;
-  box-shadow:
-    0 20px 70px oklch(1% 0.01 70 / 0.34),
-    inset 0 1px 0 oklch(100% 0.01 82 / 0.08) !important;
-  backdrop-filter: blur(18px) saturate(1.08) !important;
-}
-
-.site-header::before {
-  content: "";
-  position: absolute;
-  inset: 1px;
-  z-index: -1;
-  border-radius: 20px;
-  background: linear-gradient(90deg, oklch(100% 0.01 82 / 0.08), transparent 34%, oklch(68% 0.22 34 / 0.08));
-  pointer-events: none;
-}
-
-.site-header .brand {
-  height: 48px !important;
-}
-
-.site-nav {
-  gap: clamp(4px, 0.8vw, 10px) !important;
-  padding: 4px !important;
-  border: 1px solid oklch(96% 0.01 82 / 0.08) !important;
-  border-radius: 999px !important;
-  background: oklch(3.8% 0.01 76 / 0.28) !important;
-}
-
-.site-nav a {
-  position: relative !important;
-  isolation: isolate !important;
-  display: inline-flex !important;
-  align-items: center !important;
-  min-height: 36px !important;
-  padding: 0 clamp(13px, 1.35vw, 22px) !important;
-  overflow: hidden !important;
-  border-radius: 999px !important;
-  color: oklch(80% 0.01 82 / 0.72) !important;
-  font-size: 12px !important;
-  font-weight: 800 !important;
-  letter-spacing: 0.075em !important;
-  transition:
-    color 260ms var(--ease-out),
-    transform 320ms var(--ease-out),
-    background 320ms var(--ease-out) !important;
-}
-
-.site-nav a::before {
-  content: "";
-  position: absolute;
-  inset: 3px;
-  z-index: -1;
-  border-radius: inherit;
-  background:
-    radial-gradient(circle at 50% 0%, oklch(100% 0.01 82 / 0.16), transparent 65%),
-    linear-gradient(135deg, oklch(100% 0.01 82 / 0.1), oklch(68% 0.22 34 / 0.08));
-  opacity: 0;
-  transform: scaleX(0.72);
-  transition:
-    opacity 320ms var(--ease-out),
-    transform 420ms var(--ease-out) !important;
-}
-
-.site-nav a::after {
-  left: 18px !important;
-  right: 18px !important;
-  bottom: 6px !important;
-  height: 1px !important;
-  border-radius: 99px !important;
-  background: linear-gradient(90deg, transparent, var(--red-hot), transparent) !important;
-  opacity: 0 !important;
-  scale: 0.45 1 !important;
-  transform-origin: center !important;
-  transition:
-    opacity 260ms var(--ease-out),
-    scale 420ms var(--ease-out) !important;
-}
-
-.site-nav a:hover,
-.site-nav a:focus-visible,
-.site-nav a.is-current {
-  color: oklch(96% 0.01 82) !important;
-  transform: translateY(-1px) !important;
-}
-
-.site-nav a:hover::before,
-.site-nav a:focus-visible::before,
-.site-nav a.is-current::before {
-  opacity: 1 !important;
-  transform: scaleX(1) !important;
-}
-
-.site-nav a:hover::after,
-.site-nav a:focus-visible::after,
-.site-nav a.is-current::after {
-  opacity: 1 !important;
-  scale: 1 1 !important;
-}
-
-.theme-toggle,
-.lang-toggle {
-  border-radius: 999px !important;
-  border-color: oklch(96% 0.01 82 / 0.12) !important;
-  background: oklch(3.8% 0.01 76 / 0.54) !important;
-  transition:
-    border-color 260ms var(--ease-out),
-    background 260ms var(--ease-out),
-    transform 320ms var(--ease-out) !important;
-}
-
-.theme-toggle:hover,
-.lang-toggle:hover {
-  border-color: oklch(96% 0.01 82 / 0.24) !important;
-  background: oklch(9% 0.012 76 / 0.76) !important;
-  transform: translateY(-1px) !important;
-}
-
-.theme-option,
-.lang-option {
-  border-radius: 999px !important;
-  transition:
-    background 260ms var(--ease-out),
-    color 260ms var(--ease-out),
-    transform 320ms var(--ease-out) !important;
-}
-
-.theme-option.is-active,
-.lang-option.is-active {
-  box-shadow: 0 8px 20px oklch(1% 0.01 70 / 0.24) !important;
-}
-
-.nav-cta {
-  min-height: 46px !important;
-  padding-inline: 22px !important;
-  border: 1px solid oklch(96% 0.01 82 / 0.16) !important;
-  border-radius: 999px !important;
-  background: oklch(91% 0.012 82) !important;
-  color: oklch(8% 0.012 76) !important;
-  box-shadow: inset 0 -1px 0 oklch(10% 0.01 76 / 0.18) !important;
-  transition:
-    color 260ms var(--ease-out),
-    background 260ms var(--ease-out),
-    border-color 260ms var(--ease-out),
-    transform 320ms var(--ease-out),
-    box-shadow 320ms var(--ease-out) !important;
-}
-
-.nav-cta:hover,
-.nav-cta:focus-visible {
-  border-color: oklch(68% 0.22 34 / 0.48) !important;
-  background: var(--red-hot) !important;
-  color: oklch(98% 0.01 82) !important;
-  transform: translateY(-2px) !important;
-  box-shadow:
-    0 14px 34px oklch(48% 0.18 34 / 0.28),
-    inset 0 1px 0 oklch(100% 0.01 82 / 0.22) !important;
-}
-
-html[data-theme="light"] .site-header {
-  border-color: oklch(22% 0.012 76 / 0.14) !important;
-  background:
-    linear-gradient(135deg, oklch(96% 0.01 82 / 0.92), oklch(90% 0.012 80 / 0.76)) !important;
-  box-shadow:
-    0 18px 52px oklch(24% 0.012 76 / 0.13),
-    inset 0 1px 0 oklch(100% 0.01 82 / 0.72) !important;
-}
-
-html[data-theme="light"] .site-header::before {
-  background: linear-gradient(90deg, oklch(100% 0.01 82 / 0.64), transparent 34%, oklch(58% 0.18 34 / 0.12));
-}
-
-html[data-theme="light"] .site-nav,
-html[data-theme="light"] .theme-toggle,
-html[data-theme="light"] .lang-toggle {
-  border-color: oklch(20% 0.012 76 / 0.1) !important;
-  background: oklch(100% 0.01 82 / 0.42) !important;
-}
-
-html[data-theme="light"] .site-nav a {
-  color: oklch(28% 0.012 76 / 0.68) !important;
-}
-
-html[data-theme="light"] .site-nav a:hover,
-html[data-theme="light"] .site-nav a:focus-visible,
-html[data-theme="light"] .site-nav a.is-current {
-  color: oklch(11% 0.012 76) !important;
-}
-
-html[data-theme="light"] .site-nav a::before {
-  background:
-    radial-gradient(circle at 50% 0%, oklch(100% 0.01 82 / 0.84), transparent 68%),
-    linear-gradient(135deg, oklch(100% 0.01 82 / 0.76), oklch(58% 0.18 34 / 0.1));
-}
-
-html[data-theme="light"] .nav-cta {
-  background: oklch(12% 0.012 76) !important;
-  color: oklch(96% 0.01 82) !important;
-}
-
-html[data-theme="light"] .nav-cta:hover,
-html[data-theme="light"] .nav-cta:focus-visible {
-  background: var(--red-hot) !important;
-  color: oklch(98% 0.01 82) !important;
-}
-
-@media (max-width: 980px) {
-  .site-header {
-    border-radius: 18px !important;
-  }
-}
-
-@media (max-width: 520px) {
-  .site-header {
-    width: min(calc(100% - 18px), 1380px) !important;
-    padding: 8px !important;
-  }
-
-  .nav-cta {
-    display: none !important;
-  }
-}
 
 /* v16: unify final CTA into one contact box */
 .contact {
@@ -7455,7 +7373,7 @@ html[data-theme="light"] .nav-cta:focus-visible {
 }
 
 .contact address a {
-  justify-self: end !important;
+  justify-self: flex-end !important;
   margin: 0 !important;
   white-space: nowrap !important;
 }
@@ -7752,4 +7670,540 @@ html[data-theme="light"] .applications .section-heading h2 {
 html[data-theme="light"] .applications .section-heading h2 {
   color: oklch(10% 0.012 76) !important;
   opacity: 1 !important;
+}
+
+/* ============================================================
+   vREF — adopt the systemmag.vercel.app color theme
+   (warm paper background + burnt-orange accent). Light is the only
+   theme. Layout, gradients and animations are unchanged — only the
+   palette is remapped to the reference's exact values.
+   ============================================================ */
+:root {
+  /* Reference palette — exact values from systemmag.vercel.app */
+  --color-page: #fcf7ee;
+  --color-surface: #f4f1ea;
+  --color-surface-alt: #e8e4da;
+  --color-border: #d8d2c8;
+  --color-accent: #e65f18;
+  --color-accent-hover: #c84f13;
+  --color-accent-on-dark: #ff8a3d;
+  --color-accent-soft: #fff0e6;
+  --color-dark: #3a3d40;
+  --color-dark-elevated: #484b4e;
+  --color-text: #3a3d40;
+  --color-text-secondary: #5a6470;
+  --color-text-muted: #8a8d90;
+  --color-text-light: #f1eee7;
+}
+
+/* Remap our internal design tokens onto the reference palette.
+   Scoped to the (only) active theme so it wins over earlier light blocks. */
+html[data-theme="light"] {
+  --ink: var(--color-text);
+  --muted: var(--color-text-secondary);
+  --dim: var(--color-text-muted);
+  --line: var(--color-border);
+  --panel: var(--color-surface);
+  --panel-strong: var(--color-surface-alt);
+  --bg: var(--color-page);
+  --bg-deep: var(--color-surface);
+  --paper: var(--color-surface);
+  --canvas: var(--color-page);
+  --plain: var(--color-page);
+  --red: var(--color-accent-hover);
+  --red-hot: var(--color-accent);
+  --steel: var(--color-text-secondary);
+}
+
+::selection {
+  background: var(--color-accent);
+  color: #fff;
+}
+
+/* Page + section canvases → warm paper with in-palette depth glows */
+html[data-theme="light"] body {
+  color: var(--color-text) !important;
+  background:
+    radial-gradient(circle at 78% 6%, rgba(230, 95, 24, 0.10), transparent 28rem),
+    radial-gradient(circle at 12% 2%, rgba(90, 100, 112, 0.06), transparent 30rem),
+    var(--color-page) !important;
+}
+
+html[data-theme="light"] .howitworks,
+html[data-theme="light"] .applications {
+  background:
+    radial-gradient(circle at 16% 18%, rgba(230, 95, 24, 0.09), transparent 30rem),
+    radial-gradient(circle at 82% 74%, rgba(90, 100, 112, 0.07), transparent 32rem),
+    var(--color-page) !important;
+}
+
+html[data-theme="light"] .applications::after {
+  background:
+    radial-gradient(circle at 50% 8%, transparent 0 18rem, rgba(252, 247, 238, 0.5) 42rem),
+    linear-gradient(90deg, var(--color-page), transparent 22%, transparent 78%, var(--color-page)) !important;
+}
+
+/* Headings → charcoal text */
+html[data-theme="light"] h1,
+html[data-theme="light"] h2,
+html[data-theme="light"] h3,
+html[data-theme="light"] .section-heading h2,
+html[data-theme="light"] .applications .section-heading h2 {
+  color: var(--color-text) !important;
+}
+
+/* Surfaces: header, cards, panels → surface tone + warm border */
+html[data-theme="light"] .site-header {
+  background: rgba(252, 247, 238, 0.82) !important;
+  border-color: var(--color-border) !important;
+}
+
+html[data-theme="light"] .sequence-step,
+html[data-theme="light"] .product-panel,
+html[data-theme="light"] .process-track .step-frame,
+html[data-theme="light"] .market-card-copy,
+html[data-theme="light"] .contact,
+html[data-theme="light"] .contact-panel,
+html[data-theme="light"] .contact address,
+html[data-theme="light"] .brief-card {
+  background: var(--color-surface) !important;
+  border-color: var(--color-border) !important;
+}
+
+/* Primary CTA button → burnt orange */
+html[data-theme="light"] .nav-cta {
+  background: var(--color-accent) !important;
+  border-color: var(--color-accent) !important;
+  color: #fff !important;
+}
+html[data-theme="light"] .nav-cta:hover,
+html[data-theme="light"] .nav-cta:focus-visible {
+  background: var(--color-accent-hover) !important;
+  border-color: var(--color-accent-hover) !important;
+  color: #fff !important;
+}
+
+/* Accent text: eyebrows, indices, inline links */
+html[data-theme="light"] .eyebrow,
+html[data-theme="light"] .market-card-copy span,
+html[data-theme="light"] .market-card-copy a,
+html[data-theme="light"] .step-number,
+html[data-theme="light"] .product-code {
+  color: var(--color-accent) !important;
+}
+
+/* Primary / secondary buttons → reference charcoal + surface */
+html[data-theme="light"] .button-primary {
+  background: var(--color-dark) !important;
+  border-color: var(--color-dark) !important;
+  color: var(--color-text-light) !important;
+}
+html[data-theme="light"] .button-primary:hover,
+html[data-theme="light"] .button-primary:focus-visible {
+  background: var(--color-dark-elevated) !important;
+  border-color: var(--color-dark-elevated) !important;
+}
+html[data-theme="light"] .button-secondary {
+  border-color: var(--color-border) !important;
+  color: var(--color-text) !important;
+}
+
+/* ============================================================
+   vREF.2 — complete light-only SYSTEMMAG reference palette
+   Source match: systemmag.vercel.app/fr
+   ============================================================ */
+:root {
+  color-scheme: light;
+  --ref-page: #fcf7ee;
+  --ref-surface: #f4f1ea;
+  --ref-surface-alt: #e8e4da;
+  --ref-lift: #fffaf1;
+  --ref-bright: #fffdfa;
+  --ref-border: #d8d2c8;
+  --ref-dark: #3a3d40;
+  --ref-dark-2: #484b4e;
+  --ref-deep: #0f1d26;
+  --ref-muted: #5a6470;
+  --ref-soft: #8a8d90;
+  --ref-light-text: #f1eee7;
+  --ref-orange: #e65f18;
+  --ref-orange-2: #c84f13;
+  --ref-orange-soft: #fff0e6;
+  --shadow-card: 0 1px 2px #0f1d260a, 0 8px 24px #0f1d260f;
+  --shadow-card-hover: 0 2px 4px #0f1d260f, 0 16px 40px #0f1d261a;
+}
+
+html[data-theme="light"] {
+  color-scheme: light;
+  --ink: var(--ref-dark);
+  --muted: var(--ref-muted);
+  --dim: var(--ref-soft);
+  --line: var(--ref-border);
+  --panel: var(--ref-surface);
+  --panel-strong: var(--ref-surface-alt);
+  --bg: var(--ref-page);
+  --bg-deep: var(--ref-surface);
+  --paper: var(--ref-lift);
+  --canvas: var(--ref-page);
+  --plain: var(--ref-page);
+  --red: var(--ref-orange-2);
+  --red-hot: var(--ref-orange);
+  --steel: var(--ref-muted);
+}
+
+html[data-theme="light"] body {
+  background:
+    radial-gradient(circle at 8% 10%, rgba(230, 95, 24, 0.08), transparent 28rem),
+    radial-gradient(circle at 86% 4%, rgba(15, 29, 38, 0.055), transparent 30rem),
+    linear-gradient(180deg, var(--ref-page), #f6f2ea 46%, var(--ref-page)) !important;
+  color: var(--ref-dark) !important;
+  font-family: Inter, "Segoe UI", system-ui, sans-serif !important;
+}
+
+html[data-theme="light"] body::before {
+  background-image:
+    linear-gradient(rgba(15, 29, 38, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(15, 29, 38, 0.045) 1px, transparent 1px) !important;
+  opacity: 0.54 !important;
+}
+
+html[data-theme="light"] body::after {
+  background:
+    radial-gradient(circle at 12% 18%, rgba(230, 95, 24, 0.08), transparent 24rem),
+    radial-gradient(circle at 88% 20%, rgba(90, 100, 112, 0.08), transparent 26rem),
+    linear-gradient(90deg, rgba(252, 247, 238, 0.86), rgba(252, 247, 238, 0.48), rgba(252, 247, 238, 0.86)) !important;
+  opacity: 0.82 !important;
+}
+
+html[data-theme="light"] .cursor-field {
+  background: radial-gradient(circle, rgba(230, 95, 24, 0.16), transparent 66%) !important;
+  mix-blend-mode: multiply !important;
+}
+
+html[data-theme="light"] .scroll-video-system {
+  background: var(--ref-page) !important;
+}
+
+html[data-theme="light"] .scroll-video {
+  filter: grayscale(0.24) contrast(0.9) brightness(1.22) saturate(0.72) !important;
+  opacity: 0.36 !important;
+  mix-blend-mode: multiply !important;
+}
+
+html[data-theme="light"] .hero,
+html[data-theme="light"] .principle {
+  color: var(--ref-dark) !important;
+}
+
+html[data-theme="light"] .products,
+html[data-theme="light"] .howitworks,
+html[data-theme="light"] .applications,
+html[data-theme="light"] .process,
+html[data-theme="light"] .contact {
+  background:
+    radial-gradient(circle at 12% 12%, rgba(230, 95, 24, 0.075), transparent 30rem),
+    radial-gradient(circle at 84% 82%, rgba(90, 100, 112, 0.07), transparent 32rem),
+    var(--ref-page) !important;
+  color: var(--ref-dark) !important;
+}
+
+html[data-theme="light"] h1,
+html[data-theme="light"] h2,
+html[data-theme="light"] h3,
+html[data-theme="light"] .hero h1,
+html[data-theme="light"] .section-heading h2,
+html[data-theme="light"] .applications .section-heading h2,
+html[data-theme="light"] .product-panel h3,
+html[data-theme="light"] .hiw-copy h3,
+html[data-theme="light"] .process-track h3,
+html[data-theme="light"] .contact-panel h2,
+html[data-theme="light"] .brief-card strong {
+  color: var(--ref-dark) !important;
+}
+
+html[data-theme="light"] p,
+html[data-theme="light"] .hero-lede,
+html[data-theme="light"] .section-heading p:not(.eyebrow),
+html[data-theme="light"] .principle .sequence-step p,
+html[data-theme="light"] .product-panel p,
+html[data-theme="light"] .hiw-copy p,
+html[data-theme="light"] .process-track p,
+html[data-theme="light"] .market-card-copy p,
+html[data-theme="light"] .contact-panel .contact-copy > p:not(.eyebrow),
+html[data-theme="light"] .brief-card span:last-child,
+html[data-theme="light"] .contact address span:not(.address-label) {
+  color: var(--ref-muted) !important;
+}
+
+html[data-theme="light"] .eyebrow,
+html[data-theme="light"] .step-number,
+html[data-theme="light"] .product-code,
+html[data-theme="light"] .hiw-num,
+html[data-theme="light"] .brief-kicker,
+html[data-theme="light"] .contact address .address-label,
+html[data-theme="light"] .process-track article > span,
+html[data-theme="light"] .market-card-copy span,
+html[data-theme="light"] .market-card-copy a {
+  color: var(--ref-orange) !important;
+}
+
+html[data-theme="light"] .site-header {
+  background: rgba(252, 247, 238, 0.88) !important;
+  border: 1px solid rgba(216, 210, 200, 0.9) !important;
+  box-shadow: 0 12px 34px rgba(15, 29, 38, 0.08) !important;
+  backdrop-filter: blur(18px) saturate(1.15) !important;
+}
+
+html[data-theme="light"] .brand-logo {
+  filter: none !important;
+}
+
+html[data-theme="light"] .site-nav a,
+html[data-theme="light"] .lang-toggle {
+  color: var(--ref-muted) !important;
+}
+
+html[data-theme="light"] .site-nav a:hover,
+html[data-theme="light"] .site-nav a:focus-visible {
+  color: var(--ref-dark) !important;
+  background: var(--ref-orange-soft) !important;
+}
+
+html[data-theme="light"] .lang-toggle,
+html[data-theme="light"] .theme-toggle {
+  background: rgba(255, 250, 241, 0.88) !important;
+  border-color: var(--ref-border) !important;
+}
+
+html[data-theme="light"] .lang-option.is-active,
+html[data-theme="light"] .theme-option.is-active {
+  background: var(--ref-dark) !important;
+  color: var(--ref-light-text) !important;
+}
+
+html[data-theme="light"] .nav-cta,
+html[data-theme="light"] .button-primary,
+html[data-theme="light"] .contact-actions .button-primary {
+  background: var(--ref-orange) !important;
+  border-color: var(--ref-orange) !important;
+  color: var(--ref-bright) !important;
+  box-shadow: 0 10px 28px rgba(230, 95, 24, 0.18) !important;
+}
+
+html[data-theme="light"] .nav-cta:hover,
+html[data-theme="light"] .nav-cta:focus-visible,
+html[data-theme="light"] .button-primary:hover,
+html[data-theme="light"] .button-primary:focus-visible,
+html[data-theme="light"] .contact-actions .button-primary:hover,
+html[data-theme="light"] .contact-actions .button-primary:focus-visible {
+  background: var(--ref-orange-2) !important;
+  border-color: var(--ref-orange-2) !important;
+  color: var(--ref-bright) !important;
+}
+
+html[data-theme="light"] .button-secondary,
+html[data-theme="light"] .contact-actions .button-secondary {
+  background: rgba(255, 250, 241, 0.86) !important;
+  border-color: var(--ref-border) !important;
+  color: var(--ref-dark) !important;
+}
+
+html[data-theme="light"] .button-secondary:hover,
+html[data-theme="light"] .button-secondary:focus-visible,
+html[data-theme="light"] .contact-actions .button-secondary:hover,
+html[data-theme="light"] .contact-actions .button-secondary:focus-visible {
+  background: var(--ref-dark) !important;
+  border-color: var(--ref-dark) !important;
+  color: var(--ref-light-text) !important;
+}
+
+html[data-theme="light"] .hero-strip,
+html[data-theme="light"] .hero-strip span,
+html[data-theme="light"] .hero-stage,
+html[data-theme="light"] .stage-readout div,
+html[data-theme="light"] .principle .section-heading,
+html[data-theme="light"] .principle .sequence-step,
+html[data-theme="light"] .products .section-heading,
+html[data-theme="light"] .product-panel,
+html[data-theme="light"] .howitworks .section-heading,
+html[data-theme="light"] .hiw-step,
+html[data-theme="light"] .process .section-heading,
+html[data-theme="light"] .process-track article,
+html[data-theme="light"] .contact-panel,
+html[data-theme="light"] .contact address,
+html[data-theme="light"] .brief-card {
+  background: rgba(255, 250, 241, 0.82) !important;
+  border-color: var(--ref-border) !important;
+  box-shadow: var(--shadow-card) !important;
+}
+
+html[data-theme="light"] .hero-strip span,
+html[data-theme="light"] .stage-topline,
+html[data-theme="light"] .stage-readout span,
+html[data-theme="light"] .scroll-cues .cue {
+  color: var(--ref-muted) !important;
+}
+
+html[data-theme="light"] .stage-readout strong,
+html[data-theme="light"] .scroll-cues .cue strong,
+html[data-theme="light"] .scroll-cues .cue.is-active strong {
+  color: var(--ref-dark) !important;
+}
+
+html[data-theme="light"] .stage-topline span:first-child,
+html[data-theme="light"] .scroll-cues .cue.is-active span {
+  color: var(--ref-orange) !important;
+}
+
+html[data-theme="light"] .magnetic-rig,
+html[data-theme="light"] .field-rings span,
+html[data-theme="light"] .pull-gauge {
+  border-color: rgba(58, 61, 64, 0.16) !important;
+}
+
+html[data-theme="light"] .rail,
+html[data-theme="light"] .mini-diagram .sheath,
+html[data-theme="light"] .mini-diagram .hinge {
+  background: rgba(15, 29, 38, 0.14) !important;
+  border-color: rgba(15, 29, 38, 0.22) !important;
+}
+
+html[data-theme="light"] .pole.north,
+html[data-theme="light"] .mag.n,
+html[data-theme="light"] .mag.block,
+html[data-theme="light"] .zip-line span:nth-child(odd),
+html[data-theme="light"] .magnet-chip:nth-of-type(odd) {
+  background: linear-gradient(180deg, var(--ref-orange), var(--ref-orange-2)) !important;
+  color: var(--ref-bright) !important;
+}
+
+html[data-theme="light"] .pole.south,
+html[data-theme="light"] .mag.s,
+html[data-theme="light"] .mini-diagram .stop,
+html[data-theme="light"] .zip-line span:nth-child(even),
+html[data-theme="light"] .magnet-chip:nth-of-type(even) {
+  background: linear-gradient(180deg, #6d7884, var(--ref-deep)) !important;
+  color: var(--ref-light-text) !important;
+}
+
+html[data-theme="light"] .sequence,
+html[data-theme="light"] .process-track {
+  border-color: var(--ref-border) !important;
+}
+
+html[data-theme="light"] .product-panel,
+html[data-theme="light"] .hiw-step,
+html[data-theme="light"] .process-track article {
+  background:
+    linear-gradient(145deg, rgba(255, 250, 241, 0.9), rgba(244, 241, 234, 0.76)),
+    var(--ref-surface) !important;
+}
+
+html[data-theme="light"] .product-panel:hover,
+html[data-theme="light"] .hiw-step:hover,
+html[data-theme="light"] .process-track article:hover {
+  border-color: rgba(230, 95, 24, 0.32) !important;
+  box-shadow: var(--shadow-card-hover) !important;
+}
+
+html[data-theme="light"] .product-media,
+html[data-theme="light"] .hiw-media,
+html[data-theme="light"] .process-track .step-media {
+  background:
+    linear-gradient(rgba(15, 29, 38, 0.055) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(15, 29, 38, 0.055) 1px, transparent 1px),
+    radial-gradient(circle at 68% 36%, rgba(230, 95, 24, 0.13), transparent 18rem),
+    var(--ref-lift) !important;
+  background-size: 24px 24px, 24px 24px, auto, auto !important;
+  border-color: var(--ref-border) !important;
+}
+
+html[data-theme="light"] .product-media img,
+html[data-theme="light"] .hiw-media img,
+html[data-theme="light"] .process-track .step-media img {
+  filter: saturate(0.95) contrast(0.98) !important;
+}
+
+html[data-theme="light"] .product-frame,
+html[data-theme="light"] .hiw-frame,
+html[data-theme="light"] .process-track .step-frame {
+  border-color: rgba(230, 95, 24, 0.36) !important;
+}
+
+html[data-theme="light"] .product-media.is-missing::before,
+html[data-theme="light"] .hiw-media::before {
+  color: var(--ref-soft) !important;
+}
+
+html[data-theme="light"] .applications::before,
+html[data-theme="light"] .applications::after {
+  background:
+    radial-gradient(circle at 12% 20%, rgba(230, 95, 24, 0.08), transparent 26rem),
+    linear-gradient(90deg, var(--ref-page), transparent 18%, transparent 82%, var(--ref-page)) !important;
+}
+
+html[data-theme="light"] .market-card {
+  box-shadow: var(--shadow-card) !important;
+}
+
+html[data-theme="light"] .market-card::before {
+  background:
+    linear-gradient(180deg, rgba(15, 29, 38, 0.03), rgba(15, 29, 38, 0.18)),
+    linear-gradient(90deg, rgba(252, 247, 238, 0.12), transparent) !important;
+}
+
+html[data-theme="light"] .market-card-copy,
+html[data-theme="light"] .market-card:nth-child(even) .market-card-copy {
+  background: rgba(255, 250, 241, 0.86) !important;
+  border-color: rgba(216, 210, 200, 0.92) !important;
+  color: var(--ref-dark) !important;
+  box-shadow: var(--shadow-card) !important;
+}
+
+html[data-theme="light"] .market-card-copy h3,
+html[data-theme="light"] .market-card:nth-child(even) .market-card-copy h3 {
+  color: var(--ref-dark) !important;
+}
+
+html[data-theme="light"] .market-card-copy p,
+html[data-theme="light"] .market-card:nth-child(even) .market-card-copy p {
+  color: var(--ref-muted) !important;
+}
+
+html[data-theme="light"] .contact {
+  background:
+    radial-gradient(circle at 70% 40%, rgba(230, 95, 24, 0.12), transparent 26rem),
+    radial-gradient(circle at 26% 80%, rgba(15, 29, 38, 0.07), transparent 28rem),
+    var(--ref-page) !important;
+}
+
+html[data-theme="light"] .contact-panel {
+  background:
+    linear-gradient(120deg, rgba(255, 250, 241, 0.92), rgba(244, 241, 234, 0.72)),
+    var(--ref-surface) !important;
+}
+
+html[data-theme="light"] .contact-visual {
+  background:
+    radial-gradient(circle at 52% 38%, rgba(230, 95, 24, 0.18), transparent 15rem),
+    radial-gradient(circle at 48% 42%, rgba(15, 29, 38, 0.08), transparent 18rem) !important;
+}
+
+html[data-theme="light"] .brief-card {
+  background: rgba(255, 250, 241, 0.9) !important;
+}
+
+html[data-theme="light"] .contact address a {
+  color: var(--ref-orange) !important;
+}
+
+html[data-theme="light"] a:focus-visible,
+html[data-theme="light"] button:focus-visible {
+  outline-color: var(--ref-orange) !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html[data-theme="light"] .scroll-video {
+    opacity: 0.28 !important;
+  }
 }
