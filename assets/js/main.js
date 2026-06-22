@@ -86,7 +86,16 @@
     cueOne: "positionner",
     cueTwo: "maintenir",
     cueThree: "ajuster",
-    cueFour: "ouvrir"
+    cueFour: "ouvrir",
+    hiwEyebrow: "Comment ça fonctionne",
+    hiwTitle: "Comment ça fonctionne ?",
+    hiwIntro: "Les deux parties se rapprochent, se positionnent et s’attirent automatiquement grâce aux polarités alternées. L’ouverture se fait ensuite par pelage, aimant après aimant.",
+    hiwOneTitle: "Auto-positionnement",
+    hiwOneText: "Deux bandes textiles s’approchent : les zones aimantées s’alignent poche à poche.",
+    hiwTwoTitle: "Maintien réparti",
+    hiwTwoText: "Un rabat se superpose partiellement sur l’autre le long de l’arête magnétique.",
+    hiwThreeTitle: "Ouverture par pelage",
+    hiwThreeText: "On soulève une extrémité et l’ouverture progresse avec un geste naturel."
   },  en: {
     navTechnology: "Technology",
     navProducts: "Products",
@@ -174,7 +183,16 @@
     cueOne: "position",
     cueTwo: "hold",
     cueThree: "adjust",
-    cueFour: "open"
+    cueFour: "open",
+    hiwEyebrow: "How it works",
+    hiwTitle: "How does it work?",
+    hiwIntro: "The two parts come together, position themselves, and attract automatically thanks to alternating polarities. Opening then happens by peeling, magnet after magnet.",
+    hiwOneTitle: "Self-positioning",
+    hiwOneText: "Two textile strips come together: the magnetized zones align pocket to pocket.",
+    hiwTwoTitle: "Distributed hold",
+    hiwTwoText: "One flap partially overlaps the other along the magnetic ridge.",
+    hiwThreeTitle: "Peel-open",
+    hiwThreeText: "You lift one end and the opening progresses with a natural gesture."
   }
 };
 
@@ -187,6 +205,20 @@ const translatable = document.querySelectorAll("[data-i18n]");
 const revealItems = document.querySelectorAll("[data-reveal]");
 const cursorField = document.querySelector(".cursor-field");
 document.body.classList.add("js-enabled");
+const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+document.querySelectorAll(".product-media img").forEach((image) => {
+  image.addEventListener("error", () => {
+    image.closest(".product-media")?.classList.add("is-missing");
+    image.remove();
+  }, { once: true });
+});
+document.querySelectorAll(".hiw-media img").forEach((image) => {
+  image.addEventListener("error", () => {
+    image.closest(".hiw-media")?.classList.add("is-missing");
+    image.remove();
+  }, { once: true });
+});
 
 function setLanguage(lang) {
   html.lang = lang;
@@ -252,9 +284,15 @@ const observer = new IntersectionObserver(
       }
     });
   },
-  { threshold: 0.16, rootMargin: "0px 0px -6% 0px" }
+  { threshold: 0.16, rootMargin: "0px 0px -8% 0px" }
 );
 
+// Stagger reveals that share a group container, so children arrive in sequence.
+document.querySelectorAll("[data-reveal-group]").forEach((group) => {
+  group.querySelectorAll("[data-reveal]").forEach((el, i) => {
+    el.style.setProperty("--reveal-i", i);
+  });
+});
 
 function revealVisibleNow() {
   revealItems.forEach((item) => {
@@ -267,12 +305,35 @@ function revealVisibleNow() {
 
 window.addEventListener("load", revealVisibleNow);
 window.addEventListener("hashchange", () => requestAnimationFrame(revealVisibleNow));
-window.addEventListener("scroll", revealVisibleNow, { passive: true });
 revealVisibleNow();
-revealItems.forEach((item, index) => {
-  item.style.transitionDelay = `${Math.min(index * 42, 260)}ms`;
-  observer.observe(item);
-});
+revealItems.forEach((item) => observer.observe(item));
+
+// ---- Parallax depth layers ----
+const parallaxItems = prefersReducedMotion
+  ? []
+  : Array.from(document.querySelectorAll("[data-parallax]"));
+let parallaxRaf = 0;
+
+function updateParallax() {
+  parallaxRaf = 0;
+  const viewport = window.innerHeight || 1;
+  parallaxItems.forEach((el) => {
+    const speed = parseFloat(el.dataset.parallax) || 0;
+    const rect = el.getBoundingClientRect();
+    const centerOffset = rect.top + rect.height / 2 - viewport / 2;
+    el.style.setProperty("--px", `${(centerOffset * speed).toFixed(1)}px`);
+  });
+}
+
+function requestParallax() {
+  if (!parallaxRaf) parallaxRaf = requestAnimationFrame(updateParallax);
+}
+
+if (parallaxItems.length) {
+  window.addEventListener("scroll", requestParallax, { passive: true });
+  window.addEventListener("resize", requestParallax);
+  updateParallax();
+}
 
 window.addEventListener("pointermove", (event) => {
   if (!cursorField) return;
@@ -294,9 +355,9 @@ let rafId = 0;
 
 function videoRange() {
   const firstSection = document.querySelector(".hero");
-  const thirdSection = document.querySelector(".products");
+  const videoEndSection = document.querySelector("#how-it-works") || document.querySelector(".products");
   const start = firstSection ? firstSection.offsetTop : 0;
-  const end = thirdSection ? thirdSection.offsetTop - window.innerHeight * 0.08 : window.innerHeight * 2;
+  const end = videoEndSection ? videoEndSection.offsetTop - window.innerHeight * 0.08 : window.innerHeight * 2;
   return {
     start,
     end: Math.max(start + 1, end),
@@ -367,10 +428,23 @@ function updateMarketScene() {
 
   const sceneRect = marketScene.getBoundingClientRect();
   const viewport = window.innerHeight || 1;
+
+  // Skip the per-card style writes entirely when the scene is off-screen.
+  if (sceneRect.bottom < -viewport || sceneRect.top > viewport) return;
+
   const travel = Math.max(1, sceneRect.height - viewport);
   const progress = Math.min(1, Math.max(0, -sceneRect.top / travel));
   const maxIndex = marketCards.length - 1;
-  const floatIndex = progress * maxIndex;
+  // Hold the first and last cards centred for a beat. A plain
+  // progress * maxIndex mapping only ever "leaves" card 0 and only "arrives"
+  // at the last card, so the ends get half the dwell of the middle cards.
+  // Padding the domain by `hold` index-units at each end and clamping gives
+  // every card a symmetric arrive-hold-leave moment.
+  const hold = 0.6;
+  const floatIndex = Math.min(
+    maxIndex,
+    Math.max(0, progress * (maxIndex + hold * 2) - hold)
+  );
   const activeIndex = Math.round(floatIndex);
 
   marketScene.style.setProperty("--scene-progress", progress.toFixed(4));
@@ -409,6 +483,49 @@ if (marketCards.length) {
   window.addEventListener("load", requestMarketScene);
   requestMarketScene();
 }
+
+
+// ---- Smooth scroll (Lenis) ----
+// Lenis interpolates scroll position every frame, which lets the scrubbed video,
+// the markets carousel, parallax, and reveals all glide instead of stepping.
+let lenis = null;
+
+if (!prefersReducedMotion && typeof Lenis !== "undefined") {
+  lenis = new Lenis({
+    lerp: 0.085,
+    wheelMultiplier: 1,
+    smoothWheel: true,
+  });
+
+  const raf = (time) => {
+    lenis.raf(time);
+    requestAnimationFrame(raf);
+  };
+  requestAnimationFrame(raf);
+
+  // Lenis programmatically updates window scroll, so the existing window "scroll"
+  // listeners (video scrub, markets) still fire; this just keeps parallax in lockstep.
+  lenis.on("scroll", requestParallax);
+}
+
+// Route in-page anchors through Lenis for an eased glide to the target.
+document.querySelectorAll('a[href^="#"]').forEach((link) => {
+  link.addEventListener("click", (event) => {
+    const href = link.getAttribute("href");
+    if (!href || href.length < 2) return;
+    const target = document.querySelector(href);
+    if (!target) return;
+    event.preventDefault();
+    if (lenis) {
+      lenis.scrollTo(target, { offset: -88, duration: 1.15 });
+    } else {
+      target.scrollIntoView({ behavior: "smooth" });
+    }
+  });
+});
+
+
+
 
 
 
