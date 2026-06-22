@@ -1,10 +1,11 @@
 ﻿const copy = {
   fr: {
     navTechnology: "Technologie",
-    navProducts: "Produits",
+    navProducts: "Intégration",
     navApplications: "March\u00e9s",
-    navProcess: "Savoir-faire",
-    navCta: "Parler \u00e0 un expert",
+    navProcess: "Prototype",
+    navContact: "Contact",
+    navCta: "Cadrer un projet",
     heroEyebrow: "Technologie brevet\u00e9e pour textile et \u00e9quipement",
     heroTitle: "La fermeture magn\u00e9tique con\u00e7ue pour dispara\u00eetre.",
     heroLede: "Systemmag con\u00e7oit des fermetures magn\u00e9tiques int\u00e9gr\u00e9es aux textiles, accessoires et \u00e9quipements techniques, pour cr\u00e9er des syst\u00e8mes discrets, souples et adapt\u00e9s \u00e0 vos contraintes d\u2019usage.",
@@ -98,10 +99,11 @@
     hiwThreeText: "On soulève une extrémité et l’ouverture progresse avec un geste naturel."
   },  en: {
     navTechnology: "Technology",
-    navProducts: "Products",
+    navProducts: "Integration",
     navApplications: "Markets",
-    navProcess: "Expertise",
-    navCta: "Talk to an expert",
+    navProcess: "Prototype",
+    navContact: "Contact",
+    navCta: "Start a project",
     heroEyebrow: "Patented technology for textile and equipment",
     heroTitle: "The magnetic closure designed to disappear.",
     heroLede: "Systemmag designs magnetic closures integrated into textiles, accessories, and technical equipment to create discreet, flexible systems adapted to your usage constraints.",
@@ -526,6 +528,51 @@ document.querySelectorAll('a[href^="#"]').forEach((link) => {
 
 
 
+
+
+
+
+
+// ---- Header section state ----
+const navLinks = Array.from(document.querySelectorAll('.site-nav a[href^="#"]'));
+const navTargets = navLinks
+  .map((link) => ({ link, target: document.querySelector(link.getAttribute('href')) }))
+  .filter((item) => item.target);
+let navRafId = 0;
+
+function updateNavState() {
+  navRafId = 0;
+  if (!navTargets.length) return;
+
+  const marker = window.innerHeight * 0.38;
+  let current = navTargets[0];
+
+  navTargets.forEach((item) => {
+    const rect = item.target.getBoundingClientRect();
+    if (rect.top <= marker && rect.bottom > 120) current = item;
+  });
+
+  navTargets.forEach(({ link }) => {
+    const isCurrent = link === current.link;
+    link.classList.toggle('is-current', isCurrent);
+    if (isCurrent) {
+      link.setAttribute('aria-current', 'true');
+    } else {
+      link.removeAttribute('aria-current');
+    }
+  });
+}
+
+function requestNavState() {
+  if (!navRafId) navRafId = requestAnimationFrame(updateNavState);
+}
+
+if (navTargets.length) {
+  window.addEventListener('scroll', requestNavState, { passive: true });
+  window.addEventListener('resize', requestNavState);
+  window.addEventListener('load', requestNavState);
+  updateNavState();
+}
 
 
 

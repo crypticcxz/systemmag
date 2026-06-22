@@ -6686,7 +6686,7 @@ html[data-theme="light"] .howitworks .section-heading p {
    Image slots to fill:
    - assets/img/products/magnetic-zips.avif
    - assets/img/products/magnet-blocks.avif
-   - assets/img/products/textile-sheaths.avif
+   - assets/img/products/textile-sheaths.png
    - assets/img/products/magnet-strips.avif
    ===================================================================== */
 .product-grid {
@@ -7142,4 +7142,596 @@ html[data-theme="light"] .product-media img {
   .principle .sequence-step {
     grid-template-columns: 1fr !important;
   }
+}
+
+/* v15: refined rounded navbar and clearer section navigation */
+.site-header {
+  width: min(calc(100% - 28px), 1380px) !important;
+  min-height: 68px !important;
+  padding: 10px 12px !important;
+  border-radius: 22px !important;
+  border-color: oklch(92% 0.01 82 / 0.18) !important;
+  background:
+    linear-gradient(135deg, oklch(12% 0.012 76 / 0.9), oklch(7% 0.01 76 / 0.74)) !important;
+  box-shadow:
+    0 20px 70px oklch(1% 0.01 70 / 0.34),
+    inset 0 1px 0 oklch(100% 0.01 82 / 0.08) !important;
+  backdrop-filter: blur(18px) saturate(1.08) !important;
+}
+
+.site-header::before {
+  content: "";
+  position: absolute;
+  inset: 1px;
+  z-index: -1;
+  border-radius: 20px;
+  background: linear-gradient(90deg, oklch(100% 0.01 82 / 0.08), transparent 34%, oklch(68% 0.22 34 / 0.08));
+  pointer-events: none;
+}
+
+.site-header .brand {
+  height: 48px !important;
+}
+
+.site-nav {
+  gap: clamp(4px, 0.8vw, 10px) !important;
+  padding: 4px !important;
+  border: 1px solid oklch(96% 0.01 82 / 0.08) !important;
+  border-radius: 999px !important;
+  background: oklch(3.8% 0.01 76 / 0.28) !important;
+}
+
+.site-nav a {
+  position: relative !important;
+  isolation: isolate !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  min-height: 36px !important;
+  padding: 0 clamp(13px, 1.35vw, 22px) !important;
+  overflow: hidden !important;
+  border-radius: 999px !important;
+  color: oklch(80% 0.01 82 / 0.72) !important;
+  font-size: 12px !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.075em !important;
+  transition:
+    color 260ms var(--ease-out),
+    transform 320ms var(--ease-out),
+    background 320ms var(--ease-out) !important;
+}
+
+.site-nav a::before {
+  content: "";
+  position: absolute;
+  inset: 3px;
+  z-index: -1;
+  border-radius: inherit;
+  background:
+    radial-gradient(circle at 50% 0%, oklch(100% 0.01 82 / 0.16), transparent 65%),
+    linear-gradient(135deg, oklch(100% 0.01 82 / 0.1), oklch(68% 0.22 34 / 0.08));
+  opacity: 0;
+  transform: scaleX(0.72);
+  transition:
+    opacity 320ms var(--ease-out),
+    transform 420ms var(--ease-out) !important;
+}
+
+.site-nav a::after {
+  left: 18px !important;
+  right: 18px !important;
+  bottom: 6px !important;
+  height: 1px !important;
+  border-radius: 99px !important;
+  background: linear-gradient(90deg, transparent, var(--red-hot), transparent) !important;
+  opacity: 0 !important;
+  scale: 0.45 1 !important;
+  transform-origin: center !important;
+  transition:
+    opacity 260ms var(--ease-out),
+    scale 420ms var(--ease-out) !important;
+}
+
+.site-nav a:hover,
+.site-nav a:focus-visible,
+.site-nav a.is-current {
+  color: oklch(96% 0.01 82) !important;
+  transform: translateY(-1px) !important;
+}
+
+.site-nav a:hover::before,
+.site-nav a:focus-visible::before,
+.site-nav a.is-current::before {
+  opacity: 1 !important;
+  transform: scaleX(1) !important;
+}
+
+.site-nav a:hover::after,
+.site-nav a:focus-visible::after,
+.site-nav a.is-current::after {
+  opacity: 1 !important;
+  scale: 1 1 !important;
+}
+
+.theme-toggle,
+.lang-toggle {
+  border-radius: 999px !important;
+  border-color: oklch(96% 0.01 82 / 0.12) !important;
+  background: oklch(3.8% 0.01 76 / 0.54) !important;
+  transition:
+    border-color 260ms var(--ease-out),
+    background 260ms var(--ease-out),
+    transform 320ms var(--ease-out) !important;
+}
+
+.theme-toggle:hover,
+.lang-toggle:hover {
+  border-color: oklch(96% 0.01 82 / 0.24) !important;
+  background: oklch(9% 0.012 76 / 0.76) !important;
+  transform: translateY(-1px) !important;
+}
+
+.theme-option,
+.lang-option {
+  border-radius: 999px !important;
+  transition:
+    background 260ms var(--ease-out),
+    color 260ms var(--ease-out),
+    transform 320ms var(--ease-out) !important;
+}
+
+.theme-option.is-active,
+.lang-option.is-active {
+  box-shadow: 0 8px 20px oklch(1% 0.01 70 / 0.24) !important;
+}
+
+.nav-cta {
+  min-height: 46px !important;
+  padding-inline: 22px !important;
+  border: 1px solid oklch(96% 0.01 82 / 0.16) !important;
+  border-radius: 999px !important;
+  background: oklch(91% 0.012 82) !important;
+  color: oklch(8% 0.012 76) !important;
+  box-shadow: inset 0 -1px 0 oklch(10% 0.01 76 / 0.18) !important;
+  transition:
+    color 260ms var(--ease-out),
+    background 260ms var(--ease-out),
+    border-color 260ms var(--ease-out),
+    transform 320ms var(--ease-out),
+    box-shadow 320ms var(--ease-out) !important;
+}
+
+.nav-cta:hover,
+.nav-cta:focus-visible {
+  border-color: oklch(68% 0.22 34 / 0.48) !important;
+  background: var(--red-hot) !important;
+  color: oklch(98% 0.01 82) !important;
+  transform: translateY(-2px) !important;
+  box-shadow:
+    0 14px 34px oklch(48% 0.18 34 / 0.28),
+    inset 0 1px 0 oklch(100% 0.01 82 / 0.22) !important;
+}
+
+html[data-theme="light"] .site-header {
+  border-color: oklch(22% 0.012 76 / 0.14) !important;
+  background:
+    linear-gradient(135deg, oklch(96% 0.01 82 / 0.92), oklch(90% 0.012 80 / 0.76)) !important;
+  box-shadow:
+    0 18px 52px oklch(24% 0.012 76 / 0.13),
+    inset 0 1px 0 oklch(100% 0.01 82 / 0.72) !important;
+}
+
+html[data-theme="light"] .site-header::before {
+  background: linear-gradient(90deg, oklch(100% 0.01 82 / 0.64), transparent 34%, oklch(58% 0.18 34 / 0.12));
+}
+
+html[data-theme="light"] .site-nav,
+html[data-theme="light"] .theme-toggle,
+html[data-theme="light"] .lang-toggle {
+  border-color: oklch(20% 0.012 76 / 0.1) !important;
+  background: oklch(100% 0.01 82 / 0.42) !important;
+}
+
+html[data-theme="light"] .site-nav a {
+  color: oklch(28% 0.012 76 / 0.68) !important;
+}
+
+html[data-theme="light"] .site-nav a:hover,
+html[data-theme="light"] .site-nav a:focus-visible,
+html[data-theme="light"] .site-nav a.is-current {
+  color: oklch(11% 0.012 76) !important;
+}
+
+html[data-theme="light"] .site-nav a::before {
+  background:
+    radial-gradient(circle at 50% 0%, oklch(100% 0.01 82 / 0.84), transparent 68%),
+    linear-gradient(135deg, oklch(100% 0.01 82 / 0.76), oklch(58% 0.18 34 / 0.1));
+}
+
+html[data-theme="light"] .nav-cta {
+  background: oklch(12% 0.012 76) !important;
+  color: oklch(96% 0.01 82) !important;
+}
+
+html[data-theme="light"] .nav-cta:hover,
+html[data-theme="light"] .nav-cta:focus-visible {
+  background: var(--red-hot) !important;
+  color: oklch(98% 0.01 82) !important;
+}
+
+@media (max-width: 980px) {
+  .site-header {
+    border-radius: 18px !important;
+  }
+}
+
+@media (max-width: 520px) {
+  .site-header {
+    width: min(calc(100% - 18px), 1380px) !important;
+    padding: 8px !important;
+  }
+
+  .nav-cta {
+    display: none !important;
+  }
+}
+
+/* v16: unify final CTA into one contact box */
+.contact {
+  display: grid !important;
+  grid-template-columns: 1fr !important;
+  gap: 0 !important;
+  width: min(1380px, calc(100vw - 48px)) !important;
+  margin: clamp(72px, 9vw, 128px) auto clamp(60px, 8vw, 110px) !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  border: 1px solid oklch(96% 0.01 82 / 0.16) !important;
+  border-radius: 0 !important;
+  background:
+    radial-gradient(circle at 18% 32%, oklch(54% 0.19 31 / 0.18), transparent 26rem),
+    radial-gradient(circle at 76% 42%, oklch(61% 0.22 32 / 0.13), transparent 22rem),
+    linear-gradient(135deg, oklch(98% 0.01 82 / 0.052), transparent 44%),
+    oklch(2.6% 0.01 76 / 0.86) !important;
+  box-shadow:
+    inset 0 1px 0 oklch(98% 0.01 82 / 0.11),
+    0 34px 110px oklch(1% 0.01 70 / 0.46) !important;
+}
+
+.contact::after {
+  display: none !important;
+}
+
+.contact::before {
+  inset: 0 !important;
+  z-index: 0 !important;
+  opacity: 0.7 !important;
+  mask-image: radial-gradient(ellipse at 52% 45%, black, transparent 76%) !important;
+}
+
+.contact-panel {
+  grid-template-columns: minmax(0, 0.66fr) minmax(300px, 0.34fr) !important;
+  min-height: clamp(520px, 55vw, 700px) !important;
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.contact-panel::before {
+  inset: auto -12% -24% 36% !important;
+  width: 48% !important;
+  height: 58% !important;
+  opacity: 0.72 !important;
+}
+
+.contact-visual {
+  border-left: 0 !important;
+  background:
+    radial-gradient(circle at 48% 42%, oklch(74% 0.2 32 / 0.18), transparent 11rem),
+    radial-gradient(circle at 68% 62%, oklch(98% 0.01 82 / 0.055), transparent 14rem) !important;
+}
+
+.contact address {
+  display: grid !important;
+  grid-template-columns: minmax(140px, 0.28fr) repeat(3, max-content) minmax(max-content, 1fr) !important;
+  align-items: center !important;
+  gap: clamp(14px, 2.4vw, 34px) !important;
+  min-height: auto !important;
+  padding: clamp(18px, 2.2vw, 30px) clamp(28px, 5vw, 92px) !important;
+  border: 0 !important;
+  border-top: 1px solid oklch(96% 0.01 82 / 0.12) !important;
+  background:
+    linear-gradient(90deg, oklch(98% 0.01 82 / 0.035), transparent 54%),
+    oklch(2.6% 0.01 76 / 0.18) !important;
+  font-style: normal !important;
+}
+
+.contact address .address-label {
+  margin: 0 !important;
+  color: var(--red-hot) !important;
+}
+
+.contact address span:not(.address-label) {
+  font-size: clamp(14px, 1vw, 17px) !important;
+  line-height: 1.35 !important;
+}
+
+.contact address a {
+  justify-self: end !important;
+  margin: 0 !important;
+  white-space: nowrap !important;
+}
+
+html[data-theme="light"] .contact {
+  background:
+    radial-gradient(circle at 18% 32%, oklch(70% 0.12 31 / 0.18), transparent 26rem),
+    radial-gradient(circle at 76% 42%, oklch(58% 0.18 34 / 0.09), transparent 22rem),
+    linear-gradient(135deg, oklch(100% 0.01 82 / 0.72), transparent 44%),
+    oklch(97% 0.01 82 / 0.86) !important;
+  border-color: oklch(20% 0.012 76 / 0.16) !important;
+  box-shadow: 0 24px 90px oklch(26% 0.012 76 / 0.12) !important;
+}
+
+html[data-theme="light"] .contact-panel,
+html[data-theme="light"] .contact address {
+  background: transparent !important;
+  border-color: oklch(20% 0.012 76 / 0.12) !important;
+  box-shadow: none !important;
+}
+
+@media (max-width: 980px) {
+  .contact {
+    width: min(calc(100vw - 28px), 760px) !important;
+  }
+
+  .contact-panel {
+    grid-template-columns: 1fr !important;
+  }
+
+  .contact-visual {
+    min-height: 360px !important;
+    border-top: 0 !important;
+  }
+
+  .contact address {
+    grid-template-columns: 1fr !important;
+    align-items: start !important;
+    gap: 8px !important;
+  }
+
+  .contact address a {
+    justify-self: start !important;
+    margin-top: 10px !important;
+  }
+}
+
+
+/* v17: light-mode contrast and readability pass */
+html[data-theme="light"] {
+  --ink: oklch(13% 0.012 76);
+  --soft: oklch(22% 0.012 76);
+  --muted: oklch(36% 0.012 76);
+  --dim: oklch(52% 0.012 76);
+  --line: oklch(22% 0.012 76 / 0.16);
+  --canvas: oklch(93% 0.012 80);
+  --plain: oklch(90% 0.012 80);
+  --plain-lift: oklch(97% 0.01 82);
+  --red: oklch(48% 0.2 31);
+  --red-hot: oklch(50% 0.22 34);
+}
+
+html[data-theme="light"] body {
+  color: var(--ink) !important;
+  background:
+    radial-gradient(circle at 78% 12%, oklch(70% 0.08 30 / 0.22), transparent 26rem),
+    radial-gradient(circle at 14% 4%, oklch(70% 0.026 230 / 0.18), transparent 28rem),
+    linear-gradient(180deg, oklch(94% 0.012 80), oklch(88% 0.012 80) 46%, oklch(93% 0.012 80) 100%) !important;
+}
+
+html[data-theme="light"] h1,
+html[data-theme="light"] h2,
+html[data-theme="light"] h3,
+html[data-theme="light"] .hero h1,
+html[data-theme="light"] .principle .section-heading h2,
+html[data-theme="light"] .principle .sequence-step h3,
+html[data-theme="light"] .products .section-heading h2,
+html[data-theme="light"] .product-panel h3,
+html[data-theme="light"] .howitworks .section-heading h2,
+html[data-theme="light"] .hiw-copy h3,
+html[data-theme="light"] .applications .section-heading h2,
+html[data-theme="light"] .process .section-heading h2,
+html[data-theme="light"] .process-track h3,
+html[data-theme="light"] .contact-panel h2,
+html[data-theme="light"] .brief-card strong {
+  color: var(--ink) !important;
+  text-shadow: none !important;
+}
+
+html[data-theme="light"] p,
+html[data-theme="light"] .hero-lede,
+html[data-theme="light"] .section-heading p,
+html[data-theme="light"] .principle .section-heading p,
+html[data-theme="light"] .principle .sequence-step p,
+html[data-theme="light"] .product-panel p,
+html[data-theme="light"] .howitworks .section-heading p,
+html[data-theme="light"] .hiw-copy p,
+html[data-theme="light"] .process-track p,
+html[data-theme="light"] .contact-panel .contact-copy > p:not(.eyebrow),
+html[data-theme="light"] .brief-card span:last-child,
+html[data-theme="light"] .contact address span:not(.address-label) {
+  color: var(--muted) !important;
+}
+
+html[data-theme="light"] .eyebrow,
+html[data-theme="light"] .step-number,
+html[data-theme="light"] .product-code,
+html[data-theme="light"] .hiw-num,
+html[data-theme="light"] .brief-kicker,
+html[data-theme="light"] .contact address .address-label,
+html[data-theme="light"] .process-track span {
+  color: var(--red-hot) !important;
+}
+
+html[data-theme="light"] .hero,
+html[data-theme="light"] .principle {
+  color: var(--ink) !important;
+}
+
+html[data-theme="light"] .hero::after,
+html[data-theme="light"] .hero-stage::after {
+  background: linear-gradient(90deg, oklch(96% 0.01 82 / 0.1), transparent) !important;
+}
+
+html[data-theme="light"] .hero-strip span,
+html[data-theme="light"] .stage-topline,
+html[data-theme="light"] .stage-readout span,
+html[data-theme="light"] .scroll-cues .cue {
+  color: oklch(28% 0.012 76 / 0.72) !important;
+}
+
+html[data-theme="light"] .stage-readout strong,
+html[data-theme="light"] .scroll-cues .cue strong,
+html[data-theme="light"] .scroll-cues .cue.is-active strong {
+  color: var(--ink) !important;
+}
+
+html[data-theme="light"] .hero-strip,
+html[data-theme="light"] .hero-strip span,
+html[data-theme="light"] .hero-stage,
+html[data-theme="light"] .stage-readout div,
+html[data-theme="light"] .principle .section-heading,
+html[data-theme="light"] .principle .sequence-step,
+html[data-theme="light"] .products .section-heading,
+html[data-theme="light"] .product-panel,
+html[data-theme="light"] .process .section-heading,
+html[data-theme="light"] .process-track article,
+html[data-theme="light"] .howitworks .section-heading,
+html[data-theme="light"] .hiw-step {
+  border-color: oklch(22% 0.012 76 / 0.14) !important;
+  background-color: oklch(97% 0.01 82 / 0.68) !important;
+}
+
+html[data-theme="light"] .products,
+html[data-theme="light"] .process,
+html[data-theme="light"] .howitworks {
+  color: var(--ink) !important;
+  background:
+    radial-gradient(circle at 12% 22%, oklch(72% 0.1 30 / 0.13), transparent 28rem),
+    radial-gradient(circle at 82% 72%, oklch(62% 0.035 232 / 0.1), transparent 30rem),
+    linear-gradient(180deg, oklch(94% 0.012 80), oklch(89% 0.012 80) 52%, oklch(93% 0.012 80)) !important;
+}
+
+html[data-theme="light"] .product-panel,
+html[data-theme="light"] .process-track article,
+html[data-theme="light"] .hiw-step {
+  background:
+    radial-gradient(circle at 78% 72%, oklch(72% 0.09 32 / 0.08), transparent 12rem),
+    linear-gradient(135deg, oklch(99% 0.01 82 / 0.82), oklch(92% 0.012 80 / 0.72)) !important;
+  box-shadow: 0 22px 70px oklch(24% 0.012 76 / 0.12) !important;
+}
+
+html[data-theme="light"] .product-panel::after {
+  background:
+    radial-gradient(circle at 76% 72%, oklch(70% 0.05 82 / 0.12), transparent 12rem),
+    linear-gradient(110deg, transparent 0 44%, oklch(100% 0.01 82 / 0.32) 62%, oklch(88% 0.012 80 / 0.38)) !important;
+}
+
+html[data-theme="light"] .product-media.is-missing::before,
+html[data-theme="light"] .hiw-media::before {
+  color: oklch(24% 0.012 76 / 0.36) !important;
+}
+
+html[data-theme="light"] .hiw-copy {
+  background: linear-gradient(180deg, transparent, oklch(97% 0.01 82 / 0.72)) !important;
+  border-radius: 22px !important;
+  padding: 18px !important;
+  left: clamp(16px, 2vw, 26px) !important;
+  right: clamp(16px, 2vw, 26px) !important;
+  bottom: clamp(16px, 2vw, 28px) !important;
+}
+
+html[data-theme="light"] .hiw-rule {
+  background: linear-gradient(90deg, var(--red-hot), oklch(22% 0.012 76 / 0.14), transparent) !important;
+}
+
+html[data-theme="light"] .market-card-copy,
+html[data-theme="light"] .market-card:nth-child(even) .market-card-copy {
+  color: var(--ink) !important;
+  background:
+    radial-gradient(circle at var(--card-glow-x, 50%) 16%, oklch(100% 0.01 82 / 0.84), transparent 8rem),
+    linear-gradient(135deg, oklch(98% 0.01 82 / 0.76), oklch(89% 0.012 80 / 0.56)) !important;
+  border-color: oklch(22% 0.012 76 / 0.14) !important;
+}
+
+html[data-theme="light"] .market-card-copy h3,
+html[data-theme="light"] .market-card:nth-child(even) .market-card-copy h3 {
+  color: var(--ink) !important;
+}
+
+html[data-theme="light"] .market-card-copy p,
+html[data-theme="light"] .market-card:nth-child(even) .market-card-copy p {
+  color: var(--muted) !important;
+}
+
+html[data-theme="light"] .market-card-copy span,
+html[data-theme="light"] .market-card-copy a {
+  color: var(--red-hot) !important;
+}
+
+html[data-theme="light"] .applications .section-heading h2 {
+  color: oklch(18% 0.012 76 / 0.6) !important;
+}
+
+html[data-theme="light"] .contact {
+  color: var(--ink) !important;
+  background:
+    radial-gradient(circle at 18% 32%, oklch(70% 0.12 31 / 0.14), transparent 26rem),
+    radial-gradient(circle at 76% 42%, oklch(58% 0.18 34 / 0.08), transparent 22rem),
+    linear-gradient(135deg, oklch(100% 0.01 82 / 0.76), transparent 44%),
+    oklch(97% 0.01 82 / 0.92) !important;
+}
+
+html[data-theme="light"] .contact address a {
+  color: var(--ink) !important;
+  border-bottom-color: var(--red-hot) !important;
+}
+
+html[data-theme="light"] .brief-card {
+  background:
+    radial-gradient(circle at 82% 0%, oklch(100% 0.01 82 / 0.72), transparent 8rem),
+    linear-gradient(135deg, oklch(100% 0.01 82 / 0.82), oklch(90% 0.012 80 / 0.72)) !important;
+  border-color: oklch(22% 0.012 76 / 0.16) !important;
+  box-shadow: 0 20px 52px oklch(24% 0.012 76 / 0.14) !important;
+}
+
+html[data-theme="light"] .button-primary,
+html[data-theme="light"] .contact-actions .button-primary {
+  background: oklch(13% 0.012 76) !important;
+  color: oklch(97% 0.01 82) !important;
+}
+
+html[data-theme="light"] .button-secondary,
+html[data-theme="light"] .contact-actions .button-secondary {
+  border-color: oklch(22% 0.012 76 / 0.18) !important;
+  background: oklch(97% 0.01 82 / 0.64) !important;
+  color: var(--ink) !important;
+}
+
+html[data-theme="light"] .site-nav a,
+html[data-theme="light"] .theme-toggle,
+html[data-theme="light"] .lang-toggle {
+  color: oklch(28% 0.012 76 / 0.74) !important;
+}
+
+html[data-theme="light"] .theme-option.is-active,
+html[data-theme="light"] .lang-option.is-active {
+  background: var(--ink) !important;
+  color: oklch(97% 0.01 82) !important;
+}
+
+/* v17.1: solid markets heading color in both themes */
+.applications .section-heading h2 {
+  color: oklch(96% 0.01 82) !important;
+}
+
+html[data-theme="light"] .applications .section-heading h2 {
+  color: oklch(10% 0.012 76) !important;
 }
