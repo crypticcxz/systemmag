@@ -8,8 +8,7 @@ export function Hero() {
   return (
     <section className="hero section-shell" data-scroll-region>
       <div className="hero-copy" data-reveal>
-        <p className="eyebrow">{t("heroEyebrow")}</p>
-        <h1>{t("heroTitle")}</h1>
+        <h1 className="hero-title">{t("heroTitle")}</h1>
         <p className="hero-lede">{t("heroLede")}</p>
         <div className="hero-actions">
           <a className="button button-primary" href="#contact">{t("heroPrimary")}</a>

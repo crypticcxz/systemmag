@@ -20,8 +20,7 @@ import { useEffect } from "react";
  *   --scene-progress  0→1  overall section progress (drives bg glow)
  *
  * Classes toggled on active card:
- *   is-scene-active   restores pointer-events
- *   is-liquid-active  triggers morphing keyframe animations
+ *   is-scene-active   restores pointer-events and active visual state
  */
 export function useMarketsScene(): void {
   useEffect(() => {
@@ -58,13 +57,14 @@ export function useMarketsScene(): void {
       for (let i = 0; i < count; i++) {
         const offset = floatIndex - i; // 0=active, >0=past(left), <0=future(right)
         const near = Math.max(0, 1 - Math.abs(offset));
-        const cardX = (-offset * 56).toFixed(2);
-        const cardTilt = (offset * 6).toFixed(2);
+        const cardX = (-offset * 46).toFixed(2);
+        const cardTilt = (offset * 2.6).toFixed(2);
+        const cardY = near > 0.42 ? 7 : 12;
 
         const card = cards[i];
         card.style.setProperty("--card-near", near.toFixed(4));
         card.style.setProperty("--card-x", `${cardX}%`);
-        card.style.setProperty("--card-y", "0%");
+        card.style.setProperty("--card-y", `${cardY}%`);
         card.style.setProperty("--card-tilt", `${cardTilt}deg`);
         card.style.setProperty("--card-active", near > 0.5 ? "1" : "0");
 
@@ -78,7 +78,6 @@ export function useMarketsScene(): void {
       for (let i = 0; i < count; i++) {
         const active = i === bestIdx;
         cards[i].classList.toggle("is-scene-active", active);
-        cards[i].classList.toggle("is-liquid-active", active);
       }
     };
 

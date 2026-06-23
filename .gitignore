@@ -1,8 +1,12 @@
 tmp/
 systemmag/
 backup/
+.claude/
 .DS_Store
 Thumbs.db
+
+# unused alternate source video
+public/assets/video/systemmag-scroll-2.mp4
 
 # dependencies
 /node_modules

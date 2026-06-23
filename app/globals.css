@@ -8207,3 +8207,1128 @@ html[data-theme="light"] button:focus-visible {
     opacity: 0.28 !important;
   }
 }
+
+/* ============================================================
+   v18 — motion craft pass
+   Keep one signature scroll/video experience. Remove decorative
+   breathing, floating, and shimmer loops that read as generated.
+   ============================================================ */
+:root {
+  --motion-fast: 180ms;
+  --motion-med: 340ms;
+  --motion-slow: 760ms;
+  --motion-ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --motion-ease-soft: cubic-bezier(0.25, 1, 0.5, 1);
+  --reveal-dur: 760ms;
+}
+
+.js-enabled [data-reveal] {
+  transform: translate3d(0, 18px, 0) !important;
+  filter: none !important;
+  transition:
+    opacity var(--motion-slow) var(--motion-ease),
+    transform var(--motion-slow) var(--motion-ease) !important;
+  transition-delay: calc(var(--reveal-i, 0) * 58ms) !important;
+}
+
+.js-enabled .site-header[data-reveal] {
+  transition-duration: 520ms !important;
+}
+
+.button,
+.nav-cta,
+.site-nav a,
+.lang-toggle,
+.market-card-copy a,
+.contact address a {
+  transition:
+    transform var(--motion-fast) var(--motion-ease-soft),
+    background-color var(--motion-med) var(--motion-ease-soft),
+    border-color var(--motion-med) var(--motion-ease-soft),
+    color var(--motion-med) var(--motion-ease-soft),
+    box-shadow var(--motion-med) var(--motion-ease-soft) !important;
+}
+
+.button:hover,
+.nav-cta:hover {
+  transform: translateY(-1px) !important;
+}
+
+.button:active,
+.nav-cta:active {
+  transform: translateY(0) scale(0.985) !important;
+}
+
+.cursor-field {
+  opacity: 0 !important;
+  display: none !important;
+}
+
+.depth-layer {
+  opacity: 0.34 !important;
+  filter: blur(84px) !important;
+  will-change: auto !important;
+}
+
+.magnetic-rig .field-rings span,
+.principle .align-diagram .field-arc,
+.pull-gauge span {
+  animation-duration: 7.2s !important;
+}
+
+.rail-left,
+.rail-right {
+  animation-duration: 6.8s !important;
+}
+
+.principle .align-diagram .mag,
+.principle .close-diagram .mag,
+.principle .slide-diagram .mag.block,
+.principle .peel-diagram .mag,
+.product-panel .zip-line .zip-teeth i,
+.product-panel .zip-line .zip-slider {
+  animation-duration: 6.2s !important;
+}
+
+.applications .section-heading {
+  transform: translateY(calc(var(--scene-progress, 0) * -18px)) !important;
+}
+
+.market-gallery::before {
+  filter: blur(10px) !important;
+  opacity: 0.58 !important;
+}
+
+.market-card,
+.market-card-wide,
+.market-card-tall,
+.market-card-soft,
+.market-card:nth-child(even) {
+  transition: opacity 180ms linear !important;
+  transform:
+    translate(-50%, -50%)
+    translate3d(var(--card-x), var(--card-y), 0)
+    rotateY(calc(var(--card-tilt) * 0.42))
+    scale(calc(0.74 + var(--card-near) * 0.26)) !important;
+}
+
+.market-card img,
+.market-card:nth-child(even) img {
+  border-radius: 28px !important;
+  clip-path: inset(calc((1 - var(--card-near)) * 10%) calc((1 - var(--card-near)) * 9%) calc((1 - var(--card-near)) * 8%) 0 round 28px) !important;
+  filter: saturate(calc(0.82 + var(--card-near) * 0.18)) contrast(1.02) brightness(calc(0.82 + var(--card-near) * 0.12)) !important;
+  transform: scale(calc(1.045 - var(--card-near) * 0.02)) !important;
+  transition:
+    clip-path 520ms var(--motion-ease),
+    border-radius 520ms var(--motion-ease),
+    filter 420ms var(--motion-ease),
+    transform 520ms var(--motion-ease) !important;
+}
+
+.market-card-copy,
+.market-card:nth-child(even) .market-card-copy {
+  border-radius: 22px !important;
+  background:
+    linear-gradient(135deg, rgba(255, 250, 241, 0.9), rgba(244, 241, 234, 0.78)) !important;
+  -webkit-backdrop-filter: blur(10px) saturate(1.04) !important;
+  backdrop-filter: blur(10px) saturate(1.04) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 250, 241, 0.6),
+    0 18px 52px rgba(15, 29, 38, 0.16) !important;
+  clip-path: inset(calc((1 - var(--card-near)) * 14%) 0 0 calc((1 - var(--card-near)) * 8%) round 22px) !important;
+  transform: translateY(calc((1 - var(--card-near)) * 24px)) scale(calc(0.97 + var(--card-near) * 0.03)) !important;
+  transition:
+    opacity 260ms linear,
+    transform 460ms var(--motion-ease),
+    clip-path 520ms var(--motion-ease) !important;
+}
+
+.market-card-copy::before {
+  display: none !important;
+}
+
+.market-card-copy::after {
+  opacity: calc(0.06 + var(--card-near) * 0.16) !important;
+  background: linear-gradient(112deg, transparent 0 34%, rgba(255, 250, 241, 0.22) 48%, transparent 62%) !important;
+  mask-image: none !important;
+}
+
+.market-card.is-liquid-active img,
+.market-card.is-liquid-active .market-card-copy,
+.market-card.is-scene-active img,
+.market-card.is-scene-active .market-card-copy {
+  animation: none !important;
+}
+
+.hiw-step.is-visible,
+.hiw-step:hover .hiw-media img,
+.howitworks::before,
+.hiw-track::after,
+.hiw-step.is-visible .hiw-media::before {
+  animation: none !important;
+}
+
+.hiw-step {
+  transition:
+    transform 640ms var(--motion-ease),
+    border-color 240ms var(--motion-ease-soft),
+    box-shadow 240ms var(--motion-ease-soft) !important;
+}
+
+.hiw-step:hover {
+  transform: translateY(-4px) !important;
+}
+
+.hiw-media img {
+  transform: scale(1.035) !important;
+  transition:
+    transform 720ms var(--motion-ease),
+    filter 520ms var(--motion-ease),
+    opacity 360ms var(--motion-ease) !important;
+}
+
+.hiw-step.is-visible .hiw-media img,
+.hiw-step:hover .hiw-media img {
+  transform: scale(1.01) !important;
+}
+
+.hiw-track::after {
+  width: auto !important;
+  left: 8% !important;
+  right: 8% !important;
+  opacity: 0.58 !important;
+  background: linear-gradient(90deg, transparent, rgba(230, 95, 24, 0.42), transparent) !important;
+}
+
+.process-track article.is-visible .step-media::after {
+  animation: none !important;
+  opacity: 0.18 !important;
+}
+
+.contact-actions .button-primary::after {
+  animation: none !important;
+  opacity: 0 !important;
+}
+
+.orbit-ring {
+  animation-duration: 42s !important;
+  opacity: 0.72 !important;
+}
+
+.chip-a,
+.chip-b,
+.chip-c,
+.chip-d {
+  animation: none !important;
+  transition: transform 360ms var(--motion-ease), box-shadow 240ms var(--motion-ease) !important;
+}
+
+.contact-panel:hover .chip-a { transform: translate(5px, 3px) rotate(-1deg) !important; }
+.contact-panel:hover .chip-b { transform: translate(-3px, 3px) rotate(1deg) !important; }
+.contact-panel:hover .chip-c { transform: translate(3px, -3px) rotate(1deg) !important; }
+.contact-panel:hover .chip-d { transform: translate(-5px, -3px) rotate(-1deg) !important; }
+
+.brief-card {
+  animation: none !important;
+  transition:
+    transform 360ms var(--motion-ease),
+    border-color 240ms var(--motion-ease),
+    box-shadow 240ms var(--motion-ease) !important;
+}
+
+.contact-panel:hover .brief-card {
+  transform: translateY(-4px) !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scroll-video {
+    animation: none !important;
+  }
+
+  .market-card,
+  .market-card img,
+  .market-card-copy,
+  .hiw-step,
+  .hiw-media img,
+  .orbit-ring,
+  .brief-card,
+  .magnetic-rig *,
+  .principle .mini-diagram *,
+  .product-panel .zip-line * {
+    animation: none !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ============================================================
+   v19 — technology section composition repair
+   One connected technical sheet, wider French copy, more depth.
+   ============================================================ */
+.principle {
+  position: relative !important;
+  width: min(1360px, calc(100vw - 56px)) !important;
+  min-height: auto !important;
+  scroll-margin-top: 120px !important;
+  margin: clamp(72px, 9vw, 132px) auto !important;
+  padding: clamp(28px, 3.4vw, 48px) !important;
+  display: grid !important;
+  grid-template-columns: minmax(380px, 0.92fr) minmax(620px, 1.34fr) !important;
+  gap: 0 !important;
+  align-items: stretch !important;
+  overflow: hidden !important;
+  border: 1px solid rgba(216, 210, 200, 0.82) !important;
+  border-radius: 18px !important;
+  background:
+    linear-gradient(115deg, rgba(255, 250, 241, 0.92), rgba(244, 241, 234, 0.72) 46%, rgba(255, 250, 241, 0.86)),
+    var(--ref-surface, #f4f1ea) !important;
+  box-shadow:
+    0 34px 90px rgba(15, 29, 38, 0.12),
+    inset 0 1px 0 rgba(255, 250, 241, 0.76) !important;
+  isolation: isolate;
+}
+
+.principle::before {
+  content: "" !important;
+  position: absolute !important;
+  inset: 0 !important;
+  z-index: 0 !important;
+  pointer-events: none !important;
+  background:
+    linear-gradient(rgba(15, 29, 38, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(15, 29, 38, 0.035) 1px, transparent 1px),
+    radial-gradient(circle at 38% 30%, rgba(230, 95, 24, 0.12), transparent 22rem),
+    radial-gradient(circle at 92% 50%, rgba(15, 29, 38, 0.08), transparent 26rem) !important;
+  background-size: 58px 58px, 58px 58px, auto, auto !important;
+  opacity: 1 !important;
+  mask-image: none !important;
+}
+
+.principle::after {
+  content: "" !important;
+  position: absolute !important;
+  top: clamp(28px, 3.4vw, 48px) !important;
+  bottom: clamp(28px, 3.4vw, 48px) !important;
+  left: calc(clamp(28px, 3.4vw, 48px) + (100% - clamp(28px, 3.4vw, 48px) * 2) * 0.39) !important;
+  width: 1px !important;
+  background: linear-gradient(180deg, transparent, rgba(216, 210, 200, 0.95), transparent) !important;
+  opacity: 0.9 !important;
+  pointer-events: none !important;
+  z-index: 2 !important;
+}
+
+.principle .section-heading,
+.principle .sequence {
+  position: relative !important;
+  z-index: 1 !important;
+}
+
+.principle .section-heading {
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: flex-start !important;
+  align-self: stretch !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  min-height: clamp(540px, 54vw, 660px) !important;
+  padding: clamp(34px, 4.8vw, 74px) clamp(30px, 4.2vw, 64px) !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  transform: none !important;
+  opacity: 1 !important;
+}
+
+.principle .section-heading .eyebrow {
+  margin: 0 0 clamp(42px, 4.6vw, 64px) !important;
+  color: var(--ref-soft, #8a8d90) !important;
+}
+
+.principle .section-heading h2 {
+  max-width: 10.8ch !important;
+  margin: 0 !important;
+  color: var(--ref-dark, #3a3d40) !important;
+  font-size: clamp(46px, 4.75vw, 74px) !important;
+  line-height: 0.96 !important;
+  letter-spacing: -0.055em !important;
+  overflow-wrap: normal !important;
+  text-wrap: balance !important;
+}
+
+.principle .section-heading p {
+  max-width: 33ch !important;
+  margin-top: clamp(24px, 3vw, 38px) !important;
+  color: var(--ref-muted, #5a6470) !important;
+  font-size: clamp(16px, 1.22vw, 19px) !important;
+  line-height: 1.56 !important;
+}
+
+.principle .section-heading > * {
+  position: relative !important;
+  top: auto !important;
+  left: auto !important;
+}
+
+.principle .sequence {
+  display: grid !important;
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.principle .sequence-step {
+  position: relative !important;
+  display: grid !important;
+  grid-template-columns: clamp(76px, 8vw, 116px) minmax(150px, 240px) minmax(220px, 1fr) !important;
+  align-items: center !important;
+  min-height: clamp(152px, 17vw, 190px) !important;
+  padding: clamp(26px, 3vw, 42px) clamp(30px, 4vw, 64px) !important;
+  gap: clamp(20px, 3vw, 46px) !important;
+  border: 0 !important;
+  border-bottom: 1px solid rgba(216, 210, 200, 0.82) !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.principle .sequence-step:last-child {
+  border-bottom: 0 !important;
+}
+
+.principle .sequence-step::before {
+  content: "" !important;
+  position: absolute !important;
+  inset: 12px 18px !important;
+  z-index: -1 !important;
+  border-radius: 14px !important;
+  background:
+    radial-gradient(circle at 28% 50%, rgba(230, 95, 24, 0.075), transparent 14rem),
+    linear-gradient(90deg, rgba(255, 250, 241, 0), rgba(255, 250, 241, 0.52)) !important;
+  opacity: 0 !important;
+  transition: opacity 260ms var(--motion-ease, cubic-bezier(0.16, 1, 0.3, 1)) !important;
+}
+
+.principle .sequence-step:hover::before {
+  opacity: 1 !important;
+}
+
+.principle .step-number {
+  align-self: start !important;
+  color: var(--ref-orange, #e65f18) !important;
+  font-size: clamp(40px, 5vw, 66px) !important;
+  font-weight: 850 !important;
+  line-height: 0.92 !important;
+  letter-spacing: -0.06em !important;
+}
+
+.principle .mini-diagram {
+  width: min(240px, 100%) !important;
+  height: 88px !important;
+  justify-self: center !important;
+}
+
+.principle .sequence-step h3 {
+  justify-self: start !important;
+  align-self: center !important;
+  margin: 0 !important;
+  color: var(--ref-dark, #3a3d40) !important;
+  font-size: clamp(34px, 3.8vw, 52px) !important;
+  line-height: 0.96 !important;
+  letter-spacing: -0.045em !important;
+}
+
+.principle .sequence-step p {
+  grid-column: 3 !important;
+  justify-self: start !important;
+  max-width: 30ch !important;
+  margin: clamp(12px, 1.2vw, 16px) 0 0 !important;
+  color: var(--ref-muted, #5a6470) !important;
+  font-size: clamp(15px, 1.15vw, 18px) !important;
+  line-height: 1.5 !important;
+}
+
+.principle .align-diagram .field-arc {
+  opacity: 0.58 !important;
+}
+
+@media (min-width: 1181px) {
+  .principle .sequence-step {
+    grid-template-areas:
+      "number diagram title"
+      "number diagram copy" !important;
+  }
+
+  .principle .step-number { grid-area: number !important; }
+  .principle .mini-diagram { grid-area: diagram !important; }
+  .principle .sequence-step h3 { grid-area: title !important; }
+  .principle .sequence-step p { grid-area: copy !important; grid-column: auto !important; }
+}
+
+@media (max-width: 1180px) {
+  .principle {
+    width: min(920px, calc(100vw - 36px)) !important;
+    grid-template-columns: 1fr !important;
+    padding: 0 !important;
+  }
+
+  .principle::after {
+    display: none !important;
+  }
+
+  .principle .section-heading {
+    min-height: auto !important;
+    padding: clamp(34px, 7vw, 64px) !important;
+    border-bottom: 1px solid rgba(216, 210, 200, 0.82) !important;
+  }
+
+  .principle .section-heading .eyebrow {
+    margin-bottom: clamp(28px, 6vw, 48px) !important;
+  }
+
+  .principle .section-heading h2 {
+    max-width: 12ch !important;
+    font-size: clamp(46px, 9vw, 78px) !important;
+  }
+
+  .principle .sequence-step {
+    grid-template-columns: clamp(68px, 12vw, 92px) minmax(130px, 220px) minmax(0, 1fr) !important;
+    padding: clamp(24px, 5vw, 40px) !important;
+  }
+}
+
+@media (max-width: 720px) {
+  .principle {
+    width: min(100% - 28px, 620px) !important;
+    margin-block: 56px !important;
+    border-radius: 14px !important;
+  }
+
+  .principle .section-heading {
+    padding: 30px 26px !important;
+  }
+
+  .principle .section-heading h2 {
+    font-size: clamp(40px, 12vw, 58px) !important;
+    max-width: 9.5ch !important;
+  }
+
+  .principle .sequence-step {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+    padding: 30px 26px !important;
+  }
+
+  .principle .step-number {
+    font-size: 44px !important;
+  }
+
+  .principle .mini-diagram {
+    justify-self: start !important;
+    width: min(260px, 100%) !important;
+  }
+
+  .principle .sequence-step p {
+    grid-column: auto !important;
+    max-width: 34ch !important;
+  }
+}
+
+/* v20 — keep Markets heading clear of the pinned carousel */
+.applications {
+  --markets-headroom: clamp(210px, 26svh, 300px);
+}
+
+.applications .section-heading {
+  position: sticky !important;
+  top: clamp(78px, 9svh, 112px) !important;
+  z-index: 36 !important;
+  width: min(980px, calc(100vw - 56px)) !important;
+  margin: 0 auto !important;
+  padding: clamp(22px, 3svh, 34px) 0 0 !important;
+  pointer-events: none !important;
+  opacity: calc(1 - var(--scene-progress, 0) * 8) !important;
+  transform: translateY(calc(var(--scene-progress, 0) * -34px)) !important;
+}
+
+.applications .section-heading .eyebrow {
+  margin: 0 0 22px !important;
+  text-align: left !important;
+}
+
+.applications .section-heading h2 {
+  max-width: 11ch !important;
+  margin: 0 !important;
+  font-size: clamp(54px, 6.7vw, 104px) !important;
+  line-height: 0.92 !important;
+  letter-spacing: -0.052em !important;
+  color: var(--ref-dark, #3a3d40) !important;
+  text-shadow:
+    0 1px 0 rgba(255, 250, 241, 0.75),
+    0 18px 54px rgba(252, 247, 238, 0.9) !important;
+}
+
+.market-gallery {
+  padding-top: var(--markets-headroom) !important;
+  box-sizing: border-box !important;
+}
+
+.market-card,
+.market-card-wide,
+.market-card-tall,
+.market-card-soft,
+.market-card:nth-child(even) {
+  top: calc(50% + var(--markets-headroom) * 0.24) !important;
+  width: min(58svh, 610px, 68vw) !important;
+  height: min(58svh, 610px, 68vw) !important;
+}
+
+.market-card-copy,
+.market-card:nth-child(even) .market-card-copy {
+  max-height: min(45svh, 360px) !important;
+}
+
+@media (max-width: 900px) {
+  .applications {
+    --markets-headroom: clamp(170px, 22svh, 230px);
+  }
+
+  .applications .section-heading {
+    width: min(680px, calc(100vw - 36px)) !important;
+  }
+
+  .applications .section-heading h2 {
+    font-size: clamp(44px, 11vw, 72px) !important;
+  }
+
+  .market-card,
+  .market-card-wide,
+  .market-card-tall,
+  .market-card-soft,
+  .market-card:nth-child(even) {
+    width: min(56svh, 82vw) !important;
+    height: min(56svh, 82vw) !important;
+  }
+}
+
+/* v21 — make the 4 gesture diagrams read as intentional motion again */
+.principle .mini-diagram {
+  width: min(270px, 100%) !important;
+  height: clamp(104px, 9vw, 120px) !important;
+  contain: paint !important;
+}
+
+.principle .mini-diagram .mag,
+.principle .slide-diagram .stop,
+.principle .align-diagram .field-arc {
+  will-change: transform, opacity !important;
+}
+
+.principle .align-diagram .field-arc {
+  width: 76px !important;
+  height: 76px !important;
+  opacity: 0.5 !important;
+  animation: techFieldBreath 4.2s var(--motion-ease, cubic-bezier(0.16, 1, 0.3, 1)) infinite !important;
+}
+
+.principle .align-diagram .mag {
+  top: 50% !important;
+  margin-top: -24px !important;
+  animation: techAlignClose 4.2s var(--motion-ease, cubic-bezier(0.16, 1, 0.3, 1)) infinite !important;
+}
+
+.principle .align-diagram .mag:nth-child(2) {
+  left: calc(50% - 94px) !important;
+  --align-x: -18px;
+}
+
+.principle .align-diagram .mag:nth-child(3) {
+  left: calc(50% - 56px) !important;
+  --align-x: -8px;
+}
+
+.principle .align-diagram .mag:nth-child(4) {
+  left: calc(50% + 28px) !important;
+  --align-x: 8px;
+}
+
+.principle .align-diagram .mag:nth-child(5) {
+  left: calc(50% + 66px) !important;
+  --align-x: 18px;
+}
+
+.principle .close-diagram {
+  gap: 6px !important;
+}
+
+.principle .close-diagram .mag {
+  position: static !important;
+  animation: techHoldCompress 3.9s var(--motion-ease, cubic-bezier(0.16, 1, 0.3, 1)) infinite !important;
+}
+
+.principle .close-diagram .mag:nth-child(odd) {
+  --hold-x: -4px;
+}
+
+.principle .close-diagram .mag:nth-child(even) {
+  --hold-x: 4px;
+}
+
+.principle .slide-diagram .sheath {
+  left: 8% !important;
+  right: 18% !important;
+  height: 40px !important;
+}
+
+.principle .slide-diagram .mag.block {
+  left: 13% !important;
+  top: 50% !important;
+  margin-top: -24px !important;
+  animation: techControlledSlide 4.4s var(--motion-ease, cubic-bezier(0.16, 1, 0.3, 1)) infinite !important;
+}
+
+.principle .slide-diagram .stop {
+  right: 18% !important;
+  top: 50% !important;
+  translate: 0 -50% !important;
+  animation: techStopPulse 4.4s var(--motion-ease, cubic-bezier(0.16, 1, 0.3, 1)) infinite !important;
+}
+
+.principle .peel-diagram .hinge {
+  left: 22% !important;
+  top: 50% !important;
+  width: 88px !important;
+  height: 34px !important;
+  translate: 0 -50% !important;
+}
+
+.principle .peel-diagram .mag {
+  left: 22% !important;
+  top: 50% !important;
+  margin-top: -24px !important;
+  width: 56px !important;
+  transform-origin: 8px center !important;
+  animation: techPeelOpen 4.6s var(--motion-ease, cubic-bezier(0.16, 1, 0.3, 1)) infinite !important;
+}
+
+.principle .peel-diagram .mag:nth-child(2) {
+  --peel-x: 18px;
+  --peel-y: -24px;
+  --peel-r: -34deg;
+}
+
+.principle .peel-diagram .mag:nth-child(3) {
+  --peel-x: 34px;
+  --peel-y: -6px;
+  --peel-r: -16deg;
+  animation-delay: 0.12s !important;
+}
+
+.principle .peel-diagram .mag:nth-child(4) {
+  --peel-x: 50px;
+  --peel-y: 12px;
+  --peel-r: 5deg;
+  animation-delay: 0.24s !important;
+}
+
+@keyframes techAlignClose {
+  0%, 18%, 100% {
+    transform: translate3d(var(--align-x, 0), 0, 0);
+    opacity: 0.72;
+  }
+
+  42%, 72% {
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
+}
+
+@keyframes techFieldBreath {
+  0%, 18%, 100% {
+    transform: translate(-50%, -50%) scale(0.72);
+    opacity: 0.24;
+  }
+
+  44%, 70% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0.58;
+  }
+}
+
+@keyframes techHoldCompress {
+  0%, 20%, 100% {
+    transform: translate3d(var(--hold-x, 0), 0, 0);
+    opacity: 0.76;
+  }
+
+  44%, 76% {
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
+}
+
+@keyframes techControlledSlide {
+  0%, 18%, 100% {
+    transform: translate3d(0, 0, 0);
+  }
+
+  48%, 72% {
+    transform: translate3d(clamp(74px, 8vw, 112px), 0, 0);
+  }
+}
+
+@keyframes techStopPulse {
+  0%, 28%, 100% {
+    opacity: 0.58;
+    transform: scaleX(1);
+  }
+
+  52%, 72% {
+    opacity: 1;
+    transform: scaleX(1.18);
+  }
+}
+
+@keyframes techPeelOpen {
+  0%, 22%, 100% {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+    opacity: 0.86;
+  }
+
+  50%, 72% {
+    transform: translate3d(var(--peel-x, 28px), var(--peel-y, -10px), 0) rotate(var(--peel-r, -24deg));
+    opacity: 1;
+  }
+}
+
+@media (max-width: 720px) {
+  .principle .mini-diagram {
+    height: 108px !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .principle .align-diagram .field-arc,
+  .principle .align-diagram .mag,
+  .principle .close-diagram .mag,
+  .principle .slide-diagram .mag.block,
+  .principle .slide-diagram .stop,
+  .principle .peel-diagram .mag {
+    animation: none !important;
+  }
+}
+
+/* v22 — hero headline uses the primary action orange */
+.hero-title {
+  color: var(--ref-orange, #e65f18) !important;
+}
+
+/* Hero main heading → accent (matches the primary CTA colour) */
+html[data-theme="light"] .hero h1 {
+  color: var(--color-accent) !important;
+}
+
+/* ============================================================
+   vREF.2 — restore hero/background video clarity in light mode
+   The v18 pass faded the video to 0.36 opacity with a multiply blend,
+   washing it out. Bring the video back to near-full clarity and keep
+   text legible with a left-anchored scrim (where the copy sits) instead
+   of whitening the whole frame. The right side stays crisp.
+   ============================================================ */
+html[data-theme="light"] .scroll-video {
+  filter: contrast(1.06) saturate(1.02) brightness(1) !important;
+  opacity: 1 !important;
+  mix-blend-mode: normal !important;
+}
+
+html[data-theme="light"] .scroll-video-system {
+  background: var(--color-page) !important;
+}
+
+/* Readability scrim: light cream on the left (text column), clear on the
+   right. Kept deliberately soft so the video stays crisp — just enough to
+   anchor the copy. Sits inside the fixed video system (z-index -3) so it
+   covers the video but stays behind all page content. */
+html[data-theme="light"] .scroll-video-system::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(
+    95deg,
+    rgba(252, 247, 238, 0.2) 0%,
+    rgba(252, 247, 238, 0.08) 20%,
+    rgba(252, 247, 238, 0) 38%
+  );
+}
+
+/* No backdrop behind the lede — keep it as plain text but make it legible
+   over the moving video with a soft cream glow (reads on both the light and
+   dark parts of the footage) and break it into a narrower, taller column. */
+html[data-theme="light"] .hero-lede {
+  color: #15171a !important;
+  font-weight: 600 !important;
+  text-shadow:
+    0 0 4px rgba(252, 247, 238, 0.95),
+    0 0 9px rgba(252, 247, 238, 0.85),
+    0 1px 2px rgba(252, 247, 238, 0.9);
+}
+
+/* Cut back the other light overlays that paint over the video in light
+   mode, so the footage reads clearly instead of washed. */
+html[data-theme="light"] body::after {
+  opacity: 0.22 !important;
+}
+html[data-theme="light"] body::before {
+  opacity: 0.35 !important;
+}
+html[data-theme="light"] .hero::before {
+  opacity: 0.12 !important;
+}
+html[data-theme="light"] .hero::after,
+html[data-theme="light"] .hero-stage::after {
+  opacity: 0.45 !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html[data-theme="light"] .scroll-video {
+    opacity: 1 !important;
+  }
+}
+
+/* Hero copy spans the left column only (matches the reference layout where
+   the heading/lede/actions sit on the left and the imagery fills the right).
+   Desktop only — the mobile single-column stack is left untouched. */
+@media (min-width: 900px) {
+  .hero-copy {
+    width: min(620px, 50vw) !important;
+    max-width: 620px !important;
+  }
+  .hero-title {
+    max-width: 100% !important;
+  }
+  /* Narrower measure so the lede breaks into more, shorter lines */
+  .hero-lede {
+    max-width: 39ch !important;
+  }
+}
+
+/* (Hero lede + actions were briefly anchored bottom-right; reverted to the
+   left column under the heading, so no absolute positioning is needed here.) */
+
+/* ============================================================
+   vTECH — Technology gesture diagrams: clarity + motion pass
+   Recolour the poles on-palette (N = burnt orange, S = charcoal),
+   replace the field "blob" with a real magnetic-field ring, stop the
+   edge clipping, seat the magnets on a soft rail, and tighten motion.
+   ============================================================ */
+
+/* Don't clip the magnets; seat them on a subtle rail instead */
+.principle .mini-diagram {
+  overflow: visible !important;
+  contain: layout !important;
+  width: min(300px, 100%) !important;
+  height: clamp(110px, 9vw, 128px) !important;
+}
+.principle .mini-diagram::before {
+  content: "" !important;
+  position: absolute !important;
+  left: 4% !important;
+  right: 4% !important;
+  top: 50% !important;
+  height: 60px !important;
+  translate: 0 -50% !important;
+  border-radius: 16px !important;
+  background:
+    linear-gradient(180deg, rgba(58, 61, 64, 0.05), rgba(58, 61, 64, 0.02)) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6), inset 0 0 0 1px rgba(58, 61, 64, 0.06) !important;
+  z-index: 0 !important;
+  pointer-events: none !important;
+}
+
+/* Refined magnet blocks */
+.principle .mini-diagram .mag {
+  z-index: 1 !important;
+  width: 33px !important;
+  height: 54px !important;
+  border-radius: 8px !important;
+  border: 1px solid rgba(255, 255, 255, 0.55) !important;
+  font-size: 12px !important;
+  font-weight: 800 !important;
+  box-shadow:
+    0 9px 20px rgba(58, 61, 64, 0.24),
+    inset 0 1px 0 rgba(255, 255, 255, 0.45),
+    inset 0 -6px 12px rgba(58, 61, 64, 0.16) !important;
+}
+.principle .mini-diagram .mag.n,
+.principle .slide-diagram .mag.block {
+  background: linear-gradient(152deg, #ff9a52 0%, #e65f18 52%, #c2480f 100%) !important;
+  color: #fff5ec !important;
+}
+.principle .mini-diagram .mag.s,
+.principle .slide-diagram .stop {
+  background: linear-gradient(152deg, #5b5f63 0%, #3a3d40 52%, #26282b 100%) !important;
+  color: #efece4 !important;
+}
+
+/* 01 — magnetic field ring (replaces the solid blob) */
+.principle .align-diagram .field-arc {
+  width: 96px !important;
+  height: 96px !important;
+  border: 1.5px dashed rgba(230, 95, 24, 0.55) !important;
+  border-radius: 50% !important;
+  background: radial-gradient(circle, rgba(230, 95, 24, 0.14), transparent 68%) !important;
+  box-shadow:
+    0 0 0 1px rgba(230, 95, 24, 0.10),
+    0 0 22px rgba(230, 95, 24, 0.20) !important;
+  opacity: 0.9 !important;
+}
+
+/* Slide + peel diagrams already have their own track (sheath / hinge),
+   so suppress the generic rail there to avoid a doubled surface. */
+.principle .slide-diagram::before,
+.principle .peel-diagram::before {
+  display: none !important;
+}
+
+/* Align the left heading box with the right column. The old sticky offset
+   (top: 126px) was left behind when the heading switched to position:relative,
+   pushing the whole left panel down. Reset it so both columns start level. */
+.principle .section-heading {
+  top: 0 !important;
+}
+
+/* ============================================================
+   vTECH.2 — step card copy + frosted glass panels
+   ============================================================ */
+
+/* Frosted-glass step cards: lower the fill opacity so the blur actually
+   reads as glass over the technical grid, with a soft top highlight.
+   Scoped to the active theme to outrank the earlier 0.82 fill. */
+html[data-theme="light"] .principle .sequence-step {
+  background: rgba(255, 250, 241, 0.46) !important;
+  -webkit-backdrop-filter: blur(13px) saturate(1.1) !important;
+  backdrop-filter: blur(13px) saturate(1.1) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.6),
+    0 12px 30px rgba(15, 29, 38, 0.06) !important;
+}
+
+/* Description copy: drop the leftover dark text-shadow (it reads as an
+   outline on the light theme), size it up, and pull it tight to the title. */
+.principle .sequence-step p {
+  text-shadow: none !important;
+  font-size: clamp(16px, 1.3vw, 19px) !important;
+  line-height: 1.5 !important;
+  margin-top: clamp(4px, 0.5vw, 8px) !important;
+}
+
+/* Tighten the title -> copy gap (the step grid gap was applied to rows too) */
+@media (min-width: 1181px) {
+  .principle .sequence-step {
+    row-gap: clamp(2px, 0.4vw, 6px) !important;
+    column-gap: clamp(20px, 3vw, 46px) !important;
+  }
+}
+
+/* ============================================================
+   vTECH.3 — make the glass actually read as glass
+   A blur needs contrast behind it. The cards sat over a flat cream panel,
+   so the frost was invisible. Strengthen the grid + warm glow behind the
+   cards, then style them as distinct translucent glass panels.
+   ============================================================ */
+
+/* Stronger technical backdrop so the frost has something to soften */
+.principle::before {
+  background:
+    linear-gradient(rgba(15, 29, 38, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(15, 29, 38, 0.06) 1px, transparent 1px),
+    radial-gradient(circle at 30% 20%, rgba(230, 95, 24, 0.18), transparent 24rem),
+    radial-gradient(circle at 86% 64%, rgba(15, 29, 38, 0.07), transparent 26rem) !important;
+  background-size: 54px 54px, 54px 54px, auto, auto !important;
+}
+
+/* Distinct translucent glass panels */
+html[data-theme="light"] .principle .sequence-step {
+  margin: clamp(7px, 0.9vw, 13px) clamp(10px, 1.3vw, 18px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.6) !important;
+  border-radius: 18px !important;
+  background:
+    linear-gradient(150deg, rgba(255, 255, 255, 0.42), rgba(255, 250, 241, 0.14) 58%, rgba(255, 250, 241, 0.28)) !important;
+  -webkit-backdrop-filter: blur(16px) saturate(1.25) !important;
+  backdrop-filter: blur(16px) saturate(1.25) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.9),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.16),
+    0 20px 46px rgba(15, 29, 38, 0.1) !important;
+}
+
+/* Match the left heading panel to the right glass cards: round the corners
+   and apply the same translucent glass treatment so both sides are cohesive. */
+html[data-theme="light"] .principle .section-heading {
+  margin: clamp(7px, 0.9vw, 13px) clamp(10px, 1.3vw, 18px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.6) !important;
+  border-radius: 18px !important;
+  background:
+    linear-gradient(150deg, rgba(255, 255, 255, 0.42), rgba(255, 250, 241, 0.14) 58%, rgba(255, 250, 241, 0.28)) !important;
+  -webkit-backdrop-filter: blur(16px) saturate(1.25) !important;
+  backdrop-filter: blur(16px) saturate(1.25) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.9),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.16),
+    0 20px 46px rgba(15, 29, 38, 0.1) !important;
+}
+
+/* The vertical divider is redundant now that both sides are distinct panels */
+.principle::after {
+  display: none !important;
+}
+
+/* Separate the two columns with a real gap — they were butting together at
+   the column boundary (panel margins collapsed to zero). Let the grid's
+   column-gap own the horizontal spacing instead of the panel margins. */
+.principle {
+  column-gap: clamp(22px, 2.4vw, 40px) !important;
+  row-gap: 0 !important;
+}
+html[data-theme="light"] .principle .section-heading,
+html[data-theme="light"] .principle .sequence-step {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+/* Hero lede: a touch larger and pulled closer to the buttons so the gap
+   below it doesn't read as too much empty space. */
+html[data-theme="light"] .hero-lede {
+  font-size: clamp(17px, 1.45vw, 30px) !important;
+  line-height: 1.46 !important;
+}
+.hero .hero-actions {
+  margin-top: clamp(12px, 1.4vw, 18px) !important;
+}
+
+/* ============================================================
+   vHIW — stop the step heading colliding with the image
+   The copy is absolutely overlaid on the photo; in light mode the heading
+   bled onto it and long words overflowed (max-width: 9ch). Sit the copy on
+   a frosted caption panel and let titles wrap at a size that fits the card.
+   ============================================================ */
+html[data-theme="light"] .hiw-copy {
+  background: oklch(98% 0.008 82 / 0.9) !important;
+  -webkit-backdrop-filter: blur(9px) saturate(1.1) !important;
+  backdrop-filter: blur(9px) saturate(1.1) !important;
+  border: 1px solid oklch(100% 0.01 82 / 0.6) !important;
+  border-radius: 20px !important;
+  padding: clamp(15px, 1.5vw, 22px) !important;
+  box-shadow: 0 14px 32px oklch(20% 0.01 76 / 0.12) !important;
+}
+html[data-theme="light"] .hiw-copy h3 {
+  max-width: none !important;
+  overflow-wrap: break-word !important;
+  hyphens: auto !important;
+  font-size: clamp(23px, 2.2vw, 34px) !important;
+  line-height: 1.02 !important;
+}

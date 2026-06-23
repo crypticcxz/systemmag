@@ -11,7 +11,8 @@ export function ScrollVideoBackground() {
         loop
         preload="auto"
       >
-        <source src="/assets/video/systemmag-scroll.mp4" type="video/mp4" />
+        {/* Boomerang loop (forward + reverse) so the 3s clip restarts with no visible cut */}
+        <source src="/assets/video/systemmag-scroll-loop.mp4" type="video/mp4" />
       </video>
       <div className="video-fallback">
         <div className="fallback-track">
