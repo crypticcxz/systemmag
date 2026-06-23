@@ -10721,3 +10721,12 @@ html[data-theme="light"] .hero-copy {
     padding-bottom: 280px !important;
   }
 }
+
+/* ============================================================
+   vSECTION-GAP-FIX — remove 56px margin-top on Technology section
+   that creates a cream gap between the hero strip and the
+   dark Technology section background.
+   ============================================================ */
+html[data-theme="light"] .principle {
+  margin-top: 0 !important;
+}
