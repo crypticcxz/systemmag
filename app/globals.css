@@ -10644,3 +10644,80 @@ html[data-theme="light"] .hero-copy {
   flex: 1 1 auto !important;
   justify-content: flex-end !important;
 }
+
+/* ============================================================
+   vHERO-POLISH — navbar full-width + strip flush + text alignment
+   Issues diagnosed:
+   - .site-header uses left:50%;translate:-50% → floating pill
+   - top:18px/26px creates gap above navbar
+   - .hero-strip has margin-top:44px on mobile → gap before strip
+   - hero-title inherits text-align:center from older rules
+   ============================================================ */
+
+/* Navbar: full-bleed bar, no top gap */
+html[data-theme="light"] .site-header {
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  translate: none !important;
+  border-radius: 0 !important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  padding-left: clamp(20px, 5vw, 80px) !important;
+  padding-right: clamp(20px, 5vw, 80px) !important;
+  border-left: none !important;
+  border-right: none !important;
+  border-top: none !important;
+  border-bottom: 1px solid rgba(216, 210, 200, 0.6) !important;
+  min-height: 64px !important;
+}
+
+/* Strip: kill margin-top from older rules, keep flush */
+html[data-theme="light"] .hero-strip {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+/* Title: force left alignment (older rules set text-align:center) */
+html[data-theme="light"] .hero-title,
+html[data-theme="light"] .hero .hero-copy .hero-title {
+  text-align: left !important;
+  align-self: flex-start !important;
+}
+
+/* Hero-copy: content column max-width so title and lede read as one block */
+html[data-theme="light"] .hero-copy {
+  max-width: clamp(520px, 55vw, 860px) !important;
+}
+
+/* Hero: add top padding to clear the 64px full-width navbar */
+html[data-theme="light"] .hero-copy {
+  padding-top: clamp(80px, 10vh, 120px) !important;
+}
+
+/* ============================================================
+   vHERO-STRIP-BOTTOM — pin strip absolutely to hero bottom
+   The flex layout leaves 34px below the strip; absolute position
+   guarantees strip is flush with hero's bottom edge.
+   ============================================================ */
+html[data-theme="light"] .hero-strip {
+  position: absolute !important;
+  bottom: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+}
+html[data-theme="light"] .hero-copy {
+  padding-bottom: clamp(80px, 9vh, 110px) !important;
+}
+
+/* ============================================================
+   vHERO-MOBILE-STRIP — mobile strip stacks to ~261px; hero-copy
+   padding-bottom must clear it so buttons aren't hidden behind it
+   ============================================================ */
+@media (max-width: 640px) {
+  html[data-theme="light"] .hero-copy {
+    padding-bottom: 280px !important;
+  }
+}
