@@ -11392,3 +11392,36 @@ html[data-theme="light"] .hero .hero-title {
   letter-spacing: -0.04em !important;
   font-style: normal !important;
 }
+
+/* vNAV-MOBILE-BURGER-LEFT — burger is now a direct header child;
+   desktop: hidden (nav links visible); mobile: left col of 3-col grid */
+html[data-theme="light"] .site-header .nav-burger {
+  display: none !important;
+}
+@media (max-width: 768px) {
+  html[data-theme="light"] .site-header {
+    display: grid !important;
+    grid-template-columns: auto 1fr auto !important;
+    grid-template-areas: "burger brand actions" !important;
+    align-items: center !important;
+  }
+  html[data-theme="light"] .site-header .nav-burger {
+    display: flex !important;
+    grid-area: burger !important;
+    align-self: center !important;
+  }
+  html[data-theme="light"] .site-header .site-nav {
+    display: none !important;
+  }
+  html[data-theme="light"] .site-header .brand {
+    grid-area: brand !important;
+    justify-self: center !important;
+  }
+  html[data-theme="light"] .site-header .header-actions {
+    grid-area: actions !important;
+    justify-self: end !important;
+  }
+  html[data-theme="light"] .site-header .header-actions .nav-cta {
+    display: none !important;
+  }
+}

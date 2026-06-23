@@ -8,7 +8,6 @@ export function SiteHeader() {
   const t = useT();
   const [menuOpen, setMenuOpen] = useState(false);
 
-  // Close the mobile menu on Escape.
   useEffect(() => {
     if (!menuOpen) return;
     const onKey = (e: KeyboardEvent) => {
@@ -29,6 +28,19 @@ export function SiteHeader() {
 
   return (
     <header className="site-header" data-reveal data-menu-open={menuOpen || undefined}>
+      {/* Burger sits as a direct header child so CSS can place it independently on mobile */}
+      <button
+        className="nav-burger"
+        type="button"
+        aria-label={menuOpen ? "Fermer le menu" : "Ouvrir le menu"}
+        aria-expanded={menuOpen}
+        onClick={() => setMenuOpen((o) => !o)}
+      >
+        <span />
+        <span />
+        <span />
+      </button>
+
       <nav className="site-nav" aria-label="Navigation principale">
         {links.map(([href, label]) => (
           <a key={href} href={href}>
@@ -53,18 +65,6 @@ export function SiteHeader() {
         </button>
 
         <a className="nav-cta" href="#contact">{t("navCta")}</a>
-
-        <button
-          className="nav-burger"
-          type="button"
-          aria-label={menuOpen ? "Fermer le menu" : "Ouvrir le menu"}
-          aria-expanded={menuOpen}
-          onClick={() => setMenuOpen((o) => !o)}
-        >
-          <span />
-          <span />
-          <span />
-        </button>
       </div>
 
       <nav className="mobile-nav" aria-label="Navigation mobile">
