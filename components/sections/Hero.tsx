@@ -54,13 +54,6 @@ export function Hero() {
         >
           <source src="/assets/video/systemmag-scroll-loop.mp4" type="video/mp4" />
         </video>
-        <div className="hero-strip">
-          <span>{t("stripOne")}</span>
-          <span>{t("stripTwo")}</span>
-          <span>OEKO-TEX</span>
-          <span>REACH</span>
-          <span>{t("stripFive")}</span>
-        </div>
       </div>
     </section>
   );
