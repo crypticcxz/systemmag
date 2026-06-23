@@ -7,9 +7,15 @@ export function Hero() {
 
   return (
     <section className="hero" id="top">
-      <div className="hero-text" data-reveal>
-        <h1 className="hero-title">{t("heroTitle")}</h1>
-        <p className="hero-lede">{t("heroLede")}</p>
+      <div className="hero-text">
+        <h1 className="hero-title">
+          <span className="hero-line-wrap">
+            <span className="hero-line hero-line-1">{t("heroLine1")}</span>
+          </span>
+          <span className="hero-line-wrap">
+            <span className="hero-line hero-line-2">{t("heroLine2")}</span>
+          </span>
+        </h1>
       </div>
 
       <div className="hero-video-frame">

@@ -10,6 +10,8 @@ export const copy = {
     navCta: "Cadrer un projet",
     heroEyebrow: "Technologie brevetée pour textile et équipement",
     heroTitle: "La fermeture magnétique conçue pour disparaître.",
+    heroLine1: "La fermeture",
+    heroLine2: "magnétique.",
     heroLede:
       "Systemmag conçoit des fermetures magnétiques intégrées aux textiles, accessoires et équipements techniques, pour créer des systèmes discrets, souples et adaptés à vos contraintes d’usage.",
     heroPrimary: "Cadrer une application",
@@ -115,6 +117,8 @@ export const copy = {
     navCta: "Start a project",
     heroEyebrow: "Patented technology for textile and equipment",
     heroTitle: "The magnetic closure designed to disappear.",
+    heroLine1: "The magnetic",
+    heroLine2: "closure.",
     heroLede:
       "Systemmag designs magnetic closures integrated into textiles, accessories, and technical equipment to create discreet, flexible systems adapted to your usage constraints.",
     heroPrimary: "Frame an application",

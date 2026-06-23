@@ -11198,3 +11198,70 @@ html[data-theme="light"] .hero-video-frame .hero-strip {
     white-space: nowrap !important;
   }
 }
+
+/* ============================================================
+   vHERO-HEADING-ANIM — Hadrian-style two-line heading with
+   mask-reveal slide-up on page load. Each line is wrapped in
+   overflow:hidden so text slides out from behind the mask.
+   Colors match site palette (#f5f0e8 cream on #0a0c0f dark).
+   ============================================================ */
+
+@keyframes heroLineUp {
+  from { transform: translateY(108%); opacity: 0.01; }
+  to   { transform: translateY(0%);   opacity: 1; }
+}
+
+/* Override the 2-column text grid — heading now full-width */
+html[data-theme="light"] .hero .hero-text {
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: flex-end !important;
+  padding: 0 clamp(24px, 3.5vw, 64px) clamp(20px, 2.5vh, 36px) !important;
+  padding-top: clamp(72px, 9vh, 96px) !important;
+  grid-template-columns: unset !important;
+  gap: 0 !important;
+}
+
+/* Mask container — one per line */
+html[data-theme="light"] .hero-line-wrap {
+  display: block !important;
+  overflow: hidden !important;
+  line-height: 0.94 !important;
+}
+
+/* The animating inner span */
+html[data-theme="light"] .hero-line {
+  display: block !important;
+  animation: heroLineUp 1.05s cubic-bezier(0.16, 1, 0.3, 1) both !important;
+}
+
+html[data-theme="light"] .hero-line-1 {
+  animation-delay: 0.05s !important;
+}
+
+html[data-theme="light"] .hero-line-2 {
+  animation-delay: 0.22s !important;
+}
+
+/* Heading typography — very large, tight, bold */
+html[data-theme="light"] .hero .hero-title {
+  font-size: clamp(64px, 9.5vw, 148px) !important;
+  font-weight: 800 !important;
+  line-height: 0.94 !important;
+  letter-spacing: -0.035em !important;
+  color: #f5f0e8 !important;
+  text-align: left !important;
+  margin: 0 !important;
+  max-width: none !important;
+}
+
+/* Mobile: smaller but still very impactful */
+@media (max-width: 640px) {
+  html[data-theme="light"] .hero .hero-title {
+    font-size: clamp(52px, 14vw, 80px) !important;
+  }
+  html[data-theme="light"] .hero .hero-text {
+    padding: 0 clamp(20px, 5vw, 32px) clamp(16px, 2vh, 24px) !important;
+    padding-top: clamp(64px, 10vh, 88px) !important;
+  }
+}
