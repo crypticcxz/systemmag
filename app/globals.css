@@ -10626,3 +10626,21 @@ html[data-theme="light"] .ms-num {
 html[data-theme="light"] .ms-cta {
   color: #e65f18 !important;
 }
+
+/* ============================================================
+   vHERO-FULLSCREEN — full-bleed, no gap between copy and strip
+   Diagnosis: heroGap=76.8px caused 43px visual gap; heroML/R=22px
+   caused side margins. hero-copy now flex:1 so it fills top→strip
+   with its own justify-content:flex-end pushing text to bottom.
+   ============================================================ */
+html[data-theme="light"] .hero {
+  margin: 0 !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  gap: 0 !important;
+  justify-content: flex-start !important;
+}
+html[data-theme="light"] .hero-copy {
+  flex: 1 1 auto !important;
+  justify-content: flex-end !important;
+}
