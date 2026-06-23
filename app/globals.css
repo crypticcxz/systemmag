@@ -11425,3 +11425,10 @@ html[data-theme="light"] .site-header .nav-burger {
     display: none !important;
   }
 }
+
+/* vNAV-MOBILE-TRUE-CENTER — equal 1fr flanks force logo to exact viewport center */
+@media (max-width: 768px) {
+  html[data-theme="light"] .site-header {
+    grid-template-columns: 1fr auto 1fr !important;
+  }
+}
