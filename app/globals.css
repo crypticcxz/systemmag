@@ -10730,3 +10730,167 @@ html[data-theme="light"] .hero-copy {
 html[data-theme="light"] .principle {
   margin-top: 0 !important;
 }
+
+/* ============================================================
+   vTECH-STEP-2COL — remove empty diagram column from each step.
+   .mini-diagram has no content in the component; the 150-240px
+   slot was dead space. Collapse to number | (title + copy).
+   ============================================================ */
+html[data-theme="light"] .principle .sequence-step {
+  grid-template-columns: clamp(72px, 7vw, 96px) 1fr !important;
+  grid-template-areas:
+    "num title"
+    "num copy" !important;
+  gap: 0 clamp(28px, 3.5vw, 56px) !important;
+  align-items: start !important;
+}
+html[data-theme="light"] .principle .mini-diagram {
+  display: none !important;
+}
+html[data-theme="light"] .principle .step-number {
+  grid-area: num !important;
+  align-self: start !important;
+  padding-top: 6px !important;
+}
+html[data-theme="light"] .principle .sequence-step h3 {
+  grid-area: title !important;
+  align-self: end !important;
+  padding-bottom: clamp(8px, 0.8vw, 12px) !important;
+}
+html[data-theme="light"] .principle .sequence-step p {
+  grid-area: copy !important;
+  grid-column: auto !important;
+  max-width: 54ch !important;
+  align-self: start !important;
+  margin-top: 0 !important;
+}
+
+/* ============================================================
+   vCONTACT-SPLIT — replace the narrow centered column with a
+   2-column layout: copy+CTA on the left, address+certs on the
+   right. Uses existing .contact-side (added to component).
+   ============================================================ */
+html[data-theme="light"] .contact-panel {
+  display: grid !important;
+  grid-template-columns: 1fr minmax(240px, 320px) !important;
+  grid-template-rows: auto !important;
+  align-items: start !important;
+  text-align: left !important;
+  max-width: none !important;
+  margin: 0 !important;
+  min-height: auto !important;
+  padding: clamp(56px, 8vw, 96px) clamp(40px, 6vw, 96px) !important;
+  gap: clamp(40px, 6vw, 80px) !important;
+  flex-direction: row !important;
+}
+html[data-theme="light"] .contact-copy {
+  align-items: flex-start !important;
+  text-align: left !important;
+}
+html[data-theme="light"] .contact-copy h2 {
+  text-align: left !important;
+}
+html[data-theme="light"] .contact-copy p:not(.eyebrow) {
+  text-align: left !important;
+}
+html[data-theme="light"] .contact-actions {
+  justify-content: flex-start !important;
+}
+
+/* Side column */
+html[data-theme="light"] .contact-side {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: clamp(20px, 2.5vw, 28px) !important;
+  padding-top: clamp(4px, 0.5vw, 8px) !important;
+}
+html[data-theme="light"] .contact-side address {
+  display: flex !important;
+  flex-direction: column !important;
+  grid-template-columns: unset !important;
+  gap: 6px !important;
+  padding: clamp(18px, 2vw, 24px) clamp(18px, 2vw, 24px) !important;
+  border: 1px solid rgba(245, 240, 232, 0.14) !important;
+  border-radius: 10px !important;
+  background: rgba(255, 255, 255, 0.04) !important;
+  font-style: normal !important;
+  font-size: clamp(13px, 1vw, 15px) !important;
+  color: rgba(245, 240, 232, 0.52) !important;
+  width: auto !important;
+  text-align: left !important;
+  justify-content: flex-start !important;
+}
+html[data-theme="light"] .contact-side address .address-label {
+  width: auto !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.1em !important;
+  text-transform: uppercase !important;
+  color: #e65f18 !important;
+  margin-bottom: 6px !important;
+}
+html[data-theme="light"] .contact-side address a {
+  color: #e65f18 !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.05em !important;
+  text-decoration: none !important;
+  margin-top: 6px !important;
+  justify-self: auto !important;
+}
+
+/* Certification badges */
+html[data-theme="light"] .contact-certs {
+  list-style: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 6px !important;
+}
+html[data-theme="light"] .contact-certs li {
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.1em !important;
+  text-transform: uppercase !important;
+  color: rgba(245, 240, 232, 0.3) !important;
+  padding: 10px 16px !important;
+  border: 1px solid rgba(245, 240, 232, 0.09) !important;
+  border-radius: 6px !important;
+}
+
+@media (max-width: 800px) {
+  html[data-theme="light"] .contact-panel {
+    grid-template-columns: 1fr !important;
+  }
+  html[data-theme="light"] .contact-side {
+    flex-direction: row !important;
+    flex-wrap: wrap !important;
+  }
+  html[data-theme="light"] .contact-side address {
+    flex: 1 1 240px !important;
+  }
+  html[data-theme="light"] .contact-certs {
+    flex: 1 1 160px !important;
+    flex-direction: row !important;
+    flex-wrap: wrap !important;
+    align-content: flex-start !important;
+  }
+}
+
+/* ============================================================
+   vTECH-STEP-COLORS — specificity fix for step h3 + p colors.
+   Line 7452 uses html[data-theme] .principle .sequence-step h3
+   (0,3,1) which wins over .sequence-step h3 (0,2,1) cream rules.
+   We match or beat it with the same prefix + parent chain.
+   ============================================================ */
+html[data-theme="light"] .principle .sequence-step h3 {
+  font-size: clamp(22px, 2.6vw, 36px) !important;
+  color: #f5f0e8 !important;
+  line-height: 1.08 !important;
+}
+html[data-theme="light"] .principle .sequence-step p {
+  color: rgba(245, 240, 232, 0.6) !important;
+  font-size: clamp(14px, 1.1vw, 16px) !important;
+  line-height: 1.62 !important;
+}

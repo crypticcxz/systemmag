@@ -22,21 +22,28 @@ export function Contact() {
           </div>
         </div>
 
+        <div className="contact-side">
+          <address>
+            <span className="address-label">{t("contactAddressLabel")}</span>
+            <span>SYSTEMMAG SAS</span>
+            <span>20 rue Bouvier</span>
+            <span>75011 Paris, France</span>
+            <a
+              href="https://maps.google.com/?q=20%20rue%20Bouvier%2075011%20Paris%20France"
+              target="_blank"
+              rel="noreferrer"
+            >
+              {t("contactMap")}
+            </a>
+          </address>
+          <ul className="contact-certs">
+            <li>{t("stripOne")}</li>
+            <li>{t("stripTwo")}</li>
+            <li>OEKO-TEX</li>
+            <li>REACH</li>
+          </ul>
+        </div>
       </div>
-
-      <address data-reveal>
-        <span className="address-label">{t("contactAddressLabel")}</span>
-        <span>SYSTEMMAG SAS</span>
-        <span>20 rue Bouvier</span>
-        <span>75011 Paris, France</span>
-        <a
-          href="https://maps.google.com/?q=20%20rue%20Bouvier%2075011%20Paris%20France"
-          target="_blank"
-          rel="noreferrer"
-        >
-          {t("contactMap")}
-        </a>
-      </address>
     </section>
   );
 }
