@@ -10381,3 +10381,248 @@ html[data-theme="light"] .applications {
   width: 100% !important;
   max-width: 100% !important;
 }
+
+/* ============================================================
+   vMARKETS-SLIDER — premium cinematic horizontal slider
+   Replaces the old sticky-scroll gallery (.applications / .market-gallery)
+   New section class: .markets-slider   section id stays: #applications
+   ============================================================ */
+
+/* Section */
+html[data-theme="light"] .markets-slider {
+  background: #fcf7ee !important;
+  padding: clamp(80px, 10vw, 120px) 0 0 !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 0 !important;
+  overflow: hidden !important;
+  position: relative !important;
+}
+
+/* Section header */
+html[data-theme="light"] .ms-header {
+  padding: 0 clamp(24px, 6vw, 100px) 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+html[data-theme="light"] .ms-header .eyebrow {
+  color: #e65f18;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 600;
+  margin: 0;
+}
+html[data-theme="light"] .ms-header h2 {
+  font-size: clamp(32px, 4vw, 56px);
+  font-weight: 700;
+  color: #3a3d40;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+  margin: 0;
+  max-width: 18ch;
+}
+
+/* Viewport */
+html[data-theme="light"] .ms-viewport {
+  width: 100%;
+  overflow: hidden;
+  cursor: grab;
+  user-select: none;
+  -webkit-user-select: none;
+}
+html[data-theme="light"] .ms-viewport:active {
+  cursor: grabbing;
+}
+
+/* Track */
+html[data-theme="light"] .ms-track {
+  display: flex;
+  transition: transform 0.62s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
+}
+
+/* Slide */
+html[data-theme="light"] .ms-slide {
+  flex: 0 0 100%;
+  width: 100%;
+  min-height: clamp(440px, 68svh, 740px);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Slide image */
+html[data-theme="light"] .ms-slide img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  pointer-events: none;
+  transition: transform 0.8s ease;
+  display: block;
+}
+
+/* Dark gradient overlay */
+html[data-theme="light"] .ms-slide::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(18, 18, 20, 0.94) 0%,
+    rgba(18, 18, 20, 0.55) 38%,
+    rgba(18, 18, 20, 0.12) 65%,
+    transparent 100%
+  );
+  z-index: 1;
+}
+
+/* Slide text overlay */
+html[data-theme="light"] .ms-copy {
+  position: absolute;
+  bottom: clamp(40px, 5vw, 72px);
+  left: clamp(24px, 6vw, 100px);
+  right: clamp(24px, 6vw, 100px);
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  pointer-events: none;
+}
+html[data-theme="light"] .ms-num {
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  color: #e65f18;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+html[data-theme="light"] .ms-copy h3 {
+  font-size: clamp(30px, 4.5vw, 58px);
+  font-weight: 700;
+  color: #f5f0e8;
+  letter-spacing: -0.035em;
+  line-height: 1.0;
+  margin: 0;
+  max-width: 14ch;
+}
+html[data-theme="light"] .ms-copy p {
+  font-size: clamp(13px, 1.15vw, 15px);
+  color: rgba(245, 240, 232, 0.65);
+  margin: 0;
+  max-width: 42ch;
+  line-height: 1.6;
+}
+html[data-theme="light"] .ms-cta {
+  width: fit-content;
+  margin-top: 4px;
+  color: #e65f18;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  pointer-events: auto;
+  transition: opacity 0.2s;
+}
+html[data-theme="light"] .ms-cta:hover {
+  opacity: 0.7;
+}
+
+/* Controls bar */
+html[data-theme="light"] .ms-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px clamp(24px, 6vw, 100px) clamp(64px, 8vw, 100px);
+  background: #fcf7ee;
+}
+
+/* Dots */
+html[data-theme="light"] .ms-dots {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+html[data-theme="light"] .ms-dot {
+  width: 28px;
+  height: 2px;
+  background: rgba(58, 61, 64, 0.2);
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: background 0.25s, width 0.3s cubic-bezier(0.4,0,0.2,1);
+  border-radius: 1px;
+}
+html[data-theme="light"] .ms-dot.is-active {
+  background: #e65f18;
+  width: 48px;
+}
+
+/* Nav: counter + arrows */
+html[data-theme="light"] .ms-nav {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+html[data-theme="light"] .ms-counter {
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.08em;
+  color: rgba(58, 61, 64, 0.45);
+  min-width: 48px;
+  text-align: right;
+}
+html[data-theme="light"] .ms-arrow {
+  width: 44px;
+  height: 44px;
+  border: 1.5px solid rgba(58, 61, 64, 0.28);
+  background: transparent;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #3a3d40;
+  transition: background 0.2s, border-color 0.2s, color 0.2s;
+  padding: 0;
+  border-radius: 0;
+}
+html[data-theme="light"] .ms-arrow:hover {
+  background: #3a3d40;
+  border-color: #3a3d40;
+  color: #f5f0e8;
+}
+
+/* Mobile */
+@media (max-width: 640px) {
+  html[data-theme="light"] .ms-slide {
+    min-height: 78svh;
+  }
+  html[data-theme="light"] .ms-controls {
+    gap: 16px;
+  }
+  html[data-theme="light"] .ms-dot {
+    width: 20px;
+  }
+  html[data-theme="light"] .ms-dot.is-active {
+    width: 36px;
+  }
+}
+
+/* ============================================================
+   vMARKETS-SLIDER-FIX1 — slide text colors need !important
+   Existing global h3 color rules beat the .ms-copy h3 specificity
+   ============================================================ */
+html[data-theme="light"] .ms-copy h3 {
+  color: #f5f0e8 !important;
+}
+html[data-theme="light"] .ms-copy p {
+  color: rgba(245, 240, 232, 0.65) !important;
+}
+html[data-theme="light"] .ms-num {
+  color: #e65f18 !important;
+}
+html[data-theme="light"] .ms-cta {
+  color: #e65f18 !important;
+}
