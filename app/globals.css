@@ -11265,3 +11265,93 @@ html[data-theme="light"] .hero .hero-title {
     padding-top: clamp(64px, 10vh, 88px) !important;
   }
 }
+
+/* ============================================================
+   vHERO-WORD-ANIM — word-by-word mask reveal, Hadrian-style.
+   Each word is individually wrapped in overflow:hidden so it
+   slides up from behind its own clip mask with staggered delay.
+   6 words total (3+3), each staggered 90ms apart.
+   Old vHERO-HEADING-ANIM line-level delays are superseded here.
+   ============================================================ */
+
+@keyframes heroWordUp {
+  0%   { transform: translateY(112%); opacity: 0; }
+  1%   { opacity: 1; }
+  100% { transform: translateY(0%);   opacity: 1; }
+}
+
+/* Each line is a block — words flow inline inside it */
+html[data-theme="light"] .hero-line-wrap {
+  display: block !important;
+  overflow: visible !important;
+  line-height: 1 !important;
+  /* Tighten lines together */
+  margin-bottom: -0.04em !important;
+}
+
+/* Word clip container — inline-block with overflow:hidden */
+html[data-theme="light"] .hero-word-outer {
+  display: inline-block !important;
+  overflow: hidden !important;
+  vertical-align: bottom !important;
+  /* Space between words */
+  margin-right: 0.27em !important;
+  /* Pull line wrapping gaps up */
+  line-height: 1.0 !important;
+  padding-bottom: 0.04em !important;
+}
+
+html[data-theme="light"] .hero-word-outer:last-child {
+  margin-right: 0 !important;
+}
+
+/* Animating word span */
+html[data-theme="light"] .hero-word {
+  display: block !important;
+  animation: heroWordUp 1.0s cubic-bezier(0.16, 1, 0.3, 1) both !important;
+  animation-delay: var(--word-delay, 0s) !important;
+}
+
+/* Ensure old per-line delays don't conflict */
+html[data-theme="light"] .hero-line-1,
+html[data-theme="light"] .hero-line-2 {
+  animation: none !important;
+}
+
+/* Keep heading typography from vHERO-HEADING-ANIM intact */
+@media (max-width: 640px) {
+  html[data-theme="light"] .hero-word-outer {
+    margin-right: 0.22em !important;
+    padding-bottom: 0.03em !important;
+  }
+}
+
+/* vHERO-TITLE-SIZE — scale heading down from 9.5vw so both French
+   lines (plus inter-word margins) fit within available width.
+   At 8.8vw / 1280px = 112.6px: line1 ~1195px + 61px margins = 1256px < 1265px ✓ */
+html[data-theme="light"] .hero .hero-title {
+  font-size: clamp(40px, 8.8vw, 116px) !important;
+}
+@media (max-width: 640px) {
+  html[data-theme="light"] .hero .hero-title {
+    font-size: clamp(38px, 13.5vw, 72px) !important;
+  }
+}
+
+/* vHERO-NOWRAP — force each hero-line-wrap to single visual line.
+   Inline-block word-outers were wrapping due to sub-pixel rounding
+   in the browser's inline formatting context. */
+html[data-theme="light"] .hero-line-wrap {
+  white-space: nowrap !important;
+}
+
+/* vHERO-MOBILE-WRAP — re-enable word wrapping on mobile since
+   full lines are wider than 375px viewport at any readable size. */
+@media (max-width: 680px) {
+  html[data-theme="light"] .hero-line-wrap {
+    white-space: normal !important;
+  }
+  html[data-theme="light"] .hero-word-outer {
+    margin-right: 0.2em !important;
+  }
+}

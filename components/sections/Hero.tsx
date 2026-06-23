@@ -2,19 +2,43 @@
 
 import { useT } from "@/providers/ThemeLanguageProvider";
 
+function AnimatedLine({
+  text,
+  wordOffset = 0,
+}: {
+  text: string;
+  wordOffset?: number;
+}) {
+  const words = text.split(" ");
+  return (
+    <span className="hero-line-wrap">
+      {words.map((word, i) => (
+        <span key={i} className="hero-word-outer">
+          <span
+            className="hero-word"
+            style={
+              { "--word-delay": `${(wordOffset + i) * 0.09 + 0.05}s` } as React.CSSProperties
+            }
+          >
+            {word}
+          </span>
+        </span>
+      ))}
+    </span>
+  );
+}
+
 export function Hero() {
   const t = useT();
+  const line1 = t("heroLine1");
+  const line2 = t("heroLine2");
 
   return (
     <section className="hero" id="top">
       <div className="hero-text">
         <h1 className="hero-title">
-          <span className="hero-line-wrap">
-            <span className="hero-line hero-line-1">{t("heroLine1")}</span>
-          </span>
-          <span className="hero-line-wrap">
-            <span className="hero-line hero-line-2">{t("heroLine2")}</span>
-          </span>
+          <AnimatedLine text={line1} wordOffset={0} />
+          <AnimatedLine text={line2} wordOffset={line1.split(" ").length} />
         </h1>
       </div>
 
