@@ -7,7 +7,6 @@ export function Process() {
 
   return (
     <section className="process section-shell" id="process">
-      <span className="depth-layer depth-cool" data-parallax="0.05" aria-hidden="true" />
 
       <div className="section-heading" data-reveal>
         <p className="eyebrow">{t("processEyebrow")}</p>

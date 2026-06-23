@@ -1,4 +1,4 @@
-﻿@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Inter:wght@400;500;600;700;800&display=swap');
 
 :root {
   color-scheme: dark;
@@ -8476,11 +8476,12 @@ html[data-theme="light"] button:focus-visible {
   gap: 0 !important;
   align-items: stretch !important;
   overflow: hidden !important;
-  border: 1px solid rgba(216, 210, 200, 0.82) !important;
+  border: 1px solid rgba(216, 210, 200, 0.42) !important;
   border-radius: 18px !important;
   background:
-    linear-gradient(115deg, rgba(255, 250, 241, 0.92), rgba(244, 241, 234, 0.72) 46%, rgba(255, 250, 241, 0.86)),
-    var(--ref-surface, #f4f1ea) !important;
+    linear-gradient(115deg, rgba(255, 250, 241, 0.54), rgba(244, 241, 234, 0.34) 46%, rgba(255, 250, 241, 0.46)) !important;
+  backdrop-filter: blur(20px) saturate(1.2) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(1.2) !important;
   box-shadow:
     0 34px 90px rgba(15, 29, 38, 0.12),
     inset 0 1px 0 rgba(255, 250, 241, 0.76) !important;
@@ -9538,3 +9539,845 @@ html[data-theme="light"] .hiw-copy p {
 
 /* (Markets section keeps the original cream background with shadows; the
    orange-backdrop experiment was reverted.) */
+
+/* ============================================================
+   vPRODUCTS — glassmorphic product panels
+   ============================================================ */
+
+/* Translucent glass treatment for products section heading and product panels in light theme */
+html[data-theme="light"] .products .section-heading,
+html[data-theme="light"] .product-panel {
+  border: 1px solid rgba(255, 255, 255, 0.6) !important;
+  border-radius: 22px !important;
+  background:
+    linear-gradient(150deg, rgba(255, 255, 255, 0.42), rgba(255, 250, 241, 0.14) 58%, rgba(255, 250, 241, 0.28)) !important;
+  -webkit-backdrop-filter: blur(16px) saturate(1.25) !important;
+  backdrop-filter: blur(16px) saturate(1.25) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.9),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.16),
+    0 20px 46px rgba(15, 29, 38, 0.1) !important;
+}
+
+/* Make products section container and background sheet translucent in light theme so video is visible */
+html[data-theme="light"] .products {
+  background: transparent !important;
+}
+
+html[data-theme="light"] .products::after {
+  background:
+    linear-gradient(180deg, oklch(92% 0.012 80 / 0.52), oklch(88% 0.012 80 / 0.64)),
+    repeating-linear-gradient(90deg, transparent 0 95px, oklch(18% 0.012 74 / 0.02) 96px) !important;
+  backdrop-filter: blur(20px) saturate(1.2) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(1.2) !important;
+}
+
+
+/* ============================================================
+   vTYPE — Bricolage Grotesque (display) + Inter (clean body)
+   Replaces the Space-Grotesk-everywhere default: body text becomes the
+   neutral Inter, headlines + big numbers carry the distinctive Bricolage.
+   ============================================================ */
+:root {
+  --font-display: "Bricolage Grotesque", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-body: "Inter", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+}
+
+body {
+  font-family: var(--font-body) !important;
+}
+
+h1, h2, h3,
+.hero-title,
+.hero-copy h1,
+.step-number,
+.hiw-num,
+.market-card-copy span,
+.application-bands span,
+.process-track span,
+.product-code {
+  font-family: var(--font-display) !important;
+}
+
+/* These elements hard-declare Space Grotesk; pin them to the clean body font
+   so they don't depend on Space Grotesk being unloaded. */
+.hero-lede,
+.principle .mini-diagram .mag {
+  font-family: var(--font-body) !important;
+}
+
+/* Eyebrow kickers removed so the distinctive Bricolage headlines lead each
+   section (the repeated uppercase labels read as AI scaffolding). Reversible:
+   the i18n keys remain; delete this rule to bring them back. */
+.section-heading .eyebrow {
+  display: none !important;
+}
+
+/* Catch the contact-section kicker too (it sits outside .section-heading). */
+.eyebrow {
+  display: none !important;
+}
+
+/* ============================================================
+   vP2-GLASS — reduce glass to Technology only
+   HIW caption panels now use a clean solid cream card (the background photo
+   is already framed above — no need for frosted glass over flat cream below).
+   ============================================================ */
+html[data-theme="light"] .hiw-copy {
+  background: #fcf7ee !important;
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+  border: 1px solid rgba(58, 61, 64, 0.1) !important;
+  border-radius: 18px !important;
+  box-shadow: 0 8px 24px rgba(15, 29, 38, 0.07) !important;
+}
+
+/* ============================================================
+   vP2-MARKETS — tighter scroll-jack + solid caption contrast
+   520svh → 420svh shaves ~1.5 viewport-heights off the scroll cost.
+   Market card captions: solid cream bg with deep charcoal text so they
+   always read regardless of the photo behind them.
+   ============================================================ */
+.applications {
+  min-height: 420svh !important;
+}
+
+html[data-theme="light"] .market-card-copy {
+  background: rgba(252, 247, 238, 0.95) !important;
+  -webkit-backdrop-filter: blur(6px) !important;
+  backdrop-filter: blur(6px) !important;
+  border: 1px solid rgba(58, 61, 64, 0.1) !important;
+  box-shadow: 0 12px 32px rgba(15, 29, 38, 0.12) !important;
+}
+html[data-theme="light"] .market-card-copy h3 {
+  color: #3a3d40 !important;
+  font-family: var(--font-display, "Bricolage Grotesque", sans-serif) !important;
+}
+html[data-theme="light"] .market-card-copy p {
+  color: #5a5d60 !important;
+}
+html[data-theme="light"] .market-card-copy a,
+html[data-theme="light"] .market-card-copy span {
+  color: #e65f18 !important;
+}
+
+/* ============================================================
+   vP3-ORANGE-PEAK — Markets section heading as the one drenched orange moment
+   The heading panel (title + intro) goes full orange so the section has one
+   genuinely committed colour moment before the scroll-jack begins.
+   ============================================================ */
+html[data-theme="light"] .applications .section-heading {
+  background:
+    radial-gradient(circle at 22% 20%, rgba(255, 230, 200, 0.4), transparent 50%),
+    linear-gradient(150deg, #f08040 0%, #e65f18 60%, #d44e0d 100%) !important;
+  border-radius: 20px !important;
+  padding: clamp(28px, 3.5vw, 48px) clamp(24px, 3vw, 44px) !important;
+  border: none !important;
+  box-shadow: 0 24px 56px rgba(180, 60, 10, 0.22) !important;
+}
+html[data-theme="light"] .applications .section-heading h2 {
+  color: #fff8f2 !important;
+  opacity: 1 !important;
+}
+html[data-theme="light"] .applications .section-heading p {
+  color: rgba(255, 240, 220, 0.88) !important;
+}
+
+/* ============================================================
+   vDESIGN2025 -- Full redesign: Divergent / Formlabs aesthetic
+   Cream base - Dark charcoal islands (Technology, Process, Contact)
+   Orange #e65f18 single accent - Bricolage Grotesque display
+   Rhythm: cream - dark - cream - cream - orange peak - dark - dark
+   ============================================================ */
+
+/* == HERO ===================================================== */
+html[data-theme="light"] .hero {
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: flex-end !important;
+  align-items: stretch !important;
+  min-height: 100svh !important;
+  padding: 0 !important;
+  position: relative !important;
+  overflow: hidden !important;
+}
+html[data-theme="light"] .hero-stage,
+html[data-theme="light"] .scroll-cues {
+  display: none !important;
+}
+html[data-theme="light"] .hero-copy {
+  position: relative !important;
+  z-index: 2 !important;
+  max-width: none !important;
+  width: 100% !important;
+  padding: clamp(60px, 8vh, 100px) clamp(24px, 5vw, 80px) clamp(28px, 4vh, 48px) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  gap: clamp(14px, 1.8vh, 22px) !important;
+  background: linear-gradient(to top, rgba(10,12,15,0.62) 0%, rgba(10,12,15,0.0) 100%) !important;
+}
+html[data-theme="light"] .hero-title {
+  font-size: clamp(44px, 6.5vw, 96px) !important;
+  line-height: 0.96 !important;
+  letter-spacing: -0.035em !important;
+  color: #ffffff !important;
+  text-shadow: 0 2px 48px rgba(10,12,15,0.35) !important;
+  margin: 0 !important;
+  max-width: 15ch !important;
+}
+html[data-theme="light"] .hero-lede {
+  font-size: clamp(15px, 1.25vw, 18px) !important;
+  color: rgba(245, 238, 228, 0.78) !important;
+  line-height: 1.62 !important;
+  max-width: 52ch !important;
+  margin: 0 !important;
+  font-weight: 400 !important;
+}
+html[data-theme="light"] .hero-actions {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 10px !important;
+  margin: 0 !important;
+}
+html[data-theme="light"] .hero-strip {
+  position: relative !important;
+  z-index: 2 !important;
+  width: 100% !important;
+  display: flex !important;
+  flex-wrap: nowrap !important;
+  border-top: 1px solid rgba(245, 238, 228, 0.1) !important;
+  background: rgba(10, 12, 15, 0.4) !important;
+  color: rgba(245, 238, 228, 0.5) !important;
+  -webkit-backdrop-filter: blur(8px) !important;
+  backdrop-filter: blur(8px) !important;
+}
+html[data-theme="light"] .hero-strip span {
+  flex: 1 1 0 !important;
+  text-align: center !important;
+  padding: clamp(10px, 1.4vh, 16px) clamp(8px, 1vw, 14px) !important;
+  font-size: clamp(9px, 0.75vw, 11px) !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.08em !important;
+  text-transform: uppercase !important;
+  border-left: 1px solid rgba(245, 238, 228, 0.08) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  margin: 0 !important;
+}
+html[data-theme="light"] .hero-strip span:first-child {
+  border-left: none !important;
+}
+
+/* == TECHNOLOGY (dark) ======================================= */
+html[data-theme="light"] .principle {
+  background: #1e2022 !important;
+  color: #f5f0e8 !important;
+}
+html[data-theme="light"] .principle .section-heading {
+  background: transparent !important;
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+}
+html[data-theme="light"] .principle .section-heading h2 {
+  color: #f5f0e8 !important;
+  font-size: clamp(28px, 3vw, 44px) !important;
+}
+html[data-theme="light"] .principle .section-heading p {
+  color: rgba(245, 240, 232, 0.58) !important;
+}
+html[data-theme="light"] .sequence-step {
+  background: transparent !important;
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+  border: none !important;
+  border-top: 1px solid rgba(245, 240, 232, 0.1) !important;
+  border-bottom: none !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  padding: clamp(20px, 2.5vw, 36px) 0 !important;
+  transition: border-top-color 0.2s ease !important;
+}
+html[data-theme="light"] .sequence-step:hover {
+  border-top-color: rgba(230, 95, 24, 0.6) !important;
+}
+html[data-theme="light"] .sequence-step:first-child {
+  border-top-color: #e65f18 !important;
+}
+html[data-theme="light"] .step-number {
+  font-family: var(--font-display, "Bricolage Grotesque", sans-serif) !important;
+  font-size: clamp(32px, 3.5vw, 52px) !important;
+  font-weight: 800 !important;
+  color: #e65f18 !important;
+  line-height: 1 !important;
+  display: block !important;
+  margin-bottom: clamp(12px, 1.5vw, 20px) !important;
+  letter-spacing: -0.02em !important;
+}
+html[data-theme="light"] .sequence-step h3 {
+  color: #f5f0e8 !important;
+  font-size: clamp(18px, 1.6vw, 22px) !important;
+  margin-bottom: clamp(8px, 0.8vw, 12px) !important;
+  font-weight: 700 !important;
+}
+html[data-theme="light"] .sequence-step p {
+  color: rgba(245, 240, 232, 0.58) !important;
+  font-size: clamp(14px, 1vw, 16px) !important;
+  line-height: 1.65 !important;
+  margin: 0 !important;
+}
+html[data-theme="light"] .mini-diagram {
+  display: none !important;
+}
+
+/* == HOW IT WORKS (cream) ==================================== */
+html[data-theme="light"] .howitworks {
+  background: #fcf7ee !important;
+}
+html[data-theme="light"] .howitworks .depth-layer {
+  display: none !important;
+}
+html[data-theme="light"] .hiw-track {
+  display: grid !important;
+  grid-template-columns: repeat(3, 1fr) !important;
+  gap: clamp(24px, 3vw, 40px) !important;
+  align-items: start !important;
+}
+html[data-theme="light"] .hiw-step {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 0 !important;
+  background: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  padding: 0 !important;
+}
+html[data-theme="light"] .hiw-media {
+  border-radius: 6px !important;
+  overflow: hidden !important;
+  aspect-ratio: 3/4 !important;
+  width: 100% !important;
+  position: relative !important;
+}
+html[data-theme="light"] .hiw-media img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  display: block !important;
+}
+html[data-theme="light"] .hiw-frame {
+  display: none !important;
+}
+html[data-theme="light"] .hiw-copy {
+  padding: clamp(16px, 1.8vw, 22px) 0 0 !important;
+  background: transparent !important;
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+  border: none !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+html[data-theme="light"] .hiw-num {
+  font-family: var(--font-display, "Bricolage Grotesque", sans-serif) !important;
+  font-size: clamp(36px, 4vw, 52px) !important;
+  font-weight: 800 !important;
+  color: #e65f18 !important;
+  line-height: 1 !important;
+  display: block !important;
+  margin-bottom: 10px !important;
+  letter-spacing: -0.02em !important;
+}
+html[data-theme="light"] .hiw-copy h3 {
+  color: #3a3d40 !important;
+  font-size: clamp(18px, 1.6vw, 22px) !important;
+  margin-bottom: 8px !important;
+  font-weight: 700 !important;
+}
+html[data-theme="light"] .hiw-rule {
+  display: none !important;
+}
+html[data-theme="light"] .hiw-copy p {
+  color: rgba(58, 61, 64, 0.62) !important;
+  font-size: clamp(14px, 1vw, 15px) !important;
+  line-height: 1.65 !important;
+  margin: 0 !important;
+}
+
+/* == PRODUCTS (cream) ======================================== */
+html[data-theme="light"] .products .depth-layer {
+  display: none !important;
+}
+html[data-theme="light"] .product-grid {
+  display: grid !important;
+  grid-template-columns: repeat(2, 1fr) !important;
+  gap: clamp(12px, 1.5vw, 20px) !important;
+  width: 100% !important;
+}
+html[data-theme="light"] .product-panel {
+  background: #ffffff !important;
+  border: 1px solid rgba(58, 61, 64, 0.09) !important;
+  border-radius: 10px !important;
+  overflow: hidden !important;
+  display: flex !important;
+  flex-direction: column !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  transition: transform 0.22s ease, box-shadow 0.22s ease !important;
+}
+html[data-theme="light"] .product-panel:hover {
+  transform: translateY(-3px) !important;
+  box-shadow: 0 14px 36px rgba(58, 61, 64, 0.09) !important;
+}
+html[data-theme="light"] .product-panel.large {
+  grid-column: auto !important;
+  grid-row: auto !important;
+}
+html[data-theme="light"] .product-media {
+  aspect-ratio: 4/3 !important;
+  background: #f3ede3 !important;
+  overflow: hidden !important;
+  border-radius: 0 !important;
+  width: 100% !important;
+  flex-shrink: 0 !important;
+}
+html[data-theme="light"] .product-media img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain !important;
+  display: block !important;
+  padding: clamp(16px, 2vw, 28px) !important;
+}
+html[data-theme="light"] .product-frame {
+  display: none !important;
+}
+html[data-theme="light"] .product-code {
+  padding: clamp(14px, 1.4vw, 20px) clamp(14px, 1.4vw, 20px) 4px !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.1em !important;
+  color: #e65f18 !important;
+  text-transform: uppercase !important;
+  display: block !important;
+  margin: 0 !important;
+}
+html[data-theme="light"] .product-panel h3 {
+  padding: 2px clamp(14px, 1.4vw, 20px) 6px !important;
+  margin: 0 !important;
+  font-size: clamp(16px, 1.4vw, 20px) !important;
+  color: #3a3d40 !important;
+  font-weight: 700 !important;
+}
+html[data-theme="light"] .product-panel p {
+  padding: 0 clamp(14px, 1.4vw, 20px) clamp(14px, 1.4vw, 20px) !important;
+  margin: 0 !important;
+  font-size: clamp(13px, 0.95vw, 14px) !important;
+  color: rgba(58, 61, 64, 0.58) !important;
+  line-height: 1.55 !important;
+  flex: 1 !important;
+}
+
+/* == PROCESS (dark) ========================================== */
+html[data-theme="light"] .process {
+  background: #1e2022 !important;
+  color: #f5f0e8 !important;
+}
+html[data-theme="light"] .process .depth-layer {
+  display: none !important;
+}
+html[data-theme="light"] .process .section-heading h2 {
+  color: #f5f0e8 !important;
+}
+html[data-theme="light"] .process .section-heading p {
+  color: rgba(245, 240, 232, 0.58) !important;
+}
+html[data-theme="light"] .process-track {
+  display: grid !important;
+  grid-template-columns: repeat(4, 1fr) !important;
+  gap: clamp(20px, 3vw, 40px) !important;
+  align-items: start !important;
+}
+html[data-theme="light"] .process-track article {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 0 !important;
+  background: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  transition: transform 0.2s ease !important;
+}
+html[data-theme="light"] .process-track article:hover {
+  transform: translateY(-2px) !important;
+}
+html[data-theme="light"] .process-track article > span:first-child {
+  font-family: var(--font-display, "Bricolage Grotesque", sans-serif) !important;
+  font-size: clamp(40px, 4.5vw, 64px) !important;
+  font-weight: 800 !important;
+  color: #e65f18 !important;
+  line-height: 1 !important;
+  letter-spacing: -0.025em !important;
+  display: block !important;
+  margin-bottom: clamp(12px, 1.5vw, 20px) !important;
+}
+html[data-theme="light"] .step-media {
+  border-radius: 6px !important;
+  overflow: hidden !important;
+  aspect-ratio: 4/3 !important;
+  width: 100% !important;
+  margin-bottom: clamp(14px, 1.5vw, 20px) !important;
+  flex-shrink: 0 !important;
+}
+html[data-theme="light"] .step-media img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  display: block !important;
+}
+html[data-theme="light"] .step-frame {
+  display: none !important;
+}
+html[data-theme="light"] .process-track h3 {
+  color: #f5f0e8 !important;
+  font-size: clamp(16px, 1.4vw, 20px) !important;
+  margin-bottom: 8px !important;
+  margin-top: 0 !important;
+  font-weight: 700 !important;
+}
+html[data-theme="light"] .process-track p {
+  color: rgba(245, 240, 232, 0.58) !important;
+  font-size: clamp(13px, 0.95vw, 14px) !important;
+  line-height: 1.62 !important;
+  margin: 0 !important;
+}
+
+/* == CONTACT (dark, centered) ================================ */
+html[data-theme="light"] .contact {
+  background: #1e2022 !important;
+  padding: 0 !important;
+}
+html[data-theme="light"] .contact-panel {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  text-align: center !important;
+  max-width: 720px !important;
+  margin: 0 auto !important;
+  padding: clamp(64px, 9vw, 120px) clamp(24px, 4vw, 60px) clamp(48px, 6vw, 80px) !important;
+  background: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  gap: 0 !important;
+}
+html[data-theme="light"] .contact-copy {
+  background: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  padding: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  gap: 0 !important;
+  width: 100% !important;
+}
+html[data-theme="light"] .contact-copy h2 {
+  color: #f5f0e8 !important;
+  font-size: clamp(32px, 4vw, 60px) !important;
+  line-height: 1.05 !important;
+  letter-spacing: -0.025em !important;
+  margin-bottom: clamp(14px, 2vw, 22px) !important;
+  max-width: 18ch !important;
+}
+html[data-theme="light"] .contact-copy p:not(.eyebrow) {
+  color: rgba(245, 240, 232, 0.6) !important;
+  font-size: clamp(15px, 1.2vw, 17px) !important;
+  line-height: 1.65 !important;
+  max-width: 52ch !important;
+  margin-bottom: clamp(28px, 3.5vw, 44px) !important;
+}
+html[data-theme="light"] .contact-actions {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 10px !important;
+  justify-content: center !important;
+}
+html[data-theme="light"] .contact .button-secondary {
+  border-color: rgba(245, 240, 232, 0.22) !important;
+  color: #f5f0e8 !important;
+  background: transparent !important;
+}
+html[data-theme="light"] .contact .button-secondary:hover {
+  border-color: rgba(245, 240, 232, 0.55) !important;
+  background: rgba(245, 240, 232, 0.06) !important;
+}
+html[data-theme="light"] .contact address {
+  text-align: center !important;
+  color: rgba(245, 240, 232, 0.36) !important;
+  display: flex !important;
+  flex-wrap: wrap !important;
+  justify-content: center !important;
+  gap: 4px 18px !important;
+  padding: clamp(24px, 2.5vw, 32px) clamp(24px, 4vw, 60px) clamp(40px, 5vw, 64px) !important;
+  border-top: 1px solid rgba(245, 240, 232, 0.07) !important;
+  font-style: normal !important;
+  font-size: 13px !important;
+  line-height: 1.6 !important;
+  width: 100% !important;
+}
+html[data-theme="light"] .contact address .address-label {
+  width: 100% !important;
+  font-weight: 700 !important;
+  color: rgba(245, 240, 232, 0.5) !important;
+  letter-spacing: 0.07em !important;
+  text-transform: uppercase !important;
+  font-size: 11px !important;
+  margin-bottom: 8px !important;
+  display: block !important;
+}
+html[data-theme="light"] .contact address a {
+  color: #e65f18 !important;
+}
+
+/* == REVEAL: snappier easing ================================= */
+html[data-theme="light"].js-enabled [data-reveal] {
+  opacity: 0 !important;
+  transform: translateY(22px) !important;
+  transition:
+    opacity 0.52s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.52s cubic-bezier(0.22, 1, 0.36, 1) !important;
+  transition-delay: calc(var(--reveal-i, 0) * 75ms) !important;
+}
+html[data-theme="light"].js-enabled [data-reveal].is-visible {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+/* == RESPONSIVE ============================================== */
+@media (min-width: 1100px) {
+  html[data-theme="light"] .product-grid {
+    grid-template-columns: repeat(4, 1fr) !important;
+  }
+}
+
+@media (max-width: 980px) {
+  html[data-theme="light"] .hero-title {
+    font-size: clamp(38px, 8vw, 64px) !important;
+  }
+  html[data-theme="light"] .process-track {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: clamp(20px, 3vw, 32px) !important;
+  }
+}
+
+@media (max-width: 760px) {
+  html[data-theme="light"] .hero-strip {
+    flex-wrap: wrap !important;
+  }
+  html[data-theme="light"] .hero-strip span {
+    flex: 1 1 calc(50% - 1px) !important;
+    min-width: 120px !important;
+    border-top: 1px solid rgba(245, 238, 228, 0.07) !important;
+  }
+  html[data-theme="light"] .hiw-track {
+    grid-template-columns: 1fr !important;
+    gap: clamp(32px, 5vw, 48px) !important;
+  }
+  html[data-theme="light"] .hiw-media {
+    aspect-ratio: 4/3 !important;
+  }
+  html[data-theme="light"] .process-track {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+  html[data-theme="light"] .contact-copy h2 {
+    font-size: clamp(28px, 8vw, 44px) !important;
+  }
+}
+
+@media (max-width: 480px) {
+  html[data-theme="light"] .hero-copy {
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+  }
+  html[data-theme="light"] .hero-strip span {
+    flex: 1 1 100% !important;
+    border-left: none !important;
+  }
+  html[data-theme="light"] .product-grid {
+    grid-template-columns: 1fr !important;
+  }
+  html[data-theme="light"] .process-track {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* ============================================================
+   vDESIGN2025-FIX — specificity patches for redesign
+   ============================================================ */
+
+/* Hero title: existing rule uses .hero-copy .hero-title (more specific) */
+html[data-theme="light"] .hero .hero-copy .hero-title {
+  color: #ffffff !important;
+}
+
+/* Technology step cards: existing rule uses .principle .sequence-step (more specific) */
+html[data-theme="light"] .principle .sequence-step {
+  background: transparent !important;
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  border: none !important;
+  border-top: 1px solid rgba(245, 240, 232, 0.1) !important;
+  padding: clamp(20px, 2.5vw, 36px) 0 !important;
+}
+html[data-theme="light"] .principle .sequence-step::before,
+html[data-theme="light"] .principle .sequence-step::after {
+  display: none !important;
+}
+html[data-theme="light"] .principle .sequence-step:first-child {
+  border-top-color: #e65f18 !important;
+}
+html[data-theme="light"] .principle .sequence-step:hover {
+  border-top-color: rgba(230, 95, 24, 0.55) !important;
+  box-shadow: none !important;
+  background: transparent !important;
+}
+
+/* Products: ensure cream background */
+html[data-theme="light"] .products {
+  background: #fcf7ee !important;
+}
+
+/* ============================================================
+   vDESIGN2025-FIX2 — hide video fallback (new design uses clean video bg)
+   ============================================================ */
+html[data-theme="light"] .video-fallback {
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+}
+
+/* ============================================================
+   vDESIGN2025-FIX3 — clear cream overlays inside dark sections
+   ============================================================ */
+
+/* Process: section-heading has cream glass bg, track has warm tint */
+html[data-theme="light"] .process .section-heading {
+  background: transparent !important;
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+}
+html[data-theme="light"] .process-track {
+  background: transparent !important;
+}
+html[data-theme="light"] .process .section-heading h2 {
+  color: #f5f0e8 !important;
+  opacity: 1 !important;
+}
+html[data-theme="light"] .process .section-heading p {
+  color: rgba(245, 240, 232, 0.58) !important;
+  opacity: 1 !important;
+}
+
+/* Also clear any section-heading glass panel in Technology (belt-and-braces) */
+html[data-theme="light"] .principle .section-heading {
+  background: transparent !important;
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  opacity: 1 !important;
+}
+
+/* ============================================================
+   vDESIGN2025-FIX4 — step-media on dark Process section
+   ============================================================ */
+
+/* step-media background: neutral dark so images sit on dark ground */
+html[data-theme="light"] .process .step-media {
+  background: rgba(245, 240, 232, 0.07) !important;
+}
+
+/* step-frame: hide with higher specificity */
+html[data-theme="light"] .process-track article .step-frame,
+html[data-theme="light"] .process .step-frame {
+  display: none !important;
+  background: transparent !important;
+}
+
+/* ============================================================
+   vDESIGN2025-FIX5 — kill ::after warm gradient on Process section
+   ============================================================ */
+html[data-theme="light"] .process::after {
+  display: none !important;
+}
+/* Also cover Technology and Contact if they have similar overlays */
+html[data-theme="light"] .principle::after,
+html[data-theme="light"] .contact::after {
+  display: none !important;
+}
+
+/* ============================================================
+   vDESIGN2025-FIX6 — clear cream glass backgrounds in dark sections
+   address, section-heading, and any glass panels inside .contact / .process
+   ============================================================ */
+html[data-theme="light"] .contact address,
+html[data-theme="light"] .contact .contact-copy,
+html[data-theme="light"] .contact .contact-panel {
+  background: transparent !important;
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+  border-color: transparent !important;
+  box-shadow: none !important;
+}
+html[data-theme="light"] .contact address {
+  border-top: 1px solid rgba(245, 240, 232, 0.07) !important;
+  color: rgba(245, 240, 232, 0.36) !important;
+}
+
+/* ============================================================
+   vDESIGN2025-FIX7 — kill remaining ::after gradient on Products
+   ============================================================ */
+html[data-theme="light"] .products::after {
+  display: none !important;
+}
+
+/* ============================================================
+   vDESIGN2025-FIX8 — dark sections must be full-bleed, no side margins
+   The section-shell class adds 14px side margins; this overrides for
+   all sections to ensure solid backgrounds cover edge-to-edge.
+   ============================================================ */
+html[data-theme="light"] .principle,
+html[data-theme="light"] .process,
+html[data-theme="light"] .contact,
+html[data-theme="light"] .howitworks,
+html[data-theme="light"] .products,
+html[data-theme="light"] .applications {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  border-radius: 0 !important;
+}
+
+/* ============================================================
+   vDESIGN2025-FIX9 — force full-bleed width on all sections
+   Some existing rule sets an explicit pixel width on .section-shell
+   ============================================================ */
+html[data-theme="light"] .principle,
+html[data-theme="light"] .process,
+html[data-theme="light"] .contact,
+html[data-theme="light"] .howitworks,
+html[data-theme="light"] .products,
+html[data-theme="light"] .applications {
+  width: 100% !important;
+  max-width: 100% !important;
+}

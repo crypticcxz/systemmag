@@ -22,20 +22,6 @@ export function Contact() {
           </div>
         </div>
 
-        <div className="contact-visual" aria-hidden="true">
-          <div className="contact-orbit">
-            <span className="orbit-ring" />
-            <span className="magnet-chip chip-a">N</span>
-            <span className="magnet-chip chip-b">S</span>
-            <span className="magnet-chip chip-c">N</span>
-            <span className="magnet-chip chip-d">S</span>
-          </div>
-          <div className="brief-card">
-            <span className="brief-kicker">SM-BRIEF-01</span>
-            <strong>{t("contactBriefTitle")}</strong>
-            <span>{t("contactBriefText")}</span>
-          </div>
-        </div>
       </div>
 
       <address data-reveal>

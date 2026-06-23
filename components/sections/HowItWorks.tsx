@@ -7,7 +7,6 @@ export function HowItWorks() {
 
   return (
     <section className="howitworks section-shell" id="how-it-works">
-      <span className="depth-layer depth-warm" data-parallax="-0.05" aria-hidden="true" />
 
       <div className="section-heading" data-reveal>
         <p className="eyebrow">{t("hiwEyebrow")}</p>
