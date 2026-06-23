@@ -10894,3 +10894,196 @@ html[data-theme="light"] .principle .sequence-step p {
   font-size: clamp(14px, 1.1vw, 16px) !important;
   line-height: 1.62 !important;
 }
+
+/* vFOOTER-ENDCAP — the Contact section is the page end */
+html,
+body,
+main,
+#top {
+  margin-bottom: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+html[data-theme="light"] main > .contact:last-child,
+main > .contact:last-child {
+  margin-bottom: 0 !important;
+  padding-bottom: 0 !important;
+  min-height: auto !important;
+}
+
+html[data-theme="light"] main > .contact:last-child::before,
+main > .contact:last-child::before {
+  bottom: 0 !important;
+}
+
+html[data-theme="light"] main > .contact:last-child::after,
+main > .contact:last-child::after {
+  bottom: 0 !important;
+  height: auto !important;
+}
+
+html[data-theme="light"] main > .contact:last-child .contact-panel,
+main > .contact:last-child .contact-panel {
+  margin-bottom: 0 !important;
+}
+
+/* vHERO-FULL-GLASS — continuous veil with a higher content block */
+html[data-theme="light"] .hero::after {
+  content: "" !important;
+  position: absolute !important;
+  inset: 0 !important;
+  z-index: 1 !important;
+  pointer-events: none !important;
+  opacity: 1 !important;
+  background: rgba(18, 18, 16, 0.3) !important;
+  -webkit-backdrop-filter: blur(3px) saturate(0.9) !important;
+  backdrop-filter: blur(3px) saturate(0.9) !important;
+}
+
+html[data-theme="light"] .hero-copy {
+  justify-content: center !important;
+  background: transparent !important;
+  transform: translateY(clamp(-54px, -5vh, -34px)) !important;
+}
+
+@media (max-width: 640px) {
+  html[data-theme="light"] .hero-copy {
+    transform: translateY(-20px) !important;
+  }
+}
+
+/* ============================================================
+   vHERO-REDESIGN — two-part hero replacing full-page scroll video
+   Part 1 (.hero-text): Hadrian-style typographic block — heading
+   left, lede right, dark bg, no video.
+   Part 2 (.hero-cinematic): Divergent-style cinematic block —
+   inline video, full-viewport height, strip at bottom.
+   Footer gap: body bg set to dark so no cream shows below Contact.
+   ============================================================ */
+
+/* Kill old hero flex/section-shell layout */
+html[data-theme="light"] .hero {
+  display: block !important;
+  position: static !important;
+  height: auto !important;
+  min-height: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  overflow: visible !important;
+}
+
+/* ── Part 1: Hadrian text block ── */
+html[data-theme="light"] .hero-text {
+  display: grid !important;
+  grid-template-columns: minmax(0, 0.56fr) minmax(0, 0.44fr) !important;
+  align-items: end !important;
+  gap: clamp(24px, 4vw, 72px) !important;
+  padding: clamp(96px, 13vh, 160px) clamp(40px, 6vw, 96px) clamp(56px, 8vh, 96px) !important;
+  background: #0d0f12 !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+html[data-theme="light"] .hero-text-left {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: clamp(28px, 3.5vw, 44px) !important;
+}
+
+html[data-theme="light"] .hero-title {
+  color: #f5f0e8 !important;
+  font-size: clamp(36px, 5vw, 72px) !important;
+  line-height: 1.0 !important;
+  letter-spacing: -0.03em !important;
+  text-align: left !important;
+  max-width: 14ch !important;
+  margin: 0 !important;
+}
+
+html[data-theme="light"] .hero-actions {
+  display: flex !important;
+  gap: 10px !important;
+  flex-wrap: wrap !important;
+}
+
+html[data-theme="light"] .hero-lede {
+  align-self: end !important;
+  font-size: clamp(15px, 1.2vw, 18px) !important;
+  color: rgba(245, 240, 232, 0.55) !important;
+  line-height: 1.65 !important;
+  max-width: 44ch !important;
+  margin: 0 !important;
+  padding-bottom: clamp(4px, 0.5vw, 8px) !important;
+}
+
+/* ── Part 2: Divergent cinematic block ── */
+html[data-theme="light"] .hero-cinematic {
+  position: relative !important;
+  width: 100% !important;
+  height: 100svh !important;
+  overflow: hidden !important;
+  background: #0a0c0f !important;
+  display: block !important;
+}
+
+html[data-theme="light"] .hero-cinematic-video {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  display: block !important;
+}
+
+html[data-theme="light"] .hero-cinematic-overlay {
+  position: absolute !important;
+  inset: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.08) 0%,
+    rgba(0, 0, 0, 0.22) 55%,
+    rgba(0, 0, 0, 0.60) 100%
+  ) !important;
+}
+
+html[data-theme="light"] .hero-cinematic-tagline {
+  color: rgba(245, 240, 232, 0.65) !important;
+  font-size: clamp(10px, 1.1vw, 15px) !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.32em !important;
+  text-transform: uppercase !important;
+}
+
+/* Strip re-used inside .hero-cinematic — stays absolute bottom */
+html[data-theme="light"] .hero-cinematic .hero-strip {
+  position: absolute !important;
+  bottom: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  margin: 0 !important;
+}
+
+/* ── Mobile: stack text block ── */
+@media (max-width: 680px) {
+  html[data-theme="light"] .hero-text {
+    grid-template-columns: 1fr !important;
+    padding: clamp(80px, 13vh, 120px) clamp(20px, 5vw, 40px) clamp(40px, 6vh, 64px) !important;
+  }
+  html[data-theme="light"] .hero-lede {
+    padding-bottom: 0 !important;
+  }
+  html[data-theme="light"] .hero-cinematic {
+    height: 80svh !important;
+  }
+}
+
+/* ── Footer gap fix: body bg matches last section ── */
+html[data-theme="light"] body {
+  background: #1e2022 !important;
+}

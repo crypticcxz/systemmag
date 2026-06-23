@@ -5,11 +5,9 @@ import { useLenis } from "@/hooks/useLenis";
 import { useReveal } from "@/hooks/useReveal";
 import { useParallax } from "@/hooks/useParallax";
 import { useCursorField } from "@/hooks/useCursorField";
-import { useScrollVideo } from "@/hooks/useScrollVideo";
 import { useNavState } from "@/hooks/useNavState";
 import { useMarketsScene } from "@/hooks/useMarketsScene";
 
-import { ScrollVideoBackground } from "@/components/ScrollVideoBackground";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { Hero } from "@/components/sections/Hero";
 import { Technology } from "@/components/sections/Technology";
@@ -26,14 +24,12 @@ export default function Home() {
   useReveal();
   useParallax(reduced);
   useCursorField();
-  useScrollVideo();
   useNavState();
   useMarketsScene();
 
   return (
     <>
       <div className="cursor-field" aria-hidden="true" />
-      <ScrollVideoBackground />
       <SiteHeader />
       <main id="top">
         <Hero />
