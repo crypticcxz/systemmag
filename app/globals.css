@@ -11463,3 +11463,19 @@ html[data-theme="light"] .hero .hero-title {
     font-size: clamp(32px, 9.5vw, 56px) !important;
   }
 }
+
+/* vHERO-CREAM — cream background, dark ink heading to match rest of site */
+html[data-theme="light"] body {
+  background:
+    radial-gradient(circle at 78% 0%, oklch(78% 0.07 38 / 0.34), transparent 30rem),
+    linear-gradient(180deg, var(--canvas) 0 44vh, var(--plain) 44vh 100%) !important;
+}
+html[data-theme="light"] .hero {
+  background: transparent !important;
+}
+html[data-theme="light"] .hero .hero-title {
+  color: var(--ink) !important;
+}
+html[data-theme="light"] .hero-video-frame {
+  border: 1px solid oklch(15% 0.012 74 / 0.12) !important;
+}
