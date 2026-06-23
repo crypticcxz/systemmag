@@ -29,10 +29,6 @@ export function SiteHeader() {
 
   return (
     <header className="site-header" data-reveal data-menu-open={menuOpen || undefined}>
-      <a className="brand" href="#top" aria-label="SYSTEMMAG accueil" onClick={close}>
-        <img className="brand-logo" src="/assets/img/logo.png" alt="SYSTEMMAG" />
-      </a>
-
       <nav className="site-nav" aria-label="Navigation principale">
         {links.map(([href, label]) => (
           <a key={href} href={href}>
@@ -40,6 +36,10 @@ export function SiteHeader() {
           </a>
         ))}
       </nav>
+
+      <a className="brand" href="#top" aria-label="SYSTEMMAG accueil" onClick={close}>
+        <img className="brand-logo" src="/assets/img/logo.png" alt="SYSTEMMAG" />
+      </a>
 
       <div className="header-actions">
         <button
