@@ -10,6 +10,7 @@ import { useMarketsScene } from "@/hooks/useMarketsScene";
 
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { Hero } from "@/components/sections/Hero";
+import { Materials } from "@/components/sections/Materials";
 import { Technology } from "@/components/sections/Technology";
 import { HowItWorks } from "@/components/sections/HowItWorks";
 import { Products } from "@/components/sections/Products";
@@ -33,6 +34,7 @@ export default function Home() {
       <SiteHeader />
       <main id="top">
         <Hero />
+        <Materials />
         <Technology />
         <HowItWorks />
         <Products />

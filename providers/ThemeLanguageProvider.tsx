@@ -32,14 +32,17 @@ function readStored(key: string): string | null {
 }
 
 export function ThemeLanguageProvider({ children }: { children: ReactNode }) {
+  // The server and the first client render must use the same language.
+  // Restore the saved preference only after hydration.
   const [lang, setLangState] = useState<Lang>("fr");
   // Light is the only theme (the toggle was removed); keep it fixed.
   const [theme] = useState<Theme>("light");
 
-  // Hydrate language from storage on mount.
   useEffect(() => {
     const storedLang = readStored("systemmag-lang");
-    setLangState(storedLang === "en" ? "en" : "fr");
+    if (storedLang === "en") {
+      setLangState("en");
+    }
   }, []);
 
   // Reflect language on <html lang> and persist.
@@ -64,7 +67,7 @@ export function ThemeLanguageProvider({ children }: { children: ReactNode }) {
 
   const setLang = useCallback((next: Lang) => setLangState(next), []);
   const toggleLang = useCallback(
-    () => setLangState((prev) => (prev === "fr" ? "en" : "fr")),
+    () => setLangState((current) => (current === "fr" ? "en" : "fr")),
     [],
   );
   const t = useCallback((key: I18nKey) => translate(lang, key), [lang]);

@@ -59,6 +59,8 @@ export function Markets() {
   const t = useT();
   const [current, setCurrent] = useState(0);
   const dragStartX = useRef<number | null>(null);
+  const wheelIntent = useRef(0);
+  const wheelLocked = useRef(false);
   const count = SLIDES.length;
 
   const prev = useCallback(() => setCurrent((c) => (c - 1 + count) % count), [count]);
@@ -97,6 +99,30 @@ export function Markets() {
     dragStartX.current = null;
   };
 
+  const onWheel = (e: React.WheelEvent) => {
+    const horizontalIntent = Math.abs(e.deltaX) > Math.abs(e.deltaY);
+    const shiftedWheel = e.shiftKey && Math.abs(e.deltaY) > 0;
+
+    if (!horizontalIntent && !shiftedWheel) return;
+
+    e.preventDefault();
+    if (wheelLocked.current) return;
+
+    const delta = horizontalIntent ? e.deltaX : e.deltaY;
+    wheelIntent.current += delta;
+
+    if (Math.abs(wheelIntent.current) < 44) return;
+
+    if (wheelIntent.current > 0) next();
+    else prev();
+
+    wheelIntent.current = 0;
+    wheelLocked.current = true;
+    window.setTimeout(() => {
+      wheelLocked.current = false;
+    }, 520);
+  };
+
   const pad = (n: number) => String(n).padStart(2, "0");
 
   return (
@@ -112,6 +138,7 @@ export function Markets() {
         onTouchEnd={onTouchEnd}
         onMouseDown={onMouseDown}
         onMouseUp={onMouseUp}
+        onWheel={onWheel}
         onMouseLeave={() => { dragStartX.current = null; }}
       >
         <div
