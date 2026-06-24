@@ -28,11 +28,8 @@ export function Materials() {
             <p>{t("materialsDesc")}</p>
           </div>
           <div className="materials-header-right">
-            <a href="#contact" className="button-secondary">
-              {t("materialsBtnOpen")}
-            </a>
             <a href="#contact" className="button-primary">
-              {t("materialsBtnAll")}
+              {t("materialsBtnOpen")}
             </a>
           </div>
         </div>
