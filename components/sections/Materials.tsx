@@ -27,11 +27,6 @@ export function Materials() {
             <h2>{t("materialsTitle")}</h2>
             <p>{t("materialsDesc")}</p>
           </div>
-          <div className="materials-header-right">
-            <a href="#contact" className="button-primary">
-              {t("materialsBtnOpen")}
-            </a>
-          </div>
         </div>
 
         <div className="materials-grid" data-reveal-group>
