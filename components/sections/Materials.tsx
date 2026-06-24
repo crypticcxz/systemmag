@@ -43,7 +43,6 @@ export function Materials() {
               </div>
               <div className="material-card-label">
                 <span>{t(item.nameKey)}</span>
-                <span className="material-card-arrow" aria-hidden="true">→</span>
               </div>
             </article>
           ))}

@@ -15,10 +15,7 @@ export function Products() {
       </div>
 
       <div className="product-grid" data-reveal-group>
-        <article className="product-panel large" data-reveal>
-          <div className="product-code">ZA / ZC / ZG</div>
-          <h3>{t("productZipTitle")}</h3>
-          <p>{t("productZipText")}</p>
+        <article className="product-panel" data-reveal>
           <div className="product-media">
             <img
               src="/assets/img/products/magnetic-zips.webp"
@@ -26,14 +23,14 @@ export function Products() {
               loading="lazy"
               decoding="async"
             />
-            <span className="product-frame" aria-hidden="true" />
+          </div>
+          <div className="product-label">
+            <h3>{t("productZipTitle")}</h3>
+            <p>{t("productZipText")}</p>
           </div>
         </article>
 
         <article className="product-panel" data-reveal>
-          <div className="product-code">BA</div>
-          <h3>{t("productBlockTitle")}</h3>
-          <p>{t("productBlockText")}</p>
           <div className="product-media">
             <img
               src="/assets/img/products/magnet-blocks.webp"
@@ -41,14 +38,14 @@ export function Products() {
               loading="lazy"
               decoding="async"
             />
-            <span className="product-frame" aria-hidden="true" />
+          </div>
+          <div className="product-label">
+            <h3>{t("productBlockTitle")}</h3>
+            <p>{t("productBlockText")}</p>
           </div>
         </article>
 
         <article className="product-panel" data-reveal>
-          <div className="product-code">FF</div>
-          <h3>{t("productSheathTitle")}</h3>
-          <p>{t("productSheathText")}</p>
           <div className="product-media">
             <img
               src="/assets/img/products/textile-sheaths.png"
@@ -56,14 +53,14 @@ export function Products() {
               loading="lazy"
               decoding="async"
             />
-            <span className="product-frame" aria-hidden="true" />
+          </div>
+          <div className="product-label">
+            <h3>{t("productSheathTitle")}</h3>
+            <p>{t("productSheathText")}</p>
           </div>
         </article>
 
         <article className="product-panel" data-reveal>
-          <div className="product-code">V04 / V12</div>
-          <h3>{t("productStripTitle")}</h3>
-          <p>{t("productStripText")}</p>
           <div className="product-media">
             <img
               src="/assets/img/products/magnet-strips.png"
@@ -71,7 +68,10 @@ export function Products() {
               loading="lazy"
               decoding="async"
             />
-            <span className="product-frame" aria-hidden="true" />
+          </div>
+          <div className="product-label">
+            <h3>{t("productStripTitle")}</h3>
+            <p>{t("productStripText")}</p>
           </div>
         </article>
       </div>

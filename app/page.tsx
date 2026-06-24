@@ -16,6 +16,7 @@ import { HowItWorks } from "@/components/sections/HowItWorks";
 import { Products } from "@/components/sections/Products";
 import { Markets } from "@/components/sections/Markets";
 import { Process } from "@/components/sections/Process";
+import { CaseStudy } from "@/components/sections/CaseStudy";
 import { Contact } from "@/components/sections/Contact";
 
 export default function Home() {
@@ -40,6 +41,7 @@ export default function Home() {
         <Products />
         <Markets />
         <Process />
+        <CaseStudy />
         <Contact />
       </main>
     </>

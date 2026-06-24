@@ -1746,7 +1746,7 @@ h2,
 .sequence-step p,
 .product-panel p,
 .application-bands p,
-.process-track p,
+
 .contact-panel > p {
   text-shadow: 0 2px 20px oklch(0% 0 0 / 0.68);
 }
@@ -4722,7 +4722,7 @@ html[data-theme="light"] .market-card-copy p {
 
 html[data-theme="light"] .applications {
   background:
-    radial-gradient(circle at 18% 14%, oklch(72% 0.08 28 / 0.26), transparent 30rem),
+    radial-gradient(circle at 18% 14%, oklch(78% 0.08 28 / 0.26), transparent 30rem),
     radial-gradient(circle at 78% 74%, oklch(70% 0.04 235 / 0.16), transparent 34rem),
     linear-gradient(180deg, oklch(93% 0.012 80), oklch(88% 0.012 80) 58%, oklch(91% 0.012 80)) !important;
 }
@@ -5939,6 +5939,11 @@ html[data-theme="light"] .market-card:nth-child(even) .market-card-copy {
 
 .process-track h3 {
   margin-top: 24px;
+  text-shadow: none !important;
+}
+
+.process-track p {
+  text-shadow: none !important;
 }
 
 .process-track .step-media {
@@ -6145,399 +6150,258 @@ html[data-theme="light"] .process-track .step-frame {
   opacity: 0.75;
 }
 
-.howitworks .section-heading {
-  position: relative;
-  z-index: 2;
-  width: min(860px, 100%);
-  margin-inline: auto;
-  text-align: center;
+.howitworks-container {
+  display: grid !important;
+  grid-template-areas: 
+    "image heading"
+    "image list" !important;
+  grid-template-columns: 1fr 1.2fr !important;
+  grid-template-rows: auto 1fr !important;
+  gap: 30px clamp(40px, 6vw, 80px) !important;
+  max-width: var(--max, 1180px) !important;
+  margin-inline: auto !important;
+  align-items: start !important;
+  padding-inline: 24px !important;
 }
 
-.howitworks .section-heading .eyebrow {
-  color: var(--red-hot) !important;
+.howitworks-heading-area {
+  grid-area: heading !important;
+}
+
+.howitworks-heading-area h2 {
+  font-family: var(--font-display, "Bricolage Grotesque"), sans-serif !important;
+  font-size: clamp(38px, 4vw, 56px) !important;
+  font-weight: 800 !important;
+  line-height: 1.05 !important;
+  letter-spacing: -0.03em !important;
+  color: #1a1a1a !important;
+  margin: 0 0 16px 0 !important;
+}
+
+.howitworks-intro {
+  font-size: clamp(15px, 1.2vw, 17px) !important;
+  line-height: 1.55 !important;
+  color: rgba(26, 26, 26, 0.7) !important;
+  margin: 0 !important;
+  max-width: 580px !important;
+}
+
+.howitworks-media-area {
+  grid-area: image !important;
+  display: flex !important;
+  flex-direction: column !important;
+  width: 100% !important;
+}
+
+.howitworks-eyebrow-container {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  margin-bottom: 20px !important;
+}
+
+.howitworks-dot {
+  width: 6px !important;
+  height: 6px !important;
+  border-radius: 50% !important;
+  background-color: var(--red-hot) !important;
+}
+
+.howitworks-eyebrow {
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
   letter-spacing: 0.18em !important;
+  color: var(--red-hot) !important;
 }
 
-.howitworks .section-heading h2 {
-  max-width: 12ch;
-  margin-inline: auto;
-  font-size: clamp(46px, 6.2vw, 92px) !important;
-  line-height: 0.88 !important;
-  letter-spacing: -0.06em !important;
+.howitworks-media-wrapper {
+  position: relative !important;
+  width: 100% !important;
+  aspect-ratio: 1 / 1.15 !important;
+  background-color: #ffffff !important;
+  border: 1px solid rgba(0, 0, 0, 0.06) !important;
+  border-radius: 20px !important;
+  box-shadow: 
+    0 4px 6px -1px rgba(0, 0, 0, 0.02),
+    0 12px 30px -4px rgba(0, 0, 0, 0.03) !important;
+  overflow: hidden !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 30px !important;
 }
 
-.howitworks .section-heading p {
-  max-width: 66ch !important;
-  margin: clamp(20px, 2.6vw, 30px) auto 0 !important;
-  color: oklch(82% 0.01 82) !important;
-  font-size: clamp(16px, 1.25vw, 20px) !important;
-  line-height: 1.62 !important;
+.howitworks-image {
+  position: absolute !important;
+  width: calc(100% - 60px) !important;
+  height: calc(100% - 60px) !important;
+  object-fit: contain !important;
+  opacity: 0 !important;
+  transform: scale(0.95) !important;
+  filter: blur(8px) !important;
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), 
+              transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), 
+              filter 0.6s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  pointer-events: none !important;
 }
 
-.hiw-track {
-  position: relative;
-  z-index: 1;
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: clamp(16px, 2vw, 28px);
-  margin-top: clamp(46px, 6vw, 82px);
+.howitworks-image.active {
+  position: relative !important;
+  opacity: 1 !important;
+  transform: scale(1) !important;
+  filter: none !important;
+  z-index: 1 !important;
+  pointer-events: auto !important;
 }
 
-.hiw-track::before {
-  content: "";
-  position: absolute;
-  left: 8%;
-  right: 8%;
-  top: clamp(210px, 22vw, 300px);
-  z-index: -1;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, oklch(96% 0.01 82 / 0.16), transparent);
+.howitworks-steps-area {
+  grid-area: list !important;
+  width: 100% !important;
+  margin-top: 10px !important;
 }
 
-.hiw-step {
-  position: relative;
-  min-height: clamp(560px, 48vw, 720px);
-  overflow: hidden;
-  border: 1px solid oklch(96% 0.01 82 / 0.16);
-  border-radius: 26px 26px 42px 42px;
-  background:
-    linear-gradient(180deg, oklch(100% 0.01 82 / 0.055), oklch(100% 0.01 82 / 0.018) 48%, oklch(2% 0.01 76 / 0.22)),
-    oklch(7% 0.012 76 / 0.82);
-  box-shadow:
-    inset 0 1px 0 oklch(100% 0.01 82 / 0.11),
-    0 24px 88px oklch(1% 0.01 70 / 0.34);
-  transform: translateY(18px);
-  transition:
-    transform 900ms var(--ease-out),
-    border-color 320ms var(--ease-out),
-    box-shadow 320ms var(--ease-out);
+.howitworks-steps-list {
+  display: flex !important;
+  flex-direction: column !important;
+  border-top: 1px solid rgba(26, 26, 26, 0.08) !important;
+  width: 100% !important;
 }
 
-.hiw-step:nth-child(2) {
-  margin-top: clamp(24px, 4vw, 54px);
+.howitworks-step-row {
+  position: relative !important;
+  display: flex !important;
+  align-items: flex-start !important;
+  padding: 24px 0 24px 24px !important;
+  border-bottom: 1px solid rgba(26, 26, 26, 0.08) !important;
+  cursor: pointer !important;
+  transition: background-color 0.3s ease !important;
+  background-color: transparent !important;
 }
 
-.hiw-step:nth-child(3) {
-  margin-top: clamp(48px, 7vw, 92px);
+.howitworks-step-row:hover {
+  background-color: rgba(26, 26, 26, 0.01) !important;
 }
 
-.hiw-step.is-visible {
-  transform: translateY(0);
+.howitworks-step-line {
+  position: absolute !important;
+  left: 0 !important;
+  top: 26px !important;
+  width: 3px !important;
+  height: 0 !important;
+  background-color: var(--red-hot) !important;
+  border-radius: 99px !important;
+  opacity: 0 !important;
+  transition: height 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease !important;
 }
 
-.hiw-step:hover {
-  border-color: oklch(70% 0.2 32 / 0.44);
-  box-shadow:
-    inset 0 1px 0 oklch(100% 0.01 82 / 0.14),
-    0 34px 110px oklch(1% 0.01 70 / 0.44),
-    0 0 0 1px oklch(70% 0.2 32 / 0.12);
+.howitworks-step-row.active .howitworks-step-line {
+  height: 24px !important;
+  opacity: 1 !important;
 }
 
-.hiw-media {
-  position: relative;
-  margin: 14px 14px 0;
-  aspect-ratio: 466 / 684;
-  overflow: hidden;
-  border-radius: 28px 28px 34px 34px;
-  background:
-    radial-gradient(circle at 52% 34%, oklch(62% 0.17 32 / 0.16), transparent 9rem),
-    linear-gradient(135deg, oklch(17% 0.015 76), oklch(7% 0.012 76));
-  box-shadow: 0 22px 70px oklch(1% 0.01 70 / 0.38);
-  isolation: isolate;
+.howitworks-step-content {
+  display: flex !important;
+  flex-direction: column !important;
+  width: 100% !important;
 }
 
-.hiw-media::before {
-  content: "IMAGE SLOT";
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  display: grid;
-  place-items: center;
-  color: oklch(86% 0.01 82 / 0.34);
-  font-size: 12px;
-  font-weight: 850;
-  letter-spacing: 0.18em;
-  background-image:
-    linear-gradient(oklch(95% 0.01 82 / 0.08) 1px, transparent 1px),
-    linear-gradient(90deg, oklch(95% 0.01 82 / 0.08) 1px, transparent 1px);
-  background-size: 26px 26px;
+.howitworks-step-header {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  width: 100% !important;
+  gap: 16px !important;
 }
 
-.hiw-media img {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  filter: grayscale(0.45) brightness(0.76) contrast(1.08);
-  transform: scale(1.08);
-  transition:
-    transform 1000ms var(--ease-out),
-    filter 1000ms var(--ease-out),
-    opacity 500ms var(--ease-out);
+.howitworks-step-header h3 {
+  font-size: clamp(18px, 1.8vw, 22px) !important;
+  font-weight: 600 !important;
+  color: rgba(26, 26, 26, 0.5) !important;
+  margin: 0 !important;
+  transition: color 0.3s ease, font-weight 0.3s ease !important;
 }
 
-.hiw-step.is-visible .hiw-media img {
-  filter: grayscale(0) brightness(0.92) contrast(1.04);
-  transform: scale(1.015);
+.howitworks-step-row.active .howitworks-step-header h3 {
+  color: #1a1a1a !important;
+  font-weight: 700 !important;
 }
 
-.hiw-step:hover .hiw-media img {
-  filter: grayscale(0) brightness(0.92) contrast(1.04);
-  animation: hiwZoom 1.8s ease-in-out infinite;
+.howitworks-step-arrow-btn {
+  width: 36px !important;
+  height: 36px !important;
+  border-radius: 50% !important;
+  border: 1px solid rgba(26, 26, 26, 0.15) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  color: rgba(26, 26, 26, 0.5) !important;
+  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease, transform 0.3s ease !important;
 }
 
-@keyframes hiwZoom {
-  0%, 100% { transform: scale(1.015); }
-  50%       { transform: scale(1.09); }
+.howitworks-step-arrow-btn svg {
+  width: 14px !important;
+  height: 14px !important;
+  transition: transform 0.3s ease !important;
 }
 
-.hiw-media::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 2;
-  pointer-events: none;
-  background:
-    linear-gradient(180deg, transparent 34%, oklch(2% 0.01 76 / 0.3) 74%, oklch(2% 0.01 76 / 0.72)),
-    linear-gradient(115deg, transparent 0 28%, oklch(100% 0.01 82 / 0.11) 38%, transparent 52%);
-  opacity: 0.92;
+.howitworks-step-row.active .howitworks-step-arrow-btn {
+  background-color: var(--red-hot) !important;
+  border-color: var(--red-hot) !important;
+  color: #ffffff !important;
 }
 
-.hiw-frame {
-  position: absolute;
-  inset: 10px;
-  z-index: 3;
-  pointer-events: none;
-  border: 1px solid oklch(96% 0.01 82 / 0.38);
-  opacity: 0.72;
-  -webkit-mask:
-    linear-gradient(#000 0 0) top left / 18px 18px no-repeat,
-    linear-gradient(#000 0 0) top right / 18px 18px no-repeat,
-    linear-gradient(#000 0 0) bottom left / 18px 18px no-repeat,
-    linear-gradient(#000 0 0) bottom right / 18px 18px no-repeat;
-  mask:
-    linear-gradient(#000 0 0) top left / 18px 18px no-repeat,
-    linear-gradient(#000 0 0) top right / 18px 18px no-repeat,
-    linear-gradient(#000 0 0) bottom left / 18px 18px no-repeat,
-    linear-gradient(#000 0 0) bottom right / 18px 18px no-repeat;
+.howitworks-step-row.active .howitworks-step-arrow-btn svg {
+  transform: rotate(-45deg) !important;
 }
 
-.hiw-copy {
-  position: absolute;
-  left: clamp(20px, 2.6vw, 34px);
-  right: clamp(20px, 2.6vw, 34px);
-  bottom: clamp(22px, 3vw, 38px);
-  z-index: 4;
-  display: grid;
-  gap: 12px;
-  padding: 0;
+.howitworks-step-body {
+  display: grid !important;
+  grid-template-rows: 0fr !important;
+  transition: grid-template-rows 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  overflow: hidden !important;
 }
 
-.hiw-num {
-  color: var(--red-hot);
-  font-size: 12px;
-  font-weight: 900;
-  letter-spacing: 0.14em;
+.howitworks-step-row.active .howitworks-step-body {
+  grid-template-rows: 1fr !important;
 }
 
-.hiw-copy h3 {
-  max-width: 9ch;
-  margin: 0;
-  color: oklch(96% 0.01 82);
-  font-family: var(--font-display);
-  font-size: clamp(34px, 3.4vw, 54px);
-  line-height: 0.92;
-  letter-spacing: -0.052em;
+.howitworks-step-body-inner {
+  min-height: 0 !important;
 }
 
-.hiw-rule {
-  width: 100%;
-  height: 1px;
-  background: linear-gradient(90deg, var(--red-hot), oklch(96% 0.01 82 / 0.16), transparent);
-  transform-origin: left center;
-  transform: scaleX(0.34);
-  transition: transform 700ms var(--ease-out);
+.howitworks-step-body p {
+  font-size: 15px !important;
+  line-height: 1.55 !important;
+  color: rgba(26, 26, 26, 0.6) !important;
+  margin: 12px 0 0 0 !important;
+  max-width: 520px !important;
 }
 
-.hiw-step.is-visible .hiw-rule,
-.hiw-step:hover .hiw-rule {
-  transform: scaleX(1);
-}
-
-.hiw-copy p {
-  max-width: 29ch;
-  margin: 0;
-  color: oklch(85% 0.01 82);
-  font-size: clamp(15px, 1.12vw, 18px);
-  font-weight: 560;
-  line-height: 1.45;
-}
-
-/* HIW animations */
-@keyframes hiwGlowPulse {
-  0%, 100% { opacity: 0.15; transform: scale(1); }
-  50%       { opacity: 0.28; transform: scale(1.12); }
-}
-
-@keyframes hiwBeam {
-  0%   { transform: translateX(-100%) scaleY(1); opacity: 0; }
-  8%   { opacity: 1; }
-  92%  { opacity: 1; }
-  100% { transform: translateX(100%) scaleY(1); opacity: 0; }
-}
-
-@keyframes hiwFloat {
-  0%, 100% { transform: translateY(0px); }
-  50%       { transform: translateY(-6px); }
-}
-
-@keyframes hiwScan {
-  0%   { transform: translateX(-110%); }
-  100% { transform: translateX(110%); }
-}
-
-/* Pulsing background glow */
-.howitworks::before {
-  animation: hiwGlowPulse 6s ease-in-out infinite;
-}
-
-/* Staggered entrance delays */
-.hiw-step:nth-child(1) { transition-delay: 0ms; }
-.hiw-step:nth-child(2) { transition-delay: 120ms; }
-.hiw-step:nth-child(3) { transition-delay: 240ms; }
-
-/* Floating animation once visible */
-.hiw-step.is-visible {
-  animation: hiwFloat 5s ease-in-out infinite;
-  animation-delay: calc(var(--hiw-i, 0) * 0.8s);
-}
-.hiw-step:nth-child(1) { --hiw-i: 0; }
-.hiw-step:nth-child(2) { --hiw-i: 1; }
-.hiw-step:nth-child(3) { --hiw-i: 2; }
-
-/* Scanning beam on the connector line */
-.hiw-track::before {
-  overflow: hidden;
-}
-.hiw-track::after {
-  content: "";
-  position: absolute;
-  left: 8%;
-  right: 8%;
-  top: clamp(210px, 22vw, 300px);
-  z-index: 0;
-  height: 1px;
-  overflow: hidden;
-  pointer-events: none;
-}
-.hiw-track::after {
-  background: linear-gradient(90deg, transparent, oklch(72% 0.22 34 / 0.9) 40%, oklch(96% 0.01 82 / 0.6) 50%, oklch(72% 0.22 34 / 0.9) 60%, transparent);
-  width: 30%;
-  right: auto;
-  animation: hiwBeam 3.4s ease-in-out infinite;
-  animation-delay: 0.8s;
-}
-
-/* Image scan shimmer on hover/visible */
-.hiw-media::after {
-  background:
-    linear-gradient(180deg, transparent 34%, oklch(2% 0.01 76 / 0.3) 74%, oklch(2% 0.01 76 / 0.72)),
-    linear-gradient(115deg, transparent 0 28%, oklch(100% 0.01 82 / 0.11) 38%, transparent 52%);
-}
-
-.hiw-step.is-visible .hiw-media::before {
-  animation: hiwScan 2.2s ease-in-out;
-  animation-delay: 0.3s;
-  background: linear-gradient(90deg, transparent 0 40%, oklch(100% 0.01 82 / 0.14) 50%, transparent 60%);
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 3;
-  pointer-events: none;
-}
-
-html[data-theme="light"] .howitworks {
-  background:
-    radial-gradient(circle at 12% 22%, oklch(72% 0.12 30 / 0.16), transparent 28rem),
-    radial-gradient(circle at 82% 72%, oklch(62% 0.035 232 / 0.12), transparent 30rem),
-    linear-gradient(180deg, oklch(92% 0.012 80), oklch(88% 0.012 80) 52%, oklch(92% 0.012 80));
-}
-
-html[data-theme="light"] .howitworks .section-heading p {
-  color: oklch(34% 0.012 76) !important;
-}
-
-html[data-theme="light"] .hiw-step {
-  border-color: oklch(20% 0.012 74 / 0.14);
-  background:
-    linear-gradient(180deg, oklch(100% 0.01 82 / 0.72), oklch(96% 0.012 80 / 0.84)),
-    oklch(94% 0.012 80);
-  box-shadow: 0 24px 80px oklch(25% 0.012 76 / 0.13);
-}
-
-html[data-theme="light"] .hiw-media {
-  background:
-    radial-gradient(circle at 52% 34%, oklch(70% 0.12 32 / 0.16), transparent 9rem),
-    linear-gradient(135deg, oklch(82% 0.012 80), oklch(94% 0.012 80));
-}
-
-html[data-theme="light"] .hiw-media::before {
-  color: oklch(22% 0.012 76 / 0.35);
-  background-image:
-    linear-gradient(oklch(22% 0.012 76 / 0.08) 1px, transparent 1px),
-    linear-gradient(90deg, oklch(22% 0.012 76 / 0.08) 1px, transparent 1px);
-}
-
-html[data-theme="light"] .hiw-media::after {
-  background:
-    linear-gradient(180deg, transparent 30%, oklch(10% 0.01 76 / 0.04) 68%, oklch(8% 0.01 76 / 0.46)),
-    linear-gradient(115deg, transparent 0 28%, oklch(100% 0.01 82 / 0.22) 38%, transparent 52%);
-}
-
-@media (max-width: 1080px) {
-  .hiw-track {
-    grid-template-columns: 1fr;
-    width: min(680px, 100%);
-    margin-inline: auto;
+/* Responsiveness */
+@media (max-width: 768px) {
+  .howitworks-container {
+    grid-template-areas: 
+      "heading"
+      "image"
+      "list" !important;
+    grid-template-columns: 1fr !important;
+    gap: 30px !important;
+    padding-inline: 16px !important;
+  }
+  
+  .howitworks-media-wrapper {
+    aspect-ratio: 1.1 / 1 !important;
+    padding: 20px !important;
   }
 
-  .hiw-track::before {
-    display: none;
-  }
-
-  .hiw-step,
-  .hiw-step:nth-child(2),
-  .hiw-step:nth-child(3) {
-    min-height: min(780px, 122vw);
-    margin-top: 0;
+  .howitworks-image {
+    width: calc(100% - 40px) !important;
+    height: calc(100% - 40px) !important;
   }
 }
 
-@media (max-width: 620px) {
-  .howitworks {
-    padding-block: 74px !important;
-  }
 
-  .howitworks .section-heading h2 {
-    font-size: clamp(38px, 13vw, 58px) !important;
-  }
-
-  .hiw-media {
-    margin: 10px 10px 0;
-    border-radius: 22px 22px 30px 30px;
-  }
-
-  .hiw-copy h3 {
-    font-size: clamp(30px, 10vw, 44px);
-  }
-
-  .hiw-copy p {
-    font-size: 15px;
-  }
-}
 
 @media (prefers-reduced-motion: reduce) {
   .hiw-step,
@@ -6561,6 +6425,7 @@ html[data-theme="light"] .hiw-media::after {
     radial-gradient(circle at 12% 22%, oklch(52% 0.16 30 / 0.18), transparent 28rem),
     radial-gradient(circle at 82% 72%, oklch(68% 0.04 232 / 0.14), transparent 30rem),
     linear-gradient(180deg, oklch(5% 0.012 76), oklch(8% 0.014 76) 52%, oklch(5% 0.012 76)) !important;
+  padding-block: clamp(62px, 7vw, 104px) clamp(82px, 9vw, 132px) !important;
 }
 
 html[data-theme="light"] .howitworks {
@@ -6570,282 +6435,9 @@ html[data-theme="light"] .howitworks {
     linear-gradient(180deg, oklch(92% 0.012 80), oklch(88% 0.012 80) 52%, oklch(92% 0.012 80)) !important;
 }
 
-/* v12.2: compose How it works intro as one anchored block */
-.howitworks {
-  padding-block: clamp(70px, 8vw, 112px) clamp(86px, 10vw, 140px) !important;
-}
 
-.howitworks::after {
-  display: none !important;
-}
 
-.howitworks .section-heading {
-  position: relative !important;
-  display: grid !important;
-  grid-template-columns: minmax(220px, 0.42fr) minmax(0, 0.58fr) !important;
-  grid-template-rows: auto 1fr !important;
-  gap: clamp(24px, 3.6vw, 58px) clamp(30px, 5vw, 86px) !important;
-  align-items: flex-end !important;
-  width: min(1180px, 100%) !important;
-  max-width: none !important;
-  min-height: clamp(300px, 32vw, 430px) !important;
-  margin: 0 auto !important;
-  padding: clamp(30px, 4.4vw, 64px) !important;
-  overflow: hidden !important;
-  border: 1px solid oklch(96% 0.01 82 / 0.14) !important;
-  background:
-    radial-gradient(circle at 18% 28%, oklch(58% 0.19 32 / 0.16), transparent 22rem),
-    linear-gradient(135deg, oklch(100% 0.01 82 / 0.048), transparent 48%, oklch(100% 0.01 82 / 0.025)),
-    oklch(4% 0.012 76 / 0.88) !important;
-  box-shadow:
-    inset 0 1px 0 oklch(100% 0.01 82 / 0.08),
-    0 28px 90px oklch(1% 0.01 70 / 0.32) !important;
-  text-align: left !important;
-}
-
-.howitworks .section-heading::before {
-  content: "" !important;
-  position: absolute !important;
-  left: clamp(30px, 4.4vw, 64px) !important;
-  right: clamp(30px, 4.4vw, 64px) !important;
-  top: 50% !important;
-  height: 1px !important;
-  background: linear-gradient(90deg, var(--red-hot), oklch(96% 0.01 82 / 0.14), transparent) !important;
-  opacity: 0.72 !important;
-}
-
-.howitworks .section-heading::after {
-  content: "";
-  position: absolute;
-  right: clamp(30px, 4.4vw, 64px);
-  top: clamp(30px, 4.4vw, 64px);
-  width: clamp(80px, 10vw, 150px);
-  aspect-ratio: 1;
-  border: 1px solid oklch(96% 0.01 82 / 0.12);
-  border-radius: 999px;
-  background: repeating-radial-gradient(circle, transparent 0 22px, oklch(96% 0.01 82 / 0.07) 23px 24px);
-  opacity: 0.55;
-  pointer-events: none;
-}
-
-.howitworks .section-heading .eyebrow {
-  position: relative !important;
-  z-index: 1 !important;
-  grid-column: 1 !important;
-  grid-row: 1 !important;
-  align-self: flex-end !important;
-  margin: 0 !important;
-  color: var(--red-hot) !important;
-  text-align: left !important;
-}
-
-.howitworks .section-heading h2 {
-  position: relative !important;
-  z-index: 1 !important;
-  grid-column: 2 !important;
-  grid-row: 1 / span 2 !important;
-  align-self: center !important;
-  max-width: 8.8ch !important;
-  margin: 0 !important;
-  font-size: clamp(48px, 6.4vw, 104px) !important;
-  line-height: 0.86 !important;
-  letter-spacing: -0.065em !important;
-  text-align: left !important;
-}
-
-.howitworks .section-heading p {
-  position: relative !important;
-  z-index: 1 !important;
-  grid-column: 1 !important;
-  grid-row: 2 !important;
-  align-self: start !important;
-  max-width: 34ch !important;
-  margin: 0 !important;
-  color: oklch(82% 0.01 82) !important;
-  font-size: clamp(16px, 1.24vw, 20px) !important;
-  line-height: 1.58 !important;
-  text-align: left !important;
-}
-
-.hiw-track {
-  margin-top: clamp(28px, 4.6vw, 64px) !important;
-}
-
-html[data-theme="light"] .howitworks .section-heading {
-  border-color: oklch(20% 0.012 76 / 0.12) !important;
-  background:
-    radial-gradient(circle at 18% 28%, oklch(70% 0.12 32 / 0.16), transparent 22rem),
-    linear-gradient(135deg, oklch(100% 0.01 82 / 0.72), transparent 48%, oklch(92% 0.012 80 / 0.54)),
-    oklch(94% 0.012 80 / 0.9) !important;
-  box-shadow: 0 24px 80px oklch(25% 0.012 76 / 0.12) !important;
-}
-
-html[data-theme="light"] .howitworks .section-heading p {
-  color: oklch(34% 0.012 76) !important;
-}
-
-html[data-theme="light"] .howitworks .section-heading::before {
-  background: linear-gradient(90deg, var(--red-hot), oklch(20% 0.012 76 / 0.14), transparent) !important;
-}
-
-html[data-theme="light"] .howitworks .section-heading::after {
-  border-color: oklch(20% 0.012 76 / 0.1) !important;
-  background: repeating-radial-gradient(circle, transparent 0 22px, oklch(20% 0.012 76 / 0.06) 23px 24px) !important;
-}
-
-@media (max-width: 760px) {
-  .howitworks .section-heading {
-    grid-template-columns: 1fr !important;
-    grid-template-rows: auto auto auto !important;
-    min-height: 0 !important;
-    gap: 20px !important;
-    padding: 28px !important;
-  }
-
-  .howitworks .section-heading::before {
-    left: 28px !important;
-    right: 28px !important;
-    top: auto !important;
-    bottom: 118px !important;
-  }
-
-  .howitworks .section-heading .eyebrow,
-  .howitworks .section-heading h2,
-  .howitworks .section-heading p {
-    grid-column: 1 !important;
-    grid-row: auto !important;
-  }
-
-  .howitworks .section-heading h2 {
-    max-width: 9ch !important;
-    font-size: clamp(40px, 13vw, 64px) !important;
-  }
-
-  .howitworks .section-heading p {
-    max-width: 34ch !important;
-  }
-}
-
-/* v12.3: unbox How it works header and tie it to cards */
-.howitworks {
-  padding-block: clamp(62px, 7vw, 104px) clamp(82px, 9vw, 132px) !important;
-}
-
-.howitworks .section-heading {
-  display: grid !important;
-  grid-template-columns: minmax(0, 0.58fr) minmax(280px, 0.42fr) !important;
-  grid-template-rows: auto auto !important;
-  column-gap: clamp(34px, 7vw, 112px) !important;
-  row-gap: 18px !important;
-  align-items: flex-end !important;
-  width: min(1180px, 100%) !important;
-  max-width: none !important;
-  min-height: 0 !important;
-  margin: 0 auto !important;
-  padding: 0 0 clamp(24px, 3vw, 40px) !important;
-  overflow: visible !important;
-  border: 0 !important;
-  border-bottom: 1px solid oklch(96% 0.01 82 / 0.14) !important;
-  background: transparent !important;
-  box-shadow: none !important;
-  text-align: left !important;
-}
-
-.howitworks .section-heading::before {
-  content: "" !important;
-  position: absolute !important;
-  left: 0 !important;
-  right: auto !important;
-  bottom: -1px !important;
-  top: auto !important;
-  width: min(360px, 38vw) !important;
-  height: 1px !important;
-  background: linear-gradient(90deg, var(--red-hot), transparent) !important;
-  opacity: 0.9 !important;
-}
-
-.howitworks .section-heading::after {
-  display: none !important;
-}
-
-.howitworks .section-heading .eyebrow {
-  grid-column: 1 !important;
-  grid-row: 1 !important;
-  margin: 0 !important;
-  align-self: start !important;
-  color: var(--red-hot) !important;
-  text-align: left !important;
-}
-
-.howitworks .section-heading h2 {
-  grid-column: 1 !important;
-  grid-row: 2 !important;
-  max-width: 11ch !important;
-  margin: clamp(18px, 2.2vw, 28px) 0 0 !important;
-  align-self: flex-end !important;
-  color: oklch(95% 0.01 82) !important;
-  font-size: clamp(50px, 7vw, 108px) !important;
-  line-height: 0.86 !important;
-  letter-spacing: -0.065em !important;
-  text-align: left !important;
-}
-
-.howitworks .section-heading p {
-  grid-column: 2 !important;
-  grid-row: 2 !important;
-  max-width: 35ch !important;
-  margin: 0 0 0 auto !important;
-  align-self: flex-end !important;
-  color: oklch(82% 0.01 82) !important;
-  font-size: clamp(16px, 1.24vw, 20px) !important;
-  font-weight: 560 !important;
-  line-height: 1.58 !important;
-  text-align: left !important;
-}
-
-.hiw-track {
-  width: min(1180px, 100%) !important;
-  margin: clamp(28px, 4vw, 52px) auto 0 !important;
-}
-
-html[data-theme="light"] .howitworks .section-heading {
-  border-bottom-color: oklch(20% 0.012 76 / 0.16) !important;
-}
-
-html[data-theme="light"] .howitworks .section-heading h2 {
-  color: var(--ink) !important;
-}
-
-html[data-theme="light"] .howitworks .section-heading p {
-  color: oklch(34% 0.012 76) !important;
-}
-
-@media (max-width: 760px) {
-  .howitworks .section-heading {
-    grid-template-columns: 1fr !important;
-    grid-template-rows: auto auto auto !important;
-    row-gap: 16px !important;
-    padding-bottom: 26px !important;
-  }
-
-  .howitworks .section-heading .eyebrow,
-  .howitworks .section-heading h2,
-  .howitworks .section-heading p {
-    grid-column: 1 !important;
-    grid-row: auto !important;
-  }
-
-  .howitworks .section-heading h2 {
-    max-width: 9.5ch !important;
-    margin-top: 8px !important;
-    font-size: clamp(40px, 13vw, 64px) !important;
-  }
-
-  .howitworks .section-heading p {
-    max-width: 36ch !important;
-    margin: 0 !important;
-  }
-}
+/* media query cleaned up */
 
 /* =====================================================================
    v13: Product cards with integrated image plates
@@ -11743,13 +11335,6 @@ html[data-theme="light"] .material-card {
   overflow: hidden !important;
   border: 1px solid rgba(58, 61, 64, 0.08) !important;
   background: #ffffff !important;
-  transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.3s cubic-bezier(0.25, 1, 0.5, 1) !important;
-  cursor: pointer !important;
-}
-
-html[data-theme="light"] .material-card:hover {
-  transform: translateY(-4px) !important;
-  box-shadow: 0 16px 36px rgba(15, 29, 38, 0.12) !important;
 }
 
 html[data-theme="light"] .material-card-media {
@@ -11768,7 +11353,7 @@ html[data-theme="light"] .material-card-media img {
 }
 
 html[data-theme="light"] .material-card:hover .material-card-media img {
-  transform: scale(1.055) !important;
+  transform: scale(1.04) !important;
 }
 
 html[data-theme="light"] .material-card-overlay {
@@ -11797,15 +11382,6 @@ html[data-theme="light"] .material-card-label {
   pointer-events: none !important;
 }
 
-html[data-theme="light"] .material-card-arrow {
-  display: inline-block !important;
-  transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1) !important;
-}
-
-html[data-theme="light"] .material-card:hover .material-card-arrow {
-  transform: translateX(4px) !important;
-}
-
 @media (max-width: 1100px) {
   html[data-theme="light"] .materials-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
@@ -11829,3 +11405,1030 @@ html[data-theme="light"] .material-card:hover .material-card-arrow {
   }
 }
 
+/* vHIW-NO-REDLINE — remove decorative red gradient line in How It Works */
+.howitworks::after {
+  display: none !important;
+}
+
+/* vHIW-CARD-WARM — warm stone card to replace stark white */
+html[data-theme="light"] .howitworks-media-wrapper {
+  background-color: oklch(93% 0.018 74) !important;
+  border-color: oklch(15% 0.012 74 / 0.08) !important;
+}
+
+/* vPRODUCT-PALETTE — unified warm parchment cards, floating renders */
+html[data-theme="light"] .product-grid {
+  grid-template-columns: repeat(2, 1fr) !important;
+  gap: clamp(14px, 1.4vw, 20px) !important;
+}
+
+html[data-theme="light"] .product-panel {
+  background: oklch(95.5% 0.014 74) !important;
+  border: 1px solid oklch(20% 0.012 74 / 0.1) !important;
+  border-radius: 14px !important;
+  box-shadow: none !important;
+  padding: clamp(28px, 3vw, 44px) !important;
+  min-height: clamp(320px, 26vw, 430px) !important;
+  position: relative !important;
+  overflow: hidden !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: flex-start !important;
+  transition: transform 280ms cubic-bezier(0.16,1,0.3,1), box-shadow 280ms ease !important;
+}
+
+html[data-theme="light"] .product-panel:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 10px 30px oklch(20% 0.012 74 / 0.1) !important;
+}
+
+/* Warm radial glow in bottom-right corner behind the image */
+html[data-theme="light"] .product-panel::after {
+  content: "" !important;
+  position: absolute !important;
+  inset: auto 0 0 auto !important;
+  width: 70% !important;
+  height: 70% !important;
+  z-index: 0 !important;
+  background: radial-gradient(ellipse at 80% 88%, oklch(88% 0.024 74 / 0.85), transparent 68%) !important;
+  pointer-events: none !important;
+}
+
+html[data-theme="light"] .product-panel::before {
+  display: none !important;
+}
+
+/* Text elements above the glow */
+html[data-theme="light"] .product-code {
+  position: relative !important;
+  z-index: 2 !important;
+  font-size: 10px !important;
+  letter-spacing: 0.1em !important;
+  color: #e65f18 !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  padding: 0 !important;
+  margin: 0 0 18px !important;
+  display: block !important;
+}
+
+html[data-theme="light"] .product-panel h3 {
+  position: relative !important;
+  z-index: 2 !important;
+  font-size: clamp(17px, 1.5vw, 22px) !important;
+  font-weight: 700 !important;
+  color: oklch(18% 0.012 74) !important;
+  line-height: 1.2 !important;
+  margin: 0 0 10px !important;
+  padding: 0 !important;
+  max-width: 14ch !important;
+}
+
+html[data-theme="light"] .product-panel p {
+  position: relative !important;
+  z-index: 2 !important;
+  font-size: 13px !important;
+  color: oklch(18% 0.012 74 / 0.55) !important;
+  line-height: 1.6 !important;
+  max-width: 30ch !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  flex: 0 !important;
+}
+
+/* Floating image — transparent, bottom-right, no box */
+html[data-theme="light"] .product-media {
+  position: absolute !important;
+  inset: auto clamp(10px, 1.5vw, 18px) clamp(10px, 1.5vw, 18px) auto !important;
+  width: min(54%, 350px) !important;
+  height: min(52%, 230px) !important;
+  aspect-ratio: auto !important;
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  overflow: visible !important;
+  box-shadow: none !important;
+  transform: none !important;
+  flex-shrink: 0 !important;
+}
+
+html[data-theme="light"] .product-media img {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain !important;
+  object-position: right bottom !important;
+  padding: 0 !important;
+  display: block !important;
+  filter: drop-shadow(0 14px 26px oklch(22% 0.012 74 / 0.18)) !important;
+  transform: rotate(-1deg) scale(1.04) !important;
+  transition: transform 600ms cubic-bezier(0.16,1,0.3,1), filter 600ms ease !important;
+}
+
+html[data-theme="light"] .product-panel:hover .product-media img {
+  filter: drop-shadow(0 20px 34px oklch(22% 0.012 74 / 0.26)) !important;
+  transform: rotate(0deg) scale(1.1) translateY(-4px) !important;
+}
+
+html[data-theme="light"] .product-frame {
+  display: none !important;
+}
+
+@media (max-width: 640px) {
+  html[data-theme="light"] .product-panel {
+    min-height: 280px !important;
+  }
+  html[data-theme="light"] .product-media {
+    width: 50% !important;
+    height: 130px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  html[data-theme="light"] .product-grid {
+    grid-template-columns: 1fr !important;
+  }
+  html[data-theme="light"] .product-media {
+    width: 55% !important;
+    height: 150px !important;
+  }
+}
+
+/* vPRINCIPLE-ICON-CARDS — cream bg, icon + number + title + desc, connector line */
+
+/* Break the 2-col side-by-side layout → heading top, sequence full width below */
+html[data-theme="light"] .principle {
+  background: transparent !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: clamp(48px, 6vw, 80px) !important;
+  padding-inline: 0 !important;
+  width: 100% !important;
+}
+
+html[data-theme="light"] .principle .section-heading {
+  max-width: min(calc(100% - 48px), 700px) !important;
+  margin-inline: auto !important;
+  text-align: left !important;
+}
+
+html[data-theme="light"] .sequence {
+  width: min(calc(100% - 48px), 1320px) !important;
+  margin-inline: auto !important;
+}
+html[data-theme="light"] .principle::before,
+html[data-theme="light"] .principle::after {
+  display: none !important;
+}
+
+/* Section heading on cream */
+html[data-theme="light"] .principle .section-heading h2 {
+  color: oklch(15% 0.012 74) !important;
+}
+html[data-theme="light"] .principle .section-heading > p {
+  color: oklch(15% 0.012 74 / 0.6) !important;
+  text-shadow: none !important;
+}
+html[data-theme="light"] .principle .eyebrow {
+  color: #e65f18 !important;
+}
+
+/* Sequence grid — transparent, no outer border, connector line via ::before */
+html[data-theme="light"] .sequence {
+  background: transparent !important;
+  border: none !important;
+  display: grid !important;
+  grid-template-columns: repeat(4, 1fr) !important;
+  gap: 0 !important;
+  position: relative !important;
+}
+
+/* Horizontal connector line through centre of icon circles */
+html[data-theme="light"] .sequence::before {
+  content: "" !important;
+  position: absolute !important;
+  top: calc(clamp(24px, 3vw, 40px) + 18px) !important;
+  left: calc(100% / 8) !important;
+  right: calc(100% / 8) !important;
+  height: 1px !important;
+  background: oklch(20% 0.012 74 / 0.18) !important;
+  pointer-events: none !important;
+  z-index: 0 !important;
+}
+
+/* Each step — no box, no dark bg */
+html[data-theme="light"] .sequence-step {
+  background: transparent !important;
+  border: none !important;
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+  padding: clamp(24px, 3vw, 40px) clamp(16px, 2vw, 28px) !important;
+  min-height: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  position: relative !important;
+  z-index: 1 !important;
+}
+
+/* Icon circle — canvas bg punches through the connector line */
+html[data-theme="light"] .step-icon {
+  width: 36px !important;
+  height: 36px !important;
+  flex-shrink: 0 !important;
+  border: 1.5px solid #e65f18 !important;
+  border-radius: 50% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  color: #e65f18 !important;
+  background: var(--canvas) !important;
+  position: relative !important;
+  z-index: 2 !important;
+  margin-bottom: 20px !important;
+}
+
+/* Step number — small orange label below icon */
+html[data-theme="light"] .step-number {
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.1em !important;
+  color: #e65f18 !important;
+  line-height: 1 !important;
+  margin-bottom: 10px !important;
+}
+
+/* Step title */
+html[data-theme="light"] .sequence-step h3 {
+  font-size: clamp(16px, 1.4vw, 20px) !important;
+  font-weight: 700 !important;
+  color: oklch(15% 0.012 74) !important;
+  line-height: 1.2 !important;
+  margin: 0 0 8px !important;
+}
+
+/* Step description */
+html[data-theme="light"] .sequence-step p {
+  font-size: 13px !important;
+  color: oklch(15% 0.012 74 / 0.52) !important;
+  line-height: 1.6 !important;
+  text-shadow: none !important;
+  max-width: 26ch !important;
+}
+
+/* Tablet: 2 columns, hide connector line */
+@media (max-width: 900px) {
+  html[data-theme="light"] .sequence {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+  html[data-theme="light"] .sequence::before {
+    display: none !important;
+  }
+  html[data-theme="light"] .sequence-step {
+    border-bottom: 1px solid oklch(20% 0.012 74 / 0.12) !important;
+  }
+  html[data-theme="light"] .sequence-step:nth-child(n+3) {
+    border-bottom: none !important;
+  }
+}
+
+/* Mobile: single column */
+@media (max-width: 560px) {
+  html[data-theme="light"] .sequence {
+    grid-template-columns: 1fr !important;
+  }
+  html[data-theme="light"] .sequence-step {
+    border-bottom: 1px solid oklch(20% 0.012 74 / 0.12) !important;
+  }
+  html[data-theme="light"] .sequence-step:last-child {
+    border-bottom: none !important;
+  }
+}
+
+/* vPRODUCT-RULED — catalogue row layout, replaces card approach */
+
+html[data-theme="light"] .product-grid {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 0 !important;
+  width: 100% !important;
+}
+
+html[data-theme="light"] .product-panel,
+html[data-theme="light"] .product-panel.large {
+  display: grid !important;
+  grid-template-columns: clamp(80px, 8vw, 120px) 1fr clamp(180px, 20vw, 300px) !important;
+  grid-template-areas: "code text image" !important;
+  grid-template-rows: 1fr !important;
+  align-items: center !important;
+  column-gap: clamp(28px, 4vw, 60px) !important;
+  padding: clamp(30px, 4vw, 56px) 0 !important;
+  min-height: 0 !important;
+  border-top: 1px solid oklch(20% 0.012 74 / 0.18) !important;
+  border-bottom: none !important;
+  border-left: none !important;
+  border-right: none !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  overflow: hidden !important;
+  position: relative !important;
+  transition: background 220ms ease !important;
+}
+
+html[data-theme="light"] .product-panel:last-child {
+  border-bottom: 1px solid oklch(20% 0.012 74 / 0.18) !important;
+}
+
+html[data-theme="light"] .product-panel::before,
+html[data-theme="light"] .product-panel::after {
+  display: none !important;
+}
+
+html[data-theme="light"] .product-panel:hover {
+  background: oklch(20% 0.012 74 / 0.026) !important;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+/* Left zone — product code */
+html[data-theme="light"] .product-code {
+  grid-area: code !important;
+  font-size: 10px !important;
+  letter-spacing: 0.1em !important;
+  color: #e65f18 !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  line-height: 1.5 !important;
+  position: static !important;
+  z-index: auto !important;
+}
+
+/* Centre zone — text wrapper */
+html[data-theme="light"] .product-text {
+  grid-area: text !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 10px !important;
+}
+
+html[data-theme="light"] .product-panel h3 {
+  font-size: clamp(22px, 2.6vw, 40px) !important;
+  font-weight: 700 !important;
+  color: oklch(15% 0.012 74) !important;
+  line-height: 1.1 !important;
+  letter-spacing: -0.02em !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  max-width: none !important;
+  position: static !important;
+  z-index: auto !important;
+}
+
+html[data-theme="light"] .product-panel p {
+  font-size: clamp(12px, 0.88vw, 13.5px) !important;
+  color: oklch(15% 0.012 74 / 0.5) !important;
+  line-height: 1.6 !important;
+  max-width: 46ch !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  flex: 0 !important;
+  position: static !important;
+  z-index: auto !important;
+}
+
+/* Right zone — image, bleeds through the row padding into the rules */
+html[data-theme="light"] .product-media {
+  grid-area: image !important;
+  position: relative !important;
+  inset: auto !important;
+  right: auto !important;
+  bottom: auto !important;
+  width: 100% !important;
+  /* Bleed through the row padding so image clips at the border rules */
+  height: calc(100% + 2 * clamp(30px, 4vw, 56px)) !important;
+  margin-top: calc(-1 * clamp(30px, 4vw, 56px)) !important;
+  margin-bottom: calc(-1 * clamp(30px, 4vw, 56px)) !important;
+  aspect-ratio: auto !important;
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  overflow: hidden !important;
+  box-shadow: none !important;
+  transform: none !important;
+  flex-shrink: 0 !important;
+}
+
+html[data-theme="light"] .product-media img {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain !important;
+  object-position: center right !important;
+  padding: 0 !important;
+  display: block !important;
+  filter: drop-shadow(0 10px 20px oklch(20% 0.012 74 / 0.15)) !important;
+  transform: scale(1) !important;
+  transition: transform 500ms cubic-bezier(0.16,1,0.3,1), filter 500ms ease !important;
+}
+
+html[data-theme="light"] .product-panel:hover .product-media img {
+  transform: scale(1.06) translateX(-6px) !important;
+  filter: drop-shadow(0 14px 26px oklch(20% 0.012 74 / 0.22)) !important;
+}
+
+html[data-theme="light"] .product-frame {
+  display: none !important;
+}
+
+/* Tablet */
+@media (max-width: 700px) {
+  html[data-theme="light"] .product-panel,
+  html[data-theme="light"] .product-panel.large {
+    grid-template-columns: clamp(70px, 14vw, 100px) 1fr !important;
+    grid-template-areas:
+      "code  code"
+      "text  image" !important;
+    grid-template-rows: auto 1fr !important;
+    column-gap: 16px !important;
+    row-gap: 12px !important;
+  }
+  html[data-theme="light"] .product-media {
+    height: clamp(90px, 18vw, 140px) !important;
+    margin: 0 !important;
+    align-self: end !important;
+  }
+}
+
+/* Mobile */
+@media (max-width: 420px) {
+  html[data-theme="light"] .product-panel,
+  html[data-theme="light"] .product-panel.large {
+    grid-template-columns: 1fr !important;
+    grid-template-areas:
+      "code"
+      "text"
+      "image" !important;
+  }
+  html[data-theme="light"] .product-media {
+    width: 58% !important;
+    height: 140px !important;
+    margin-left: auto !important;
+  }
+}
+
+/* vPRINCIPLE-SCALE — bigger circles, thicker line, larger text */
+html[data-theme="light"] .step-icon {
+  width: 54px !important;
+  height: 54px !important;
+  border: 2px solid #e65f18 !important;
+}
+html[data-theme="light"] .step-icon svg {
+  width: 24px !important;
+  height: 24px !important;
+}
+/* Connector line: thicker, more visible, top adjusted for 54px icon centre */
+html[data-theme="light"] .sequence::before {
+  height: 2px !important;
+  top: calc(clamp(24px, 3vw, 40px) + 27px) !important;
+  background: oklch(20% 0.012 74 / 0.32) !important;
+}
+html[data-theme="light"] .principle .step-number {
+  font-size: 13px !important;
+  letter-spacing: 0.12em !important;
+  margin-top: 18px !important;
+  margin-bottom: 12px !important;
+}
+html[data-theme="light"] .principle .sequence-step h3 {
+  font-size: clamp(20px, 1.8vw, 26px) !important;
+  font-weight: 700 !important;
+  margin: 0 0 10px !important;
+}
+html[data-theme="light"] .principle .sequence-step p {
+  font-size: 15px !important;
+  line-height: 1.65 !important;
+  max-width: 24ch !important;
+}
+
+/* vPRINCIPLE-CARD-KILL — strip the card border/shadow that makes principle look boxed */
+html[data-theme="light"] .principle {
+  border: none !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+  overflow: visible !important;
+}
+/* Hide the orange radial-gradient ::before overlay */
+html[data-theme="light"] .principle::before {
+  display: none !important;
+  content: none !important;
+}
+/* Remove glass card styling from individual steps (from line 8861) */
+html[data-theme="light"] .principle .sequence-step {
+  border: none !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  margin: 0 !important;
+}
+
+/* vPRINCIPLE-LAYOUT-FIX — restore proper width centering, fix step/connector alignment */
+
+/* 1. Restore principle to natural 1320px width (not full viewport) */
+html[data-theme="light"] .principle {
+  width: min(calc(100% - 32px), 1320px) !important;
+  margin-inline: auto !important;
+  padding-inline: 0 !important;
+  gap: clamp(36px, 5vw, 60px) !important;
+}
+
+/* 2. Section heading: fill the principle container naturally */
+html[data-theme="light"] .principle .section-heading {
+  min-height: 0 !important;
+  max-width: none !important;
+  width: 100% !important;
+  margin-inline: 0 !important;
+  padding-inline: 0 !important;
+  padding-top: clamp(32px, 4vw, 56px) !important;
+  padding-bottom: 0 !important;
+}
+html[data-theme="light"] .principle .section-heading h2 {
+  max-width: none !important;
+}
+
+/* 3. Sequence: fill the principle container */
+html[data-theme="light"] .sequence {
+  width: 100% !important;
+  margin-inline: 0 !important;
+}
+
+/* 4. Steps: center content so icons align with connector line (12.5% / 87.5%) */
+html[data-theme="light"] .sequence-step {
+  align-items: center !important;
+  text-align: center !important;
+  padding: clamp(24px, 3vw, 40px) clamp(8px, 1vw, 16px) !important;
+}
+/* Same selector as the old .principle-scoped rule → wins by source order */
+html[data-theme="light"] .principle .sequence-step {
+  align-items: center !important;
+  text-align: center !important;
+}
+/* Override old grid-based align-self: start/end from line 10355-10369 */
+html[data-theme="light"] .principle .step-number {
+  align-self: center !important;
+  grid-area: auto !important;
+}
+html[data-theme="light"] .principle .sequence-step h3 {
+  align-self: center !important;
+  grid-area: auto !important;
+  text-align: center !important;
+  font-size: clamp(20px, 1.8vw, 26px) !important;
+  margin: 0 0 10px !important;
+}
+html[data-theme="light"] .principle .sequence-step p {
+  align-self: center !important;
+  grid-area: auto !important;
+  text-align: center !important;
+  font-size: 15px !important;
+  line-height: 1.65 !important;
+  max-width: 24ch !important;
+}
+html[data-theme="light"] .principle .step-icon {
+  align-self: center !important;
+}
+
+/* 5. Stronger, more visible connector line */
+html[data-theme="light"] .sequence::before {
+  background: oklch(20% 0.012 74 / 0.22) !important;
+}
+
+/* 6. Color/text overrides with .principle specificity to beat older cream-on-dark rules */
+html[data-theme="light"] .principle .sequence-step h3 {
+  color: oklch(15% 0.012 74) !important;
+  font-size: clamp(20px, 1.8vw, 26px) !important;
+  font-weight: 700 !important;
+  line-height: 1.2 !important;
+  margin: 0 0 10px !important;
+  text-shadow: none !important;
+  text-align: center !important;
+}
+html[data-theme="light"] .principle .sequence-step p {
+  color: oklch(15% 0.012 74 / 0.52) !important;
+  text-shadow: none !important;
+  font-size: 15px !important;
+  line-height: 1.65 !important;
+  max-width: 24ch !important;
+  text-align: center !important;
+}
+html[data-theme="light"] .principle .step-number {
+  color: #e65f18 !important;
+  font-size: 13px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.12em !important;
+  margin-top: 18px !important;
+  margin-bottom: 12px !important;
+  text-align: center !important;
+}
+
+
+/* vPRODUCTS-CARD-GRID — 4 equal cards, image top, cross-fade title↔description on hover */
+
+/* Section heading floats free on cream — no box, consistent with other sections */
+html[data-theme="light"] .products {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+html[data-theme="light"] .products::before,
+html[data-theme="light"] .products::after {
+  display: none !important;
+  content: none !important;
+}
+html[data-theme="light"] .products .section-heading {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  min-height: 0 !important;
+  max-width: none !important;
+  width: min(calc(100% - 32px), 1320px) !important;
+  margin-inline: auto !important;
+  padding-inline: 0 !important;
+  padding-top: clamp(60px, 6vw, 96px) !important;
+  padding-bottom: clamp(32px, 3.5vw, 52px) !important;
+}
+html[data-theme="light"] .products .section-heading::before,
+html[data-theme="light"] .products .section-heading::after {
+  display: none !important;
+  content: none !important;
+}
+html[data-theme="light"] .products .section-heading h2 {
+  color: oklch(15% 0.012 74) !important;
+  text-shadow: none !important;
+  max-width: none !important;
+  font-size: clamp(30px, 4vw, 56px) !important;
+}
+html[data-theme="light"] .products .section-heading .eyebrow {
+  color: #e65f18 !important;
+}
+
+/* 4-column card grid */
+html[data-theme="light"] .product-grid {
+  display: grid !important;
+  grid-template-columns: repeat(4, 1fr) !important;
+  gap: 16px !important;
+  width: min(calc(100% - 32px), 1320px) !important;
+  margin-inline: auto !important;
+  padding: 0 0 clamp(60px, 6vw, 96px) !important;
+}
+
+/* Card — small box, no row layout */
+html[data-theme="light"] .product-panel,
+html[data-theme="light"] .product-panel.large {
+  display: flex !important;
+  flex-direction: column !important;
+  grid-column: auto !important;
+  grid-row: auto !important;
+  background: oklch(95.5% 0.011 74) !important;
+  border: 1px solid oklch(15% 0.012 74 / 0.09) !important;
+  border-radius: 14px !important;
+  box-shadow: none !important;
+  overflow: hidden !important;
+  cursor: default !important;
+  min-height: 0 !important;
+  padding: 0 !important;
+  position: relative !important;
+  transform: none !important;
+  transition: box-shadow 0.22s ease, transform 0.22s ease !important;
+}
+html[data-theme="light"] .product-panel:hover,
+html[data-theme="light"] .product-panel.large:hover {
+  box-shadow: 0 6px 28px oklch(15% 0.012 74 / 0.10) !important;
+  transform: translateY(-2px) !important;
+}
+
+/* Image area */
+html[data-theme="light"] .product-panel .product-media {
+  width: 100% !important;
+  aspect-ratio: 4 / 3 !important;
+  overflow: hidden !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background: oklch(93% 0.013 74) !important;
+  flex-shrink: 0 !important;
+  position: static !important;
+}
+html[data-theme="light"] .product-panel .product-media img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain !important;
+  object-position: center !important;
+  transition: transform 0.35s ease !important;
+}
+html[data-theme="light"] .product-panel:hover .product-media img {
+  transform: scale(1.04) !important;
+}
+
+/* Label area — fixed height so cross-fade doesn't shift layout */
+html[data-theme="light"] .product-panel .product-label {
+  position: relative !important;
+  padding: 18px 20px 22px !important;
+  min-height: 72px !important;
+}
+
+/* Title — visible by default */
+html[data-theme="light"] .product-panel .product-label h3 {
+  font-size: clamp(15px, 1.2vw, 18px) !important;
+  font-weight: 700 !important;
+  color: oklch(15% 0.012 74) !important;
+  margin: 0 !important;
+  line-height: 1.25 !important;
+  text-shadow: none !important;
+  opacity: 1 !important;
+  transition: opacity 0.22s ease !important;
+  position: relative !important;
+  z-index: 1 !important;
+}
+
+/* Description — hidden by default, revealed on hover */
+html[data-theme="light"] .product-panel .product-label p {
+  font-size: 13px !important;
+  color: oklch(15% 0.012 74 / 0.62) !important;
+  line-height: 1.58 !important;
+  margin: 0 !important;
+  text-shadow: none !important;
+  box-shadow: none !important;
+  background: transparent !important;
+  position: absolute !important;
+  inset: 18px 20px auto !important;
+  opacity: 0 !important;
+  transition: opacity 0.22s ease !important;
+  z-index: 2 !important;
+}
+
+/* Hover: title fades out, description fades in */
+html[data-theme="light"] .product-panel:hover .product-label h3 {
+  opacity: 0 !important;
+}
+html[data-theme="light"] .product-panel:hover .product-label p {
+  opacity: 1 !important;
+}
+
+/* Hide old product-code and product-text if present */
+html[data-theme="light"] .product-code {
+  display: none !important;
+}
+html[data-theme="light"] .product-text {
+  display: none !important;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  html[data-theme="light"] .product-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+@media (max-width: 540px) {
+  html[data-theme="light"] .product-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 12px !important;
+  }
+}
+
+/* vPRODUCTS-IMG-FIX — img was position:absolute from base CSS, overlaying the label */
+html[data-theme="light"] .product-panel .product-media {
+  position: relative !important;
+  height: auto !important;
+  aspect-ratio: 4 / 3 !important;
+  overflow: hidden !important;
+  flex-shrink: 0 !important;
+  margin: 0 !important;
+  top: auto !important;
+  left: auto !important;
+  right: auto !important;
+  bottom: auto !important;
+  inset: auto !important;
+}
+html[data-theme="light"] .product-panel .product-media img {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain !important;
+  object-position: center !important;
+  transition: transform 0.35s ease !important;
+}
+html[data-theme="light"] .product-panel:hover .product-media img {
+  transform: scale(1.04) !important;
+}
+/* Label sits below the image in normal flex flow */
+html[data-theme="light"] .product-panel .product-label {
+  position: relative !important;
+  flex-shrink: 0 !important;
+  padding: 16px 18px 20px !important;
+  min-height: 64px !important;
+  background: oklch(95.5% 0.011 74) !important;
+}
+
+/* vSECTION-RHYTHM — uniform vertical padding + hairline dividers between all content sections */
+
+/* Hairline divider at the top of every non-hero section */
+html[data-theme="light"] .materials-section,
+html[data-theme="light"] .principle,
+html[data-theme="light"] .howitworks,
+html[data-theme="light"] .products,
+html[data-theme="light"] .markets-slider,
+html[data-theme="light"] .process,
+html[data-theme="light"] .contact {
+  border-top: 1px solid oklch(15% 0.012 74 / 0.08) !important;
+}
+
+/* Consistent section padding — all content sections get the same breathing room */
+html[data-theme="light"] .materials-section,
+html[data-theme="light"] .principle,
+html[data-theme="light"] .howitworks,
+html[data-theme="light"] .products,
+html[data-theme="light"] .process {
+  padding-top: clamp(80px, 8vw, 112px) !important;
+  padding-bottom: clamp(80px, 8vw, 112px) !important;
+}
+
+/* Remove internal heading top-padding that would double-stack with section padding */
+html[data-theme="light"] .principle .section-heading {
+  padding-top: 0 !important;
+}
+html[data-theme="light"] .products .section-heading {
+  padding-top: 0 !important;
+}
+/* Remove internal product-grid bottom padding (section handles it now) */
+html[data-theme="light"] .product-grid {
+  padding-bottom: 0 !important;
+}
+
+/* vSECTION-ALIGNMENT — consistent horizontal containment via section-level padding-inline */
+/* All content sections use the same gutter: centered 1320px max, 16px min on mobile */
+html[data-theme="light"] .materials-section,
+html[data-theme="light"] .principle,
+html[data-theme="light"] .howitworks,
+html[data-theme="light"] .products,
+html[data-theme="light"] .process {
+  padding-inline: max(16px, calc((100% - 1320px) / 2)) !important;
+  box-sizing: border-box !important;
+  width: 100% !important;
+  max-width: none !important;
+  margin-inline: 0 !important;
+}
+
+/* Remove child-level width/margin constraints that were compensating before */
+html[data-theme="light"] .principle .section-heading,
+html[data-theme="light"] .products .section-heading {
+  width: 100% !important;
+  max-width: none !important;
+  margin-inline: 0 !important;
+  padding-inline: 0 !important;
+}
+html[data-theme="light"] .product-grid {
+  width: 100% !important;
+  max-width: none !important;
+  margin-inline: 0 !important;
+  padding-inline: 0 !important;
+}
+html[data-theme="light"] .sequence {
+  width: 100% !important;
+  max-width: none !important;
+  margin-inline: 0 !important;
+}
+
+/* vSECTION-ALIGNMENT-INNER — remove container-level offsets that stack on top of section padding */
+html[data-theme="light"] .materials-container {
+  padding-inline: 0 !important;
+  width: 100% !important;
+  max-width: none !important;
+  margin-inline: 0 !important;
+}
+html[data-theme="light"] .howitworks-container {
+  margin-left: 0 !important;
+  margin-inline: 0 !important;
+  width: 100% !important;
+  max-width: none !important;
+  padding-inline: 0 !important;
+}
+
+/* vCASE-STUDY — dark feature section: image left, text right */
+html[data-theme="light"] .case-study {
+  background: oklch(14% 0.012 74) !important;
+  border-top: 1px solid oklch(15% 0.012 74 / 0.08) !important;
+  border-bottom: none !important;
+  padding-top: clamp(56px, 6vw, 96px) !important;
+  padding-bottom: clamp(56px, 6vw, 96px) !important;
+  padding-inline: max(16px, calc((100% - 1320px) / 2)) !important;
+  box-sizing: border-box !important;
+  width: 100% !important;
+}
+
+html[data-theme="light"] .case-study-inner {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  gap: clamp(40px, 5vw, 72px) !important;
+  align-items: center !important;
+}
+
+/* Image */
+html[data-theme="light"] .case-study-media {
+  border-radius: 14px !important;
+  overflow: hidden !important;
+  aspect-ratio: 4 / 3 !important;
+  background: oklch(20% 0.012 74) !important;
+}
+html[data-theme="light"] .case-study-media img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  object-position: center !important;
+  display: block !important;
+}
+
+/* Text column */
+html[data-theme="light"] .case-study-text {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 0 !important;
+}
+
+html[data-theme="light"] .case-study-category {
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.14em !important;
+  color: #e65f18 !important;
+  text-transform: uppercase !important;
+  margin: 0 0 20px !important;
+}
+
+html[data-theme="light"] .case-study-headline {
+  font-size: clamp(22px, 2.4vw, 36px) !important;
+  font-weight: 700 !important;
+  line-height: 1.15 !important;
+  color: oklch(95% 0.010 74) !important;
+  margin: 0 0 28px !important;
+  text-shadow: none !important;
+  letter-spacing: -0.02em !important;
+}
+
+html[data-theme="light"] .case-study-quote {
+  font-style: italic !important;
+  font-size: clamp(14px, 1.2vw, 17px) !important;
+  line-height: 1.65 !important;
+  color: oklch(90% 0.010 74 / 0.78) !important;
+  margin: 0 0 14px !important;
+  padding: 0 !important;
+  border: none !important;
+}
+
+html[data-theme="light"] .case-study-attribution {
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.04em !important;
+  color: oklch(90% 0.010 74 / 0.45) !important;
+  margin: 0 0 28px !important;
+  text-transform: uppercase !important;
+}
+
+html[data-theme="light"] .case-study-body {
+  font-size: 14px !important;
+  line-height: 1.72 !important;
+  color: oklch(90% 0.010 74 / 0.60) !important;
+  margin: 0 !important;
+  text-shadow: none !important;
+  border-top: 1px solid oklch(90% 0.010 74 / 0.12) !important;
+  padding-top: 24px !important;
+}
+
+/* Also add border-top to case-study section that comes after .process */
+html[data-theme="light"] .process {
+  border-bottom: none !important;
+}
+
+/* Responsive */
+@media (max-width: 860px) {
+  html[data-theme="light"] .case-study-inner {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* vCONTACT-GAP-FIX — remove 126px base margin-top that creates cream void between dark sections */
+html[data-theme="light"] .contact {
+  margin-top: 0 !important;
+  border-top: 1px solid oklch(30% 0.012 74 / 0.6) !important;
+}
+
+/* vPROCESS-BORDER-BOTTOM — hairline separator at bottom of expertise section before dark case-study */
+html[data-theme="light"] .process {
+  border-bottom: 1px solid oklch(15% 0.012 74 / 0.08) !important;
+}
